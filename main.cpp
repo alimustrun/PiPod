@@ -1,6 +1,7 @@
-#include <iostream>
+#include "screen-driver/ScreenDriver.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    ScreenDriver *screenDriver = new ScreenDriver();
+    screenDriver->displaySomething();
     return 0;
 }
