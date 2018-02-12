@@ -1,6 +1,5 @@
-cmake_minimum_required(VERSION 3.9)
+cmake_minimum_required(VERSION 3.7)
 project(PiPod)
-
 set(CMAKE_CXX_STANDARD 11)
-
-add_executable(PiPod main.cpp)
+add_executable(PiPod main.cpp screen-driver/ScreenDriver.cpp screen-driver/imagedata.cpp screen-driver/font8.c screen-driver/font12.c screen-driver/font12.c screen-driver/font16.c screen-driver/font20.c screen-driver/font24.c screen-driver/epd2in13.cpp screen-driver/epdif.cpp screen-driver/epdpaint.cpp)
+target_link_libraries(PiPod bcm2835)
