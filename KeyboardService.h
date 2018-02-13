@@ -6,15 +6,23 @@
 #define PIPOD_KEYBOARDSERVICE_H
 
 
+#include <map>
 #include "Service.h"
 
 class KeyboardService : Service
 {
 public:
-    void start();
-    void stop();
+    KeyboardService();
+    ~KeyboardService();
+    void start() override;
+    void stop() override;
 private:
-    void setup();
+    void setup() override;
+    const bool isKeyPressed(int key) const;
+
+    std::map<int, bool> *buttonsStatuses;
+
+    void refreshKeys();
 };
 
 
