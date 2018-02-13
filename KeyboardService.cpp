@@ -3,6 +3,7 @@
 //
 
 #include <wiringPi.h>
+#include <iostream>
 #include "KeyboardService.h"
 
 enum Buttons {
@@ -52,6 +53,18 @@ void KeyboardService::refreshKeys()
     while (it != this->buttonsStatuses->end())
     {
         it->second = this->isKeyPressed(it->first);
+    }
+}
+
+void KeyboardService::printKeysStatuses()
+{
+    auto *it = this->buttonsStatuses->begin();
+    while (it != this->buttonsStatuses->end())
+    {
+        if (it->second)
+        {
+            std::cout << it->first << " : true" << std::flush;
+        }
     }
 }
 
