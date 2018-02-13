@@ -13,6 +13,8 @@ class KeyboardService : Service
 public:
     void start();
     void stop();
+private:
+    void setup();
 };
 
 
