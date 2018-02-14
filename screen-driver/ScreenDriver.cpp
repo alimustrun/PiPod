@@ -80,19 +80,19 @@ const void ScreenDriver::displaySomething()
 const void ScreenDriver::fullClear()
 {
     _frame_buffer = (unsigned char*)malloc(_epd->width / 8 * _epd->height);
-    _epd->SetFrameMemory(IMAGE_DATA, 0, 0, _epd->width, _epd->height);
+    _epd->SetFrameMemory(_frame_buffer, 0, 0, _epd->width, _epd->height);
     _epd->DisplayFrame();
-    _epd->SetFrameMemory(IMAGE_DATA, 0, 0, _epd->width, _epd->height);
+    _epd->SetFrameMemory(_frame_buffer, 0, 0, _epd->width, _epd->height);
     _epd->DisplayFrame();
 
 }
 
 const void ScreenDriver::displayText(std::string *text)
 {
-    _paint->SetWidth(128);
-    _paint->SetHeight(30);
+    _paint->SetWidth(30);
+    _paint->SetHeight(255);
     _paint->Clear(UNCOLORED);
     _paint->DrawStringAt(0, 0, text->c_str(), &Font24, COLORED);
-    _epd->SetFrameMemory(_paint->GetImage(), 0, 10, _paint->GetWidth(), _paint->GetHeight());
+    _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
     _epd->DisplayFrame();
 }
