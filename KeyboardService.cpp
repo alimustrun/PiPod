@@ -5,17 +5,7 @@
 #include <wiringPi.h>
 #include <iostream>
 #include "KeyboardService.h"
-
-enum ButtonsGPIO {
-    RIGHT = 4,
-    CENTER = 14,
-    LEFT = 15,
-    NEXT = 26,
-    PREV = 20,
-    VOL_INC = 27,
-    VOL_DEC = 22
-};
-//https://hackage.haskell.org/package/wiringPi
+#include "ButtonsGPIO.h"
 
 void KeyboardService::start()
 {
@@ -28,13 +18,10 @@ void KeyboardService::start()
     this->buttonsStatuses->insert(std::make_pair(NEXT, this->isKeyPressed(NEXT)));
     this->buttonsStatuses->insert(std::make_pair(PREV, this->isKeyPressed(PREV)));
 
-    pullUpDnControl(RIGHT, PUD_UP);
-    pullUpDnControl(CENTER, PUD_UP);
-    pullUpDnControl(LEFT, PUD_UP);
-    pullUpDnControl(VOL_INC, PUD_UP);
-    pullUpDnControl(VOL_DEC, PUD_UP);
-    pullUpDnControl(NEXT, PUD_UP);
-    pullUpDnControl(PREV, PUD_UP);
+    for (auto &buttonsStatuse : *this->buttonsStatuses)
+    {
+        pullUpDnControl(buttonsStatuse.first, PUD_UP);
+    }
 }
 
 void KeyboardService::stop()
@@ -44,28 +31,24 @@ void KeyboardService::stop()
 
 void KeyboardService::refreshKeys()
 {
-    auto it = this->buttonsStatuses->begin();
-    while (it != this->buttonsStatuses->end())
+    for (auto &buttonsStatuse : *this->buttonsStatuses)
     {
-        it->second = this->isKeyPressed(it->first);
-	++it;
+        buttonsStatuse.second = this->isKeyPressed(buttonsStatuse.first);
     }
 }
 
 void KeyboardService::printKeysStatuses()
 {
-    auto it = this->buttonsStatuses->begin();
-    while (it != this->buttonsStatuses->end())
+    for (auto &buttonsStatuse : *this->buttonsStatuses)
     {
-        if (it->second)
+        if (buttonsStatuse.second)
         {
-	  std::cout << it->first << " : true" << std::endl;
+            std::cout << buttonsStatuse.first << " : true" << std::endl;
         }
-	else
-	  {
-	    std::cout << it->first << " : false" << std::endl;
-	  }
-	++it;
+        else
+        {
+            std::cout << buttonsStatuse.first << " : false" << std::endl;
+        }
     }
 }
 
