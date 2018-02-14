@@ -83,9 +83,11 @@ const void ScreenDriver::fullClear()
 const void ScreenDriver::displayText(std::string *text)
 {
     //paint.Clear(UNCOLORED);
+    _paint->SetWidth(128);
+    _paint->SetHeight(30);
+    _paint->Clear(UNCOLORED);
     _paint->SetRotate(ROTATE_90);
-    _paint->DrawFilledRectangle(0, 10, 128, 30, COLORED);
-    _paint->DrawStringAt(30, 14, text->c_str(), &Font24, UNCOLORED);
-    this->_epd->SetFrameMemory(_paint->GetImage(), 0, 10, 128, 30);
+    _paint->DrawStringAt(30, 14, text->c_str(), &Font24, COLORED);
+    this->_epd->SetFrameMemory(_paint->GetImage(), 0, 10, _paint->GetWidth(), _paint->GetHeight());
     this->_epd->DisplayFrame();
 }
