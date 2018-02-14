@@ -3,19 +3,21 @@
 
 ScreenDriver::ScreenDriver()
 {
-    this->_epd = new Epd();
-    if (this->_epd->Init(lut_full_update) != 0)
+    _epd = new Epd();
+    if (_epd->Init(lut_full_update) != 0)
     {
         printf("e-Paper init failed\n");
         return;
     }
-    this->_frame_buffer = (unsigned char*)malloc(this->_epd->width / 8 * this->_epd->height);
-    this->_paint = new Paint(this->_frame_buffer, this->_epd->width, this->_epd->height);
+    _frame_buffer = (unsigned char*)malloc(_epd->width / 8 * _epd->height);
+    _paint = new Paint(_frame_buffer, _epd->width, _epd->height);
+    _paint->SetRotate(ROTATE_90);
+    fullClear();
 }
 
 const void ScreenDriver::displaySomething()
 {
-    Paint paint(this->_frame_buffer, this->_epd->width, this->_epd->height);
+    Paint paint(_frame_buffer, _epd->width, _epd->height);
     paint.Clear(UNCOLORED);
     paint.SetRotate(ROTATE_90);
 
@@ -24,8 +26,8 @@ const void ScreenDriver::displaySomething()
     paint.DrawFilledRectangle(0, 10, 128, 30, COLORED);
     paint.DrawStringAt(30, 14, "Hello world!", &Font12, UNCOLORED);
     paint.DrawStringAt(30, 34, "e-Paper Demo", &Font12, COLORED);
-    this->_epd->SetFrameMemory(paint.GetImage(), 0, 0, paint.GetWidth(), paint.GetHeight());
-    this->_epd->DisplayFrame();
+    _epd->SetFrameMemory(paint.GetImage(), 0, 0, paint.GetWidth(), paint.GetHeight());
+    _epd->DisplayFrame();
 
     /* Draw something to the frame_buffer
     paint.DrawRectangle(10, 60, 50, 100, COLORED);
@@ -36,9 +38,9 @@ const void ScreenDriver::displaySomething()
     paint.DrawFilledCircle(88, 150, 30, COLORED);*/
 
     /* Display the frame_buffer */
-/*    this->_epd->DelayMs(2000);
+/*    _epd->DelayMs(2000);
 
-    if (this->_epd->Init(lut_partial_update) != 0) {
+    if (_epd->Init(lut_partial_update) != 0) {
         printf("e-Paper init failed\n");
         return;
     }*/
@@ -77,17 +79,20 @@ const void ScreenDriver::displaySomething()
 
 const void ScreenDriver::fullClear()
 {
+    _frame_buffer = (unsigned char*)malloc(_epd->width / 8 * _epd->height);
+    _epd->SetFrameMemory(IMAGE_DATA, 0, 0, _epd->width, _epd->height);
+    _epd->DisplayFrame();
+    _epd->SetFrameMemory(IMAGE_DATA, 0, 0, _epd->width, _epd->height);
+    _epd->DisplayFrame();
 
 }
 
 const void ScreenDriver::displayText(std::string *text)
 {
-    //paint.Clear(UNCOLORED);
     _paint->SetWidth(128);
     _paint->SetHeight(30);
     _paint->Clear(UNCOLORED);
-    _paint->SetRotate(ROTATE_90);
-    _paint->DrawStringAt(30, 14, text->c_str(), &Font24, COLORED);
-    this->_epd->SetFrameMemory(_paint->GetImage(), 0, 10, _paint->GetWidth(), _paint->GetHeight());
-    this->_epd->DisplayFrame();
+    _paint->DrawStringAt(0, 0, text->c_str(), &Font24, COLORED);
+    _epd->SetFrameMemory(_paint->GetImage(), 0, 10, _paint->GetWidth(), _paint->GetHeight());
+    _epd->DisplayFrame();
 }
