@@ -33,7 +33,12 @@ void KeyboardService::refreshKeys()
 {
     for (auto &buttonsStatuse : *this->buttonsStatuses)
     {
-        buttonsStatuse.second = this->isKeyPressed(buttonsStatuse.first);
+        bool buttonCurrentStatus = this->isKeyPressed(buttonsStatuse.first);
+        if (buttonCurrentStatus != buttonsStatuse.second)
+        {
+            buttonsStatuse.second = buttonCurrentStatus;
+            this->notifyListeners();
+        }
     }
 }
 
@@ -41,14 +46,7 @@ void KeyboardService::printKeysStatuses()
 {
     for (auto &buttonsStatuse : *this->buttonsStatuses)
     {
-        if (buttonsStatuse.second)
-        {
-            std::cout << buttonsStatuse.first << " : true" << std::endl;
-        }
-        else
-        {
-            std::cout << buttonsStatuse.first << " : false" << std::endl;
-        }
+        std::cout << buttonsStatuse.first << buttonsStatuse.second << std::endl;
     }
 }
 
@@ -60,9 +58,18 @@ const bool KeyboardService::isKeyPressed(int key) const
 KeyboardService::~KeyboardService()
 {
     delete this->buttonsStatuses;
+    delete this->keyboardListeners;
 }
 
 KeyboardService::KeyboardService()
 {
     this->buttonsStatuses = new std::map<int, bool>;
+    this->keyboardListeners = new std::list<std::function<void(int)>>;
+}
+
+void KeyboardService::notifyListeners()
+{
+    for (auto &keyboardListeners : *this->keyboardListeners)
+    {
+    }
 }

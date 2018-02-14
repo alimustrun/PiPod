@@ -5,8 +5,9 @@
 #ifndef PIPOD_KEYBOARDSERVICE_H
 #define PIPOD_KEYBOARDSERVICE_H
 
-
+#include <list>
 #include <map>
+#include <functional>
 #include "Service.h"
 
 class KeyboardService : Service
@@ -22,6 +23,9 @@ private:
     const bool isKeyPressed(int key) const;
 
     std::map<int, bool> *buttonsStatuses;
+    std::list<std::function<void(int)>> *keyboardListeners;
+
+    void notifyListeners();
 };
 
 
