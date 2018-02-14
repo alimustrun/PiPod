@@ -19,13 +19,15 @@ public:
     void stop() override;
     void printKeysStatuses();
     void refreshKeys();
+    void addListener(std::function<void(int)>);
+    void removeListener(std::function<void(int)> listener);
+
 private:
     const bool isKeyPressed(int key) const;
+    void notifyListeners(const int i);
 
     std::map<int, bool> *buttonsStatuses;
     std::list<std::function<void(int)>> *keyboardListeners;
-
-    void notifyListeners();
 };
 
 

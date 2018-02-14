@@ -3,6 +3,7 @@
 #include "screen-driver/ScreenDriver.h"
 #include "Number.h"
 #include "KeyboardService.h"
+#include "ScreenService.h"
 
 int main(int argc, char **argv) {
 //    ScreenDriver *screenDriver = new ScreenDriver();
@@ -16,11 +17,11 @@ int main(int argc, char **argv) {
     }
     auto *keyboardService = new KeyboardService();
     keyboardService->start();
+    auto *screenService = new ScreenService();
+    keyboardService->addListener(std::bind(&ScreenService::onKeyPressed, screenService, std::placeholders::_1));
     while (true)
     {
-      std::cout << "iterating" << std::endl;
       keyboardService->refreshKeys();
-      keyboardService->printKeysStatuses();
       sleep(1);
     }
     return 0;

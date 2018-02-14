@@ -37,7 +37,7 @@ void KeyboardService::refreshKeys()
         if (buttonCurrentStatus != buttonsStatuse.second)
         {
             buttonsStatuse.second = buttonCurrentStatus;
-            this->notifyListeners();
+            this->notifyListeners(buttonsStatuse.first);
         }
     }
 }
@@ -52,7 +52,7 @@ void KeyboardService::printKeysStatuses()
 
 const bool KeyboardService::isKeyPressed(int key) const
 {
-    return digitalRead(key) == HIGH;
+    return digitalRead(key) == LOW;
 }
 
 KeyboardService::~KeyboardService()
@@ -67,9 +67,20 @@ KeyboardService::KeyboardService()
     this->keyboardListeners = new std::list<std::function<void(int)>>;
 }
 
-void KeyboardService::notifyListeners()
+
+void KeyboardService::notifyListeners(const int i)
 {
     for (auto &keyboardListeners : *this->keyboardListeners)
     {
+        keyboardListeners(i);
     }
+}
+
+void KeyboardService::addListener(std::function<void(int)> listener)
+{
+    this->keyboardListeners->push_back(listener);
+}
+
+void KeyboardService::removeListener(std::function<void(int)> listener)
+{
 }

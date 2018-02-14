@@ -14,6 +14,7 @@ public:
     void start() override;
     void stop() override;
     void registerToKeyboardService();
+    void onKeyPressed(int key);
 };
 
 
