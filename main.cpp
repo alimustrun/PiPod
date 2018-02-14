@@ -18,9 +18,10 @@ int main(int argc, char **argv) {
     keyboardService->start();
     while (true)
     {
-        keyboardService->refreshKeys();
-        keyboardService->printKeysStatuses();
-        sleep(1);
+      std::cout << "iterating" << std::endl;
+      keyboardService->refreshKeys();
+      keyboardService->printKeysStatuses();
+      sleep(1);
     }
     return 0;
 }

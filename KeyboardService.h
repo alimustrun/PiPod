@@ -19,7 +19,6 @@ public:
     void printKeysStatuses();
     void refreshKeys();
 private:
-    void setup() override;
     const bool isKeyPressed(int key) const;
 
     std::map<int, bool> *buttonsStatuses;

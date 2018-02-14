@@ -11,3 +11,8 @@ compile_commands.json
 CTestTestfile.cmake
 PiPod
 PiPod.cbp
+googletest-master/googlemock/gtest/libgtest.a
+googletest-master/googlemock/gtest/libgtest_main.a
+googletest-master/googlemock/libgmock.a
+googletest-master/googlemock/libgmock_main.a
+

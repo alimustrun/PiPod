@@ -6,45 +6,40 @@
 #include <iostream>
 #include "KeyboardService.h"
 
-enum Buttons {
-    RIGHT = 7,
-    CENTER = 15,
-    LEFT = 16,
-    NEXT = 2,
-    PREV = 38,
-    VOL_INC = 3,
-    VOL_DEC = 25
+enum ButtonsGPIO {
+    RIGHT = 4,
+    CENTER = 14,
+    LEFT = 15,
+    NEXT = 26,
+    PREV = 20,
+    VOL_INC = 27,
+    VOL_DEC = 22
 };
 //https://hackage.haskell.org/package/wiringPi
 
 void KeyboardService::start()
 {
     wiringPiSetupGpio();
-    //launch a timer to poll keyboard events
+    this->buttonsStatuses->insert(std::make_pair(RIGHT, this->isKeyPressed(RIGHT)));
+    this->buttonsStatuses->insert(std::make_pair(LEFT, this->isKeyPressed(LEFT)));
+    this->buttonsStatuses->insert(std::make_pair(CENTER, this->isKeyPressed(CENTER)));
+    this->buttonsStatuses->insert(std::make_pair(VOL_DEC, this->isKeyPressed(VOL_DEC)));
+    this->buttonsStatuses->insert(std::make_pair(VOL_INC, this->isKeyPressed(VOL_INC)));
+    this->buttonsStatuses->insert(std::make_pair(NEXT, this->isKeyPressed(NEXT)));
+    this->buttonsStatuses->insert(std::make_pair(PREV, this->isKeyPressed(PREV)));
+
+    pullUpDnControl(RIGHT, PUD_UP);
+    pullUpDnControl(CENTER, PUD_UP);
+    pullUpDnControl(LEFT, PUD_UP);
+    pullUpDnControl(VOL_INC, PUD_UP);
+    pullUpDnControl(VOL_DEC, PUD_UP);
+    pullUpDnControl(NEXT, PUD_UP);
+    pullUpDnControl(PREV, PUD_UP);
 }
 
 void KeyboardService::stop()
 {
     //cancel timer
-}
-
-void KeyboardService::setup()
-{
-    this->buttonsStatuses->insert(std::make_pair(this->isKeyPressed(RIGHT), RIGHT));
-    this->buttonsStatuses->insert(std::make_pair(this->isKeyPressed(LEFT), LEFT));
-    this->buttonsStatuses->insert(std::make_pair(this->isKeyPressed(CENTER), CENTER));
-    this->buttonsStatuses->insert(std::make_pair(this->isKeyPressed(VOL_DEC), VOL_DEC));
-    this->buttonsStatuses->insert(std::make_pair(this->isKeyPressed(VOL_INC), VOL_INC));
-    this->buttonsStatuses->insert(std::make_pair(this->isKeyPressed(NEXT), NEXT));
-    this->buttonsStatuses->insert(std::make_pair(this->isKeyPressed(PREV), PREV));
-
-    pullUpDnControl(RIGHT, PUD_UP);//7; GPIO4
-    pullUpDnControl(CENTER, PUD_UP);//8; GPIO 14
-    pullUpDnControl(LEFT, PUD_UP);//10; GPIO 15
-    pullUpDnControl(VOL_INC, PUD_UP);//13; GPIO 27
-    pullUpDnControl(VOL_DEC, PUD_UP);//15; GPIO 22
-    pullUpDnControl(NEXT, PUD_UP);//37; GPIO 26
-    pullUpDnControl(PREV, PUD_UP);//38; GPIO 38
 }
 
 void KeyboardService::refreshKeys()
@@ -53,18 +48,24 @@ void KeyboardService::refreshKeys()
     while (it != this->buttonsStatuses->end())
     {
         it->second = this->isKeyPressed(it->first);
+	++it;
     }
 }
 
 void KeyboardService::printKeysStatuses()
 {
-    auto *it = this->buttonsStatuses->begin();
+    auto it = this->buttonsStatuses->begin();
     while (it != this->buttonsStatuses->end())
     {
         if (it->second)
         {
-            std::cout << it->first << " : true" << std::flush;
+	  std::cout << it->first << " : true" << std::endl;
         }
+	else
+	  {
+	    std::cout << it->first << " : false" << std::endl;
+	  }
+	++it;
     }
 }
 
