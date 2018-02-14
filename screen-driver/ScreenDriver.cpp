@@ -13,7 +13,7 @@ ScreenDriver::ScreenDriver()
 
 const void ScreenDriver::displaySomething()
 {
-    auto *frame_buffer = (unsigned char*)malloc(this->_epd->width / 8 * this->_epd->height);
+    unsigned char *frame_buffer = (unsigned char*)malloc(this->_epd->width / 8 * this->_epd->height);
 
     Paint paint(frame_buffer, this->_epd->width, this->_epd->height);
     paint.Clear(UNCOLORED);
@@ -77,8 +77,8 @@ const void ScreenDriver::displaySomething()
 
 const void ScreenDriver::displayText(std::string *text)
 {
- /*std::cout << "1" << std::endl;
-    auto *frame_buffer = (unsigned char*)malloc(this->_epd->width / 8 * this->_epd->height);
+    std::cout << "1" << std::endl;
+    unsigned char *frame_buffer = (unsigned char*)malloc(this->_epd->width / 8 * this->_epd->height);
     std::cout << "2" << std::endl;
     Paint paint(frame_buffer, this->_epd->width, this->_epd->height);
     std::cout << "3" << std::endl;
@@ -93,6 +93,6 @@ const void ScreenDriver::displayText(std::string *text)
     this->_epd->SetFrameMemory(paint.GetImage(), 0, 0, paint.GetWidth(), paint.GetHeight());
     std::cout << "8" << std::endl;
     this->_epd->DisplayFrame();
-    std::cout << "9" << std::endl;*/
-    displaySomething();
+    std::cout << "9" << std::endl;
+ //   displaySomething();
 }
