@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
     while (true)
     {
       keyboardService->refreshKeys();
-      sleep(1);
+      usleep(20000);
     }
     return 0;
 }
