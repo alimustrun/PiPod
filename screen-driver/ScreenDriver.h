@@ -25,7 +25,10 @@ public:
     const void displayText(std::string *);
 
 private:
+    const void fullClear();
+
     Epd *_epd;
+    unsigned char *_frame_buffer;
 };
 
 #endif //PIPOD_SCREENDRIVER_H
