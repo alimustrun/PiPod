@@ -10,6 +10,7 @@ ScreenDriver::ScreenDriver()
         return;
     }
     this->_frame_buffer = (unsigned char*)malloc(this->_epd->width / 8 * this->_epd->height);
+    this->_paint = new Paint(this->_frame_buffer, this->_epd->width, this->_epd->height);
 }
 
 const void ScreenDriver::displaySomething()
@@ -81,11 +82,10 @@ const void ScreenDriver::fullClear()
 
 const void ScreenDriver::displayText(std::string *text)
 {
-    Paint paint(this->_frame_buffer, this->_epd->width, this->_epd->height);
     //paint.Clear(UNCOLORED);
-    paint.SetRotate(ROTATE_90);
-    paint.DrawFilledRectangle(0, 10, 128, 30, COLORED);
-    paint.DrawStringAt(30, 14, text->c_str(), &Font24, UNCOLORED);
-    this->_epd->SetFrameMemory(paint.GetImage(), 0, 0, paint.GetWidth(), paint.GetHeight());
+    _paint->SetRotate(ROTATE_90);
+    _paint->DrawFilledRectangle(0, 10, 128, 30, COLORED);
+    _paint->DrawStringAt(30, 14, text->c_str(), &Font24, UNCOLORED);
+    this->_epd->SetFrameMemory(_paint->GetImage(), 0, 10, 128, 30);
     this->_epd->DisplayFrame();
 }
