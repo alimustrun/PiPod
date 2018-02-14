@@ -26,8 +26,8 @@ private:
     const bool isKeyPressed(int key) const;
     void notifyListeners(const int i);
 
-    std::map<int, bool> *buttonsStatuses;
-    std::list<std::function<void(int)>> *keyboardListeners;
+    std::map<int, bool> *_buttonsStatuses;
+    std::list<std::function<void(int)>> *_keyboardListeners;
 };
 
 

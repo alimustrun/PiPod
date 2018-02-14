@@ -1,15 +1,9 @@
 #include <iostream>
 #include <gtest/gtest.h>
-#include "screen-driver/ScreenDriver.h"
-#include "Number.h"
 #include "KeyboardService.h"
 #include "ScreenService.h"
 
 int main(int argc, char **argv) {
-//    ScreenDriver *screenDriver = new ScreenDriver();
-//    screenDriver->displaySomething();
-   // Number *number = new Number();
-   // std::cout << number->isOdd(1) << std::flush;
     if (argc > 1)
     {
         ::testing::InitGoogleTest(&argc, argv);

@@ -18,7 +18,13 @@
 class ScreenDriver
 {
 public:
+    ScreenDriver();
+
     const void displaySomething();
+    const void displayText(char *);
+
+private:
+    Epd *_epd;
 };
 
 #endif //PIPOD_SCREENDRIVER_H

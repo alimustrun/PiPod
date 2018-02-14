@@ -1,45 +1,46 @@
 #include "ScreenDriver.h"
 
-const void ScreenDriver::displaySomething()
+ScreenDriver::ScreenDriver()
 {
-    time_t now;
-    struct tm* timenow;
-
-    Epd epd;
-    if (epd.Init(lut_full_update) != 0)
+    this->_epd = new Epd();
+    if (this->_epd->Init(lut_full_update) != 0)
     {
         printf("e-Paper init failed\n");
         return;
     }
+}
 
-    unsigned char* frame_buffer = (unsigned char*)malloc(epd.width / 8 * epd.height);
+const void ScreenDriver::displaySomething()
+{
+    auto *frame_buffer = (unsigned char*)malloc(this->_epd->width / 8 * this->_epd->height);
 
-    Paint paint(frame_buffer, epd.width, epd.height);
+    Paint paint(frame_buffer, this->_epd->width, this->_epd->height);
     paint.Clear(UNCOLORED);
+    paint.SetRotate(ROTATE_90);
 
     /* For simplicity, the arguments are explicit numerical coordinates */
     /* Write strings to the buffer */
     paint.DrawFilledRectangle(0, 10, 128, 30, COLORED);
     paint.DrawStringAt(30, 14, "Hello world!", &Font12, UNCOLORED);
     paint.DrawStringAt(30, 34, "e-Paper Demo", &Font12, COLORED);
+    this->_epd->SetFrameMemory(paint.GetImage(), 0, 0, paint.GetWidth(), paint.GetHeight());
+    this->_epd->DisplayFrame();
 
-    /* Draw something to the frame_buffer */
+    /* Draw something to the frame_buffer
     paint.DrawRectangle(10, 60, 50, 100, COLORED);
     paint.DrawLine(10, 60, 50, 100, COLORED);
     paint.DrawLine(50, 60, 10, 100, COLORED);
     paint.DrawCircle(88, 80, 30, COLORED);
     paint.DrawFilledRectangle(10, 120, 50, 180, COLORED);
-    paint.DrawFilledCircle(88, 150, 30, COLORED);
+    paint.DrawFilledCircle(88, 150, 30, COLORED);*/
 
     /* Display the frame_buffer */
-    epd.SetFrameMemory(paint.GetImage(), 0, 0, paint.GetWidth(), paint.GetHeight());
-    epd.DisplayFrame();
-    epd.DelayMs(2000);
+/*    this->_epd->DelayMs(2000);
 
-    if (epd.Init(lut_partial_update) != 0) {
+    if (this->_epd->Init(lut_partial_update) != 0) {
         printf("e-Paper init failed\n");
         return;
-    }
+    }*/
 
     /**
      *  there are 2 memory areas embedded in the e-paper display
@@ -47,13 +48,14 @@ const void ScreenDriver::displaySomething()
      *  i.e. the next action of SetFrameMemory will set the other memory area
      *  therefore you have to set the frame memory and refresh the display twice.
      */
+/*
     epd.SetFrameMemory(IMAGE_DATA, 0, 0, epd.width, epd.height);
     epd.DisplayFrame();
     epd.SetFrameMemory(IMAGE_DATA, 0, 0, epd.width, epd.height);
     epd.DisplayFrame();
-
+*/
     char time_string[] = {'0', '0', ':', '0', '0', '\0'};
-    while (1) {
+    /*while (1) {
         time(&now);
         timenow = localtime(&now);
         time_string[0] = timenow->tm_min / 10 + '0';
@@ -63,14 +65,27 @@ const void ScreenDriver::displaySomething()
 
         paint.SetWidth(32);
         paint.SetHeight(96);
-        paint.SetRotate(ROTATE_90);
         paint.Clear(UNCOLORED);
         paint.DrawStringAt(8, 4, time_string, &Font24, COLORED);
 
         epd.SetFrameMemory(paint.GetImage(), 80, 72, paint.GetWidth(), paint.GetHeight());
         epd.DisplayFrame();
         epd.DelayMs(500);
-    }
+    }*/
 }
 
+const void ScreenDriver::displayText(char *text)
+{
+    auto *frame_buffer = (unsigned char*)malloc(this->_epd->width / 8 * this->_epd->height);
 
+    Paint paint(frame_buffer, this->_epd->width, this->_epd->height);
+    paint.Clear(UNCOLORED);
+    paint.SetRotate(ROTATE_90);
+
+    /* For simplicity, the arguments are explicit numerical coordinates */
+    /* Write strings to the buffer */
+    paint.DrawFilledRectangle(0, 10, 128, 30, COLORED);
+    paint.DrawStringAt(30, 14, text, &Font24, UNCOLORED);
+    this->_epd->SetFrameMemory(paint.GetImage(), 0, 0, paint.GetWidth(), paint.GetHeight());
+    this->_epd->DisplayFrame();
+}
