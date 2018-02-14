@@ -12,6 +12,7 @@ int main(int argc, char **argv) {
     auto *keyboardService = new KeyboardService();
     keyboardService->start();
     auto *screenService = new ScreenService();
+    screenService->start();
     keyboardService->addListener(std::bind(&ScreenService::onKeyPressed, screenService, std::placeholders::_1));
     while (true)
     {
