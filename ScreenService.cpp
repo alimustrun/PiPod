@@ -22,6 +22,7 @@ void ScreenService::registerToKeyboardService()
 
 void ScreenService::onKeyPressed(int key)
 {
+    return;
     switch (key)
     {
         case VOL_DEC:
