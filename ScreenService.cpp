@@ -22,29 +22,28 @@ void ScreenService::registerToKeyboardService()
 
 void ScreenService::onKeyPressed(int key)
 {
-    return;
     switch (key)
     {
         case VOL_DEC:
-            this->_screenDriver->displayText(const_cast<char *>("VOL_DEC"));
+            this->_screenDriver->displayText(new std::string("VOL_DEC"));
             break;
         case VOL_INC:
-            this->_screenDriver->displayText(const_cast<char *>("VOL_INC"));
+            this->_screenDriver->displayText(new std::string("VOL_INC"));
             break;
         case PREV:
-            this->_screenDriver->displayText(const_cast<char *>("PREV"));
+            this->_screenDriver->displayText(new std::string("PREV"));
             break;
         case NEXT:
-            this->_screenDriver->displayText(const_cast<char *>("NEXT"));
+            this->_screenDriver->displayText(new std::string("NEXT"));
             break;
         case RIGHT:
-            this->_screenDriver->displayText(const_cast<char *>("RIGHT"));
+            this->_screenDriver->displayText(new std::string("RIGHT"));
             break;
         case CENTER:
-            this->_screenDriver->displayText(const_cast<char *>("CENTER"));
+            this->_screenDriver->displayText(new std::string("CENTER"));
             break;
         case LEFT:
-            this->_screenDriver->displayText(const_cast<char *>("LEFT"));
+            this->_screenDriver->displayText(new std::string("LEFT"));
             break;
         default:
             break;

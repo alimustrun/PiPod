@@ -8,6 +8,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <ctime>
+#include <string>
 #include "epd2in13.h"
 #include "epdpaint.h"
 #include "imagedata.h"
@@ -21,7 +22,7 @@ public:
     ScreenDriver();
 
     const void displaySomething();
-    const void displayText(char *);
+    const void displayText(std::string *);
 
 private:
     Epd *_epd;

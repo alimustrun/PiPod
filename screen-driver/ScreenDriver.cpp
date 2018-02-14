@@ -74,7 +74,7 @@ const void ScreenDriver::displaySomething()
     }*/
 }
 
-const void ScreenDriver::displayText(char *text)
+const void ScreenDriver::displayText(std::string *text)
 {
     auto *frame_buffer = (unsigned char*)malloc(this->_epd->width / 8 * this->_epd->height);
 
@@ -85,7 +85,7 @@ const void ScreenDriver::displayText(char *text)
     /* For simplicity, the arguments are explicit numerical coordinates */
     /* Write strings to the buffer */
     paint.DrawFilledRectangle(0, 10, 128, 30, COLORED);
-    paint.DrawStringAt(30, 14, text, &Font24, UNCOLORED);
+    paint.DrawStringAt(30, 14, text->c_str(), &Font24, UNCOLORED);
     this->_epd->SetFrameMemory(paint.GetImage(), 0, 0, paint.GetWidth(), paint.GetHeight());
     this->_epd->DisplayFrame();
 }
