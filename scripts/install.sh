@@ -1,5 +1,4 @@
 #!/bin/sh
-echo "Installing PiPod daemon"
-cp scripts/run-script.sh /etc/init.d/launch-pipod
-chmod 755 /etc/init.d/launch-pipod
-update-rc.d launch-pipod defaults
+echo "Adding PiPod execution to the .bashrc file"
+echo "sudo ~/PiPod/PiPod &" >> ~/.bashrc
+echo "Done. PiPod will now be started once system has booted."
