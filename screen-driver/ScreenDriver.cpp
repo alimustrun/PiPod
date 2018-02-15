@@ -4,6 +4,13 @@
 ScreenDriver::ScreenDriver()
 {
     _epd = new Epd();
+
+    if (_epd->Init(lut_full_update) != 0)
+    {
+        printf("e-Paper init failed\n");
+        return;
+    }
+    _epd->DelayMs(500);
     if (_epd->Init(lut_partial_update) != 0)
     {
         printf("e-Paper init failed\n");
@@ -12,7 +19,6 @@ ScreenDriver::ScreenDriver()
     _frame_buffer = (unsigned char*)malloc(_epd->width / 8 * _epd->height);
     _paint = new Paint(_frame_buffer, _epd->width, _epd->height);
     _paint->SetRotate(ROTATE_90);
-    fullClear();
 }
 
 const void ScreenDriver::displaySomething()
