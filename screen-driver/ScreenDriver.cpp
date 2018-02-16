@@ -122,7 +122,7 @@ const void ScreenDriver::displayBootScreen()
 const void ScreenDriver::displayMainScreen()
 {
     _paint->Clear(COLORED);
-    _paint->DrawStringAt(0, 24, "Premier", &Font24, UNCOLORED);
+    _paint->DrawStringAt(0, 0, "Premier", &Font24, UNCOLORED);
     _paint->DrawStringAt(0, 48, "Deuxième", &Font24, UNCOLORED);
     _paint->DrawStringAt(0, 72, "Troisième", &Font24, UNCOLORED);
     _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
