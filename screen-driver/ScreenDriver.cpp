@@ -22,8 +22,6 @@ ScreenDriver::ScreenDriver()
     _frame_buffer = (unsigned char*)malloc(_epd->width / 8 * _epd->height);
     _paint = new Paint(_frame_buffer, _epd->width, _epd->height);
     _paint->SetRotate(ROTATE_90);
-    _paint->Clear(UNCOLORED);
-
 }
 
 const void ScreenDriver::displaySomething()
@@ -101,14 +99,22 @@ const void ScreenDriver::fullClear()
 
 const void ScreenDriver::displayText(std::string *text)
 {
-    _paint->DrawStringAt(0, 0, text->c_str(), &Font24, COLORED);
+    _paint->SetWidth(30);
+    _paint->SetHeight(255);
+    _paint->Clear(COLORED);
+    _paint->DrawStringAt(0, 0, text->c_str(), &Font24, UNCOLORED);
     _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
     _epd->DisplayFrame();
+    _paint->SetWidth(_epd->width);
+    _paint->SetHeight(_epd->height);
 }
 
 const void ScreenDriver::displayBootScreen()
 {
-    _paint->DrawStringAt(50, 20, "PiPod", &Font24, UNCOLORED);
+    _paint->SetWidth(30);
+    _paint->SetHeight(255);
+    _paint->Clear(COLORED);
+    _paint->DrawStringAt(0, 0, "PiPod", &Font24, UNCOLORED);
     _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
     _epd->DisplayFrame();
 }
