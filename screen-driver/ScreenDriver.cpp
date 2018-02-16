@@ -138,7 +138,7 @@ const void ScreenDriver::displayMainScreen()
     _epd->DisplayFrame();
 }
 
-const void ScreenDriver::displayCursor(unsigned long currentSelection, int nbSelections)
+const void ScreenDriver::displayCursor(unsigned long currentSelection, unsigned long nbSelections)
 {
     if (nbSelections > NB_MAX_ROWS)
     {

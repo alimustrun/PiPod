@@ -16,7 +16,7 @@ public:
     void onKeyPressed(int key);
     void displayBootScreen();
     void displayMainScreen();
-    void displayCursor(unsigned long cursorPosition, int nbSelections);
+    void displayCursor(unsigned long cursorPosition, unsigned long nbSelections);
 
 private:
     ScreenDriver *_screenDriver = nullptr;

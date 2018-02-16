@@ -27,7 +27,7 @@ const void MainViewController::onKeyPressed(int key)
             //move cursor down
             break;
         case VOL_INC:
-            this->_currentSelection = this->_currentSelection < 4/* nb_items */ ? this->_currentSelection + 1 : this->_currentSelection;
+            this->_currentSelection = this->_currentSelection < _entriesList->size()/* nb_items */ ? this->_currentSelection + 1 : this->_currentSelection;
             refreshCursor();
             //move cursor up
             break;
@@ -50,7 +50,7 @@ const void MainViewController::onKeyPressed(int key)
 
 void MainViewController::refreshCursor()
 {
-    this->_screenService->displayCursor(this->_currentSelection, 3);
+    this->_screenService->displayCursor(this->_currentSelection, _entriesList->size());
 }
 
 void MainViewController::initEntriesList()
