@@ -25,6 +25,11 @@ void ScreenService::displayMainScreen()
     _screenDriver->displayMainScreen();
 }
 
+void ScreenService::displayCursor(int cursorPosition)
+{
+    _screenDriver->displayCursor(cursorPosition);
+}
+
 void ScreenService::onKeyPressed(int key)
 {
     switch (key)

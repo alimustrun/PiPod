@@ -130,3 +130,11 @@ const void ScreenDriver::displayMainScreen()
     _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
     _epd->DisplayFrame();
 }
+
+const void ScreenDriver::displayCursor(int currentSelection)
+{
+    _paint->Clear(COLORED);
+    _paint->DrawStringAt(0, 12 + ((currentSelection - 1) * 24), ">", &Font24, UNCOLORED);
+    _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
+    _epd->DisplayFrame();
+}

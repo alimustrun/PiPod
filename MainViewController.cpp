@@ -12,6 +12,7 @@ MainViewController::MainViewController(ScreenService *screenService)
     this->_screenService->displayBootScreen();
     sleep(1);
     this->_screenService->displayMainScreen();
+    this->_currentSelection = 1;
 }
 
 const void MainViewController::onKeyPressed(int key)
@@ -19,9 +20,13 @@ const void MainViewController::onKeyPressed(int key)
     switch (key)
     {
         case VOL_DEC:
+            this->_currentSelection = this->_currentSelection > 1 ? this->_currentSelection - 1 : 1;
+            refreshCursor();
             //move cursor down
             break;
         case VOL_INC:
+            this->_currentSelection = this->_currentSelection < 4/* nb_items */ ? this->_currentSelection + 1 : this->_currentSelection;
+            refreshCursor();
             //move cursor up
             break;
         case PREV:
@@ -38,4 +43,9 @@ const void MainViewController::onKeyPressed(int key)
         default:
             break;
     }
+}
+
+void MainViewController::refreshCursor()
+{
+    this->_screenService->displayCursor(this->_currentSelection);
 }

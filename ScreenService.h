@@ -17,6 +17,8 @@ public:
     void displayBootScreen();
     void displayMainScreen();
 
+    void displayCursor(int cursorPosition);
+
 private:
     ScreenDriver *_screenDriver = nullptr;
 

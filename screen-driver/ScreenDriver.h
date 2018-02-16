@@ -26,6 +26,8 @@ public:
     const void displayBootScreen();
     const void displayMainScreen();
 
+    const void displayCursor(int currentSelection);
+
 private:
     const void fullClear();
 

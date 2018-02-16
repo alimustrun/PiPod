@@ -17,6 +17,9 @@ public:
 
 private:
     ScreenService *_screenService;
+    int _currentSelection;
+
+    void refreshCursor();
 };
 
 
