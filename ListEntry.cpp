@@ -12,7 +12,6 @@ ListEntry::ListEntry(const char *name, const std::function<void(void)> *action)
 
 void ListEntry::executeAction()
 {
-//   std::function<void(void)> action =
-//    (*_action)();
-  //  action();
+    std::function<void(void)> action = _action;
+    action();
 }
