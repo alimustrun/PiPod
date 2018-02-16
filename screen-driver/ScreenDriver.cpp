@@ -129,6 +129,8 @@ const void ScreenDriver::displayMainScreen()
     _paint->DrawStringAt(24, 60, "Troisieme", &Font24, UNCOLORED);
     _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
     _epd->DisplayFrame();
+    _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
+    _epd->DisplayFrame();
 }
 
 const void ScreenDriver::displayCursor(int currentSelection)
@@ -137,6 +139,8 @@ const void ScreenDriver::displayCursor(int currentSelection)
     _paint->SetHeight(24);
     _paint->Clear(COLORED);
     _paint->DrawStringAt(0, 0, ">", &Font24, UNCOLORED);
+    _epd->SetFrameMemory(_paint->GetImage(), 116 - ((currentSelection - 1) * 24), 0, _paint->GetWidth(), _paint->GetHeight());
+    _epd->DisplayFrame();
     _epd->SetFrameMemory(_paint->GetImage(), 116 - ((currentSelection - 1) * 24), 0, _paint->GetWidth(), _paint->GetHeight());
     _epd->DisplayFrame();
     _paint->SetWidth(_epd->width);
