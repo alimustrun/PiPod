@@ -113,4 +113,6 @@ const void ScreenDriver::displayBootScreen()
     _paint->SetHeight(255);
     _paint->Clear(COLORED);
     _paint->DrawStringAt(13, 75, "PiPod", &Font24, UNCOLORED);
+    _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
+    _epd->DisplayFrame();
 }

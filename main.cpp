@@ -12,10 +12,11 @@ int main(int argc, char **argv) {
     }
     auto *keyboardService = new KeyboardService();
     auto *screenService = new ScreenService();
+    screenService->start();
+    keyboardService->start();
+
     auto *mainViewController = new MainViewController(screenService);
 
-    keyboardService->start();
-    screenService->start();
     keyboardService->addListener(std::bind(&ScreenService::onKeyPressed, screenService, std::placeholders::_1));
     keyboardService->addListener(std::bind(&MainViewController::onKeyPressed, mainViewController, std::placeholders::_1));
     while (true)
