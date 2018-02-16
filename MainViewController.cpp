@@ -2,15 +2,14 @@
 // Created by fritsch on 16/02/18.
 //
 
-#include <zconf.h>
 #include "MainViewController.h"
 #include "ButtonsGPIO.h"
 
 MainViewController::MainViewController(ScreenService *screenService)
 {
     this->_screenService = screenService;
-    this->_screenService->displayBootScreen();
-    sleep(1);
+    //this->_screenService->displayBootScreen();
+    //sleep(1);
     this->_screenService->displayMainScreen();
     this->_currentSelection = 1;
     refreshCursor();

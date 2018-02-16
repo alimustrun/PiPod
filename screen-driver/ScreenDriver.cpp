@@ -131,18 +131,27 @@ const void ScreenDriver::displayMainScreen()
     _paint->DrawStringAt(24, 12, "Premier", &Font24, UNCOLORED);
     _paint->DrawStringAt(24, 36, "Deuxieme", &Font24, UNCOLORED);
     _paint->DrawStringAt(24, 60, "Troisieme", &Font24, UNCOLORED);
+
     _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
     _epd->DisplayFrame();
     _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
     _epd->DisplayFrame();
 }
 
-const void ScreenDriver::displayCursor(int currentSelection)
+const void ScreenDriver::displayCursor(int currentSelection, int nbSelections)
 {
+    if (nbSelections > NB_MAX_ROWS)
+    {
+        nbSelections = NB_MAX_ROWS;
+    }
+    else if (nbSelections < 0)
+    {
+        nbSelections = 0;
+    }
     _paint->SetWidth(128);
     _paint->SetHeight(24);
     _paint->Clear(COLORED);
-    _paint->DrawStringAt(0, 12 + ((currentSelection - 1) * 24), ">", &Font24, UNCOLORED);
+    _paint->DrawStringAt(0, 12 + ((nbSelections - currentSelection + 1) * 24), ">", &Font24, UNCOLORED);
     _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
     _epd->DisplayFrame();
     _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());

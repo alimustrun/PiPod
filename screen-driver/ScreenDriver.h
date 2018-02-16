@@ -16,6 +16,8 @@
 #define COLORED      0
 #define UNCOLORED    1
 
+#define NB_MAX_ROWS  5
+
 class ScreenDriver
 {
 public:
@@ -25,8 +27,7 @@ public:
     const void displayText(std::string *);
     const void displayBootScreen();
     const void displayMainScreen();
-
-    const void displayCursor(int currentSelection);
+    const void displayCursor(int currentSelection, int nbSelections);
 
 private:
     const void fullClear();
@@ -34,7 +35,6 @@ private:
     Epd *_epd;
     unsigned char *_frame_buffer;
     Paint *_paint;
-
 };
 
 #endif //PIPOD_SCREENDRIVER_H
