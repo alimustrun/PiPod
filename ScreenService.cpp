@@ -25,9 +25,9 @@ void ScreenService::displayMainScreen()
     _screenDriver->displayMainScreen();
 }
 
-void ScreenService::displayCursor(int cursorPosition)
+void ScreenService::displayCursor(int cursorPosition, int nbSelections)
 {
-    _screenDriver->displayCursor(cursorPosition);
+    _screenDriver->displayCursor(cursorPosition, nbSelections);
 }
 
 void ScreenService::onKeyPressed(int key)
