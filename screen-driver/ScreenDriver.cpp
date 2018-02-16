@@ -137,7 +137,7 @@ const void ScreenDriver::displayCursor(int currentSelection)
     _paint->SetHeight(24);
     _paint->Clear(COLORED);
     _paint->DrawStringAt(0, 0, ">", &Font24, UNCOLORED);
-    _epd->SetFrameMemory(_paint->GetImage(), 0, 12 + ((currentSelection - 1) * 24), _paint->GetWidth(), _paint->GetHeight());
+    _epd->SetFrameMemory(_paint->GetImage(), 12 + ((currentSelection - 1) * 24), 0, _paint->GetWidth(), _paint->GetHeight());
     _epd->DisplayFrame();
     _paint->SetWidth(_epd->width);
     _paint->SetHeight(_epd->height);
