@@ -56,9 +56,9 @@ void MainViewController::refreshCursor()
 void MainViewController::initEntriesList()
 {
     const std::function<void(void)> premierCallback = []{/* launch premier screen */ printf("premier clicked");};
-    _entriesList->push_back(ListEntry("Premier", &premierCallback));
+    _entriesList->push_back(ListEntry("Premier", premierCallback));
     const std::function<void(void)> secondCallback = []{/* launch second screen */ printf("second clicked");};
-    _entriesList->push_back(ListEntry("Second", &secondCallback));
+    _entriesList->push_back(ListEntry("Second", secondCallback));
     const std::function<void(void)> thirdCallback = []{/* launch third screen */ printf("third clicked");};
-    _entriesList->push_back(ListEntry("Third", &thirdCallback));
+    _entriesList->push_back(ListEntry("Third", thirdCallback));
 }

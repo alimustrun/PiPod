@@ -11,11 +11,11 @@
 class ListEntry
 {
 public:
-    ListEntry(const char *name, const std::function<void(void)> *action);
+    ListEntry(const char *name, const std::function<void(void)> action);
     void executeAction();
 private:
     const char *_name;
-    const std::function<void(void)> *_action;
+    std::function<void(void)> _action;
 };
 
 
