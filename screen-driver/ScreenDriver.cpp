@@ -109,10 +109,10 @@ const void ScreenDriver::displayText(std::string *text)
 
 const void ScreenDriver::displayBootScreen()
 {
-//    _paint->SetWidth(128);
-//    _paint->SetHeight(255);
-//    _paint->Clear(COLORED);
-//    _paint->DrawStringAt(90, 52, "PiPod", &Font24, UNCOLORED);
-//    _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
-//    _epd->DisplayFrame();
+    _paint->SetWidth(122);
+    _paint->SetHeight(255);
+    _paint->Clear(COLORED);
+    _paint->DrawStringAt(90, 52, "PiPod", &Font24, UNCOLORED);
+    _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
+    _epd->DisplayFrame();
 }
