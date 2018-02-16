@@ -23,6 +23,7 @@ public:
 
     const void displaySomething();
     const void displayText(std::string *);
+    const void displayBootScreen();
 
 private:
     const void fullClear();

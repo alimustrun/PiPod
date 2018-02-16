@@ -2,6 +2,7 @@
 #include <gtest/gtest.h>
 #include "KeyboardService.h"
 #include "ScreenService.h"
+#include "MainViewController.h"
 
 int main(int argc, char **argv) {
     if (argc > 1)
@@ -10,10 +11,13 @@ int main(int argc, char **argv) {
         RUN_ALL_TESTS();
     }
     auto *keyboardService = new KeyboardService();
-    keyboardService->start();
     auto *screenService = new ScreenService();
+    auto *mainViewController = new MainViewController(screenService);
+
+    keyboardService->start();
     screenService->start();
     keyboardService->addListener(std::bind(&ScreenService::onKeyPressed, screenService, std::placeholders::_1));
+    keyboardService->addListener(std::bind(&MainViewController::onKeyPressed, mainViewController, std::placeholders::_1));
     while (true)
     {
       keyboardService->refreshKeys();

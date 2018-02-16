@@ -9,10 +9,10 @@ enum ButtonsGPIO {
     RIGHT = 4,
     CENTER = 14,
     LEFT = 15,
-    NEXT = 26,
+    NEXT = 27,
     PREV = 20,
-    VOL_INC = 27,
-    VOL_DEC = 22
+    VOL_INC = 22,
+    VOL_DEC = 26
 };
 
 #endif //PIPOD_BUTTONSGPIO_H

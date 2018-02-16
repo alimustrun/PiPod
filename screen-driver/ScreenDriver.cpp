@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstring>
 #include "ScreenDriver.h"
 
 ScreenDriver::ScreenDriver()
@@ -88,6 +89,7 @@ const void ScreenDriver::displaySomething()
 const void ScreenDriver::fullClear()
 {
     _frame_buffer = (unsigned char*)malloc(_epd->width / 8 * _epd->height);
+    memset(_frame_buffer, UNCOLORED, _epd->width / 8 * _epd->height);
     _epd->SetFrameMemory(_frame_buffer, 0, 0, _epd->width, _epd->height);
     _epd->DisplayFrame();
     _epd->SetFrameMemory(_frame_buffer, 0, 0, _epd->width, _epd->height);
@@ -103,4 +105,12 @@ const void ScreenDriver::displayText(std::string *text)
     _paint->DrawStringAt(0, 0, text->c_str(), &Font24, COLORED);
     _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
     _epd->DisplayFrame();
+}
+
+const void ScreenDriver::displayBootScreen()
+{
+    _paint->SetWidth(50);
+    _paint->SetHeight(255);
+    _paint->Clear(COLORED);
+    _paint->DrawStringAt(13, 75, "PiPod", &Font24, UNCOLORED);
 }

@@ -13,8 +13,8 @@ class ScreenService : Service
 public:
     void start() override;
     void stop() override;
-    void registerToKeyboardService();
     void onKeyPressed(int key);
+    void displayBootScreen();
 
 private:
     ScreenDriver *_screenDriver = nullptr;

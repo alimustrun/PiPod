@@ -15,9 +15,9 @@ void ScreenService::stop()
 
 }
 
-void ScreenService::registerToKeyboardService()
+void ScreenService::displayBootScreen()
 {
-
+    _screenDriver->displayBootScreen();
 }
 
 void ScreenService::onKeyPressed(int key)
