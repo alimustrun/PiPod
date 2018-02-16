@@ -109,7 +109,7 @@ const void ScreenDriver::displayText(std::string *text)
 
 const void ScreenDriver::displayBootScreen()
 {
-    _paint->SetWidth(122);
+    _paint->SetWidth(100);
     _paint->SetHeight(255);
     _paint->Clear(COLORED);
     _paint->DrawStringAt(0, 0, "PiPod", &Font24, UNCOLORED);
