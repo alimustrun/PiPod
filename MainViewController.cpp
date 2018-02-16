@@ -13,6 +13,7 @@ MainViewController::MainViewController(ScreenService *screenService)
     sleep(1);
     this->_screenService->displayMainScreen();
     this->_currentSelection = 1;
+    refreshCursor();
 }
 
 const void MainViewController::onKeyPressed(int key)
