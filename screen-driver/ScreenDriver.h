@@ -27,7 +27,7 @@ public:
     const void displayText(std::string *);
     const void displayBootScreen();
     const void displayMainScreen();
-    const void displayCursor(int currentSelection, int nbSelections);
+    const void displayCursor(unsigned long currentSelection, int nbSelections);
 
 private:
     const void fullClear();

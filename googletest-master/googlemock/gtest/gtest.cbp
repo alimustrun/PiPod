@@ -11,10 +11,10 @@
 				<Option working_dir="/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="gtest_main">
@@ -36,10 +36,10 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 gtest_main"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 gtest_main"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="gtest_main/fast">
@@ -61,10 +61,10 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 gtest_main/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 gtest_main/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="gtest">
@@ -86,10 +86,10 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 gtest"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 gtest"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="gtest/fast">
@@ -111,10 +111,10 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 gtest/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 gtest/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/fritsch/CLionProjects/PiPod/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>

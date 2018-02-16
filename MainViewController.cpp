@@ -12,6 +12,8 @@ MainViewController::MainViewController(ScreenService *screenService)
     //sleep(1);
     this->_screenService->displayMainScreen();
     this->_currentSelection = 1;
+    this->_entriesList = new std::vector<ListEntry>;
+    this->initEntriesList();
     refreshCursor();
 }
 
@@ -32,6 +34,7 @@ const void MainViewController::onKeyPressed(int key)
         case PREV:
             break;
         case NEXT:
+            _entriesList->at(_currentSelection).executeAction();
             //select menu
             break;
         case RIGHT:
@@ -48,4 +51,14 @@ const void MainViewController::onKeyPressed(int key)
 void MainViewController::refreshCursor()
 {
     this->_screenService->displayCursor(this->_currentSelection, 3);
+}
+
+void MainViewController::initEntriesList()
+{
+    const std::function<void(void)> premierCallback = []{/* launch premier screen */ printf("premier clicked");};
+    _entriesList->push_back(ListEntry("Premier", &premierCallback));
+    const std::function<void(void)> secondCallback = []{/* launch second screen */ printf("second clicked");};
+    _entriesList->push_back(ListEntry("Second", &secondCallback));
+    const std::function<void(void)> thirdCallback = []{/* launch third screen */ printf("third clicked");};
+    _entriesList->push_back(ListEntry("Third", &thirdCallback));
 }

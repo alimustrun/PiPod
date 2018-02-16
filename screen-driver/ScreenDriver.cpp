@@ -138,7 +138,7 @@ const void ScreenDriver::displayMainScreen()
     _epd->DisplayFrame();
 }
 
-const void ScreenDriver::displayCursor(int currentSelection, int nbSelections)
+const void ScreenDriver::displayCursor(unsigned long currentSelection, int nbSelections)
 {
     if (nbSelections > NB_MAX_ROWS)
     {
@@ -151,7 +151,7 @@ const void ScreenDriver::displayCursor(int currentSelection, int nbSelections)
     _paint->SetWidth(128);
     _paint->SetHeight(24);
     _paint->Clear(COLORED);
-    _paint->DrawStringAt(0, 12 + ((nbSelections - currentSelection + 1) * 24), ">", &Font24, UNCOLORED);
+    _paint->DrawStringAt(0, static_cast<int>(12 + ((nbSelections - currentSelection + 1) * 24)), ">", &Font24, UNCOLORED);
     _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
     _epd->DisplayFrame();
     _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());

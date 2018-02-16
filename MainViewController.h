@@ -6,7 +6,9 @@
 #define PIPOD_MAINVIEWCONTROLLER_H
 
 
+#include <vector>
 #include "ScreenService.h"
+#include "ListEntry.h"
 
 class MainViewController
 {
@@ -17,9 +19,12 @@ public:
 
 private:
     ScreenService *_screenService;
-    int _currentSelection;
+    unsigned long _currentSelection;
+    std::vector<ListEntry> *_entriesList;
 
     void refreshCursor();
+
+    void initEntriesList();
 };
 
 

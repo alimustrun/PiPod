@@ -25,7 +25,7 @@ void ScreenService::displayMainScreen()
     _screenDriver->displayMainScreen();
 }
 
-void ScreenService::displayCursor(int cursorPosition, int nbSelections)
+void ScreenService::displayCursor(unsigned long cursorPosition, int nbSelections)
 {
     _screenDriver->displayCursor(cursorPosition, nbSelections);
 }
