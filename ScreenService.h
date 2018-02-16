@@ -15,9 +15,11 @@ public:
     void stop() override;
     void onKeyPressed(int key);
     void displayBootScreen();
+    void displayMainScreen();
 
 private:
     ScreenDriver *_screenDriver = nullptr;
+
 };
 
 

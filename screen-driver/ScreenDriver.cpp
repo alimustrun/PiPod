@@ -118,3 +118,11 @@ const void ScreenDriver::displayBootScreen()
     _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
     _epd->DisplayFrame();
 }
+
+const void ScreenDriver::displayMainScreen()
+{
+    _paint->Clear(COLORED);
+    _paint->DrawStringAt(100, 24, "Premier", &Font24, UNCOLORED);
+    _paint->DrawStringAt(125, 24, "Deuxième", &Font24, UNCOLORED);
+    _paint->DrawStringAt(75, 24, "Troisième", &Font24, UNCOLORED);
+}

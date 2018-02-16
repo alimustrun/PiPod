@@ -24,6 +24,7 @@ public:
     const void displaySomething();
     const void displayText(std::string *);
     const void displayBootScreen();
+    const void displayMainScreen();
 
 private:
     const void fullClear();
@@ -31,6 +32,7 @@ private:
     Epd *_epd;
     unsigned char *_frame_buffer;
     Paint *_paint;
+
 };
 
 #endif //PIPOD_SCREENDRIVER_H

@@ -20,6 +20,11 @@ void ScreenService::displayBootScreen()
     _screenDriver->displayBootScreen();
 }
 
+void ScreenService::displayMainScreen()
+{
+    _screenDriver->displayMainScreen();
+}
+
 void ScreenService::onKeyPressed(int key)
 {
     switch (key)
