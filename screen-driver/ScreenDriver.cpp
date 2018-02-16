@@ -6,13 +6,13 @@ ScreenDriver::ScreenDriver()
 {
     _epd = new Epd();
 
-    if (_epd->Init(lut_full_update) != 0)
-    {
-        printf("e-Paper init failed\n");
-        return;
-    }
-    fullClear();
-    _epd->DelayMs(500);
+//    if (_epd->Init(lut_full_update) != 0)
+//    {
+//        printf("e-Paper init failed\n");
+//        return;
+//    }
+//    fullClear();
+//    _epd->DelayMs(500);
     if (_epd->Init(lut_partial_update) != 0)
     {
         printf("e-Paper init failed\n");
@@ -89,7 +89,7 @@ const void ScreenDriver::displaySomething()
 const void ScreenDriver::fullClear()
 {
     _frame_buffer = (unsigned char*)malloc(_epd->width / 8 * _epd->height);
-    //memset(_frame_buffer, UNCOLORED, _epd->width / 8 * _epd->height);
+    memset(_frame_buffer, UNCOLORED, _epd->width / 8 * _epd->height);
     _epd->SetFrameMemory(_frame_buffer, 0, 0, _epd->width, _epd->height);
     _epd->DisplayFrame();
     _epd->SetFrameMemory(_frame_buffer, 0, 0, _epd->width, _epd->height);
@@ -112,7 +112,7 @@ const void ScreenDriver::displayBootScreen()
     _paint->SetWidth(50);
     _paint->SetHeight(255);
     _paint->Clear(COLORED);
-    _paint->DrawStringAt(13, 75, "PiPod", &Font24, UNCOLORED);
+    _paint->DrawStringAt(0, 10, "PiPod", &Font24, UNCOLORED);
     _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
     _epd->DisplayFrame();
 }
