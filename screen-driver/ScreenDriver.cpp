@@ -129,14 +129,18 @@ const void ScreenDriver::displayList(std::vector<ListEntry> *entries, unsigned l
 {
     int currentRow = 0;
     _paint->Clear(COLORED);
-    for (auto it = entries->begin(); it != entries->end(); it++)
+    for (auto &entry : *entries)
     {
         if (currentRow < MAX_NB_LINES)
         {
-            _paint->DrawStringAt(CHAR_WIDTH, CHAR_HEIGHT / 2 + (currentRow * CHAR_HEIGHT), it->getName(), &Font20, UNCOLORED);
+            _paint->DrawStringAt(CHAR_WIDTH, CHAR_HEIGHT / 2 + (currentRow * CHAR_HEIGHT), entry.getName(), &Font20, UNCOLORED);
         }
         ++currentRow;
     }
+    _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
+    _epd->DisplayFrame();
+    _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
+    _epd->DisplayFrame();
 }
 
 const void ScreenDriver::displayCursor(unsigned long currentSelection, unsigned long nbSelections)
