@@ -20,11 +20,11 @@
 
 #define NB_MAX_ROWS  5
 
-#define CHAR_HEIGHT 20
-#define CHAR_WIDTH 20
+#define CHAR_HEIGHT 16
+#define CHAR_WIDTH 16
 #define SCREEN_HEIGHT 128
 #define MAX_NB_LINES (SCREEN_HEIGHT / CHAR_HEIGHT)
-#define FONT &Font20
+#define FONT &Font16
 
 
 class ScreenDriver
