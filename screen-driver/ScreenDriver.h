@@ -18,8 +18,6 @@
 #define COLORED      0
 #define UNCOLORED    1
 
-#define NB_MAX_ROWS  5
-
 #define CHAR_HEIGHT 16
 #define CHAR_WIDTH 16
 #define SCREEN_HEIGHT 128
