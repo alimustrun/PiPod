@@ -57,15 +57,26 @@ const void ScreenDriver::displayBootScreen()
 
 const void ScreenDriver::displayList(std::vector<ListEntry> *entries, unsigned long currentCursorPosition)
 {
-    int currentRow = 0;
+    int currentPage = static_cast<int>(currentCursorPosition / MAX_NB_LINES);
+    int currentRow = static_cast<int>(currentCursorPosition % MAX_NB_LINES);
+
+    /*
+     * si le curseur est entre 0 et le MAX_NB_LINES, afficher simplement la première page. Sinon, passer à la Ne page
+     */
+
     _paint->Clear(COLORED);
+    int i = 0;
     for (auto &entry : *entries)
     {
-        if (currentRow < MAX_NB_LINES)
+        if (i >= currentPage * MAX_NB_LINES)
         {
-            _paint->DrawStringAt(CHAR_WIDTH, CHAR_HEIGHT/2 + (currentRow * CHAR_HEIGHT), entry.getName(), FONT, UNCOLORED);
+            if (currentRow < MAX_NB_LINES)
+            {
+                _paint->DrawStringAt(CHAR_WIDTH, CHAR_HEIGHT/2 + (currentRow * CHAR_HEIGHT), entry.getName(), FONT, UNCOLORED);
+                ++currentRow;
+            }
         }
-        ++currentRow;
+        ++i;
     }
     _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
     _epd->DisplayFrame();
