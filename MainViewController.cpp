@@ -61,4 +61,12 @@ void MainViewController::initEntriesList()
     _entriesList->push_back(ListEntry("Second", secondCallback));
     const std::function<void(void)> thirdCallback = []{/* launch third screen */ printf("third clicked\n");};
     _entriesList->push_back(ListEntry("Third", thirdCallback));
+    const std::function<void(void)> fourthCallback = []{/* launch fourth screen */ printf("fourth clicked\n");};
+    _entriesList->push_back(ListEntry("Fourth", fourthCallback));
+    const std::function<void(void)> fifthCallback = []{/* launch fifth screen */ printf("fifth clicked\n");};
+    _entriesList->push_back(ListEntry("Fifth", fifthCallback));
+    const std::function<void(void)> sixthCallback = []{/* launch sixth screen */ printf("sixth clicked\n");};
+    _entriesList->push_back(ListEntry("Sixth", sixthCallback));
+    const std::function<void(void)> seventhCallback = []{/* launch seventh screen */ printf("seventh clicked\n");};
+    _entriesList->push_back(ListEntry("Seventh", seventhCallback));
 }
