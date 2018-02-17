@@ -125,17 +125,18 @@ const void ScreenDriver::displayBootScreen()
     _paint->SetHeight(_epd->height);
 }
 
-const void ScreenDriver::displayMainScreen()
+const void ScreenDriver::displayList(std::vector<ListEntry> *entries, unsigned long currentCursorPosition)
 {
+    int currentRow = 0;
     _paint->Clear(COLORED);
-    _paint->DrawStringAt(24, 12, "Premier", &Font24, UNCOLORED);
-    _paint->DrawStringAt(24, 36, "Deuxieme", &Font24, UNCOLORED);
-    _paint->DrawStringAt(24, 60, "Troisieme", &Font24, UNCOLORED);
-
-    _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
-    _epd->DisplayFrame();
-    _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
-    _epd->DisplayFrame();
+    for (auto it = entries->begin(); it != entries->end(); it++)
+    {
+        if (currentRow < MAX_NB_LINES)
+        {
+            _paint->DrawStringAt(CHAR_WIDTH, CHAR_HEIGHT / 2 + (currentRow * CHAR_HEIGHT), it->getName(), &Font20, UNCOLORED);
+        }
+        ++currentRow;
+    }
 }
 
 const void ScreenDriver::displayCursor(unsigned long currentSelection, unsigned long nbSelections)

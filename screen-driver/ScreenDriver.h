@@ -9,14 +9,22 @@
 #include <cstdlib>
 #include <ctime>
 #include <string>
+#include <vector>
 #include "epd2in13.h"
 #include "epdpaint.h"
 #include "imagedata.h"
+#include "../ListEntry.h"
 
 #define COLORED      0
 #define UNCOLORED    1
 
 #define NB_MAX_ROWS  5
+
+#define CHAR_HEIGHT 20
+#define CHAR_WIDTH 20
+#define SCREEN_HEIGHT 128
+#define MAX_NB_LINES (SCREEN_HEIGHT / CHAR_HEIGHT)
+
 
 class ScreenDriver
 {
@@ -26,8 +34,8 @@ public:
     const void displaySomething();
     const void displayText(std::string *);
     const void displayBootScreen();
-    const void displayMainScreen();
     const void displayCursor(unsigned long currentSelection, unsigned long nbSelections);
+    const void displayList(std::vector<ListEntry> *entries, unsigned long currentCursorPosition);
 
 private:
     const void fullClear();

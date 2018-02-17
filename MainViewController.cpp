@@ -10,10 +10,10 @@ MainViewController::MainViewController(ScreenService *screenService)
     this->_screenService = screenService;
     //this->_screenService->displayBootScreen();
     //sleep(1);
-    this->_screenService->displayMainScreen();
     this->_currentSelection = 0;
     this->_entriesList = new std::vector<ListEntry>;
     this->initEntriesList();
+    this->_screenService->displayMainScreen(_entriesList);
     refreshCursor();
 }
 

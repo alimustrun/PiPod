@@ -15,3 +15,8 @@ void ListEntry::executeAction()
     _action();
 
 }
+
+const char *ListEntry::getName()
+{
+    return _name;
+}

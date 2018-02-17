@@ -15,7 +15,7 @@ public:
     void stop() override;
     void onKeyPressed(int key);
     void displayBootScreen();
-    void displayMainScreen();
+    void displayMainScreen(std::vector<ListEntry> *entries);
     void displayCursor(unsigned long cursorPosition, unsigned long nbSelections);
 
 private:

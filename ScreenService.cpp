@@ -20,9 +20,9 @@ void ScreenService::displayBootScreen()
     _screenDriver->displayBootScreen();
 }
 
-void ScreenService::displayMainScreen()
+void ScreenService::displayMainScreen(std::vector<ListEntry> *entries)
 {
-    _screenDriver->displayMainScreen();
+    _screenDriver->displayList(entries, 1);
 }
 
 void ScreenService::displayCursor(unsigned long cursorPosition, unsigned long nbSelections)
