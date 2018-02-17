@@ -8,6 +8,7 @@
 void ScreenService::start()
 {
     this->_screenDriver = new ScreenDriver();
+    this->_cursorPosition = 0;
 }
 
 void ScreenService::stop()
@@ -22,11 +23,12 @@ void ScreenService::displayBootScreen()
 
 void ScreenService::displayMainScreen(std::vector<ListEntry> *entries)
 {
-    _screenDriver->displayList(entries, 1);
+    _screenDriver->displayList(entries, _cursorPosition);
 }
 
 void ScreenService::displayCursor(unsigned long cursorPosition, unsigned long nbSelections)
 {
+    _cursorPosition = cursorPosition;
     _screenDriver->displayCursor(cursorPosition, nbSelections);
 }
 
@@ -58,4 +60,9 @@ void ScreenService::onKeyPressed(int key)
         default:
             break;
     }
+}
+
+void ScreenService::refreshCursor(unsigned long currentSelection, unsigned long listSize)
+{
+
 }

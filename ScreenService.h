@@ -18,9 +18,12 @@ public:
     void displayMainScreen(std::vector<ListEntry> *entries);
     void displayCursor(unsigned long cursorPosition, unsigned long nbSelections);
 
+    void refreshCursor(unsigned long currentSelection, unsigned long listSize);
+
 private:
     ScreenDriver *_screenDriver = nullptr;
 
+    unsigned long _cursorPosition;
 };
 
 
