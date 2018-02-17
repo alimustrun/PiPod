@@ -22,12 +22,12 @@ const void MainViewController::onKeyPressed(int key)
     switch (key)
     {
         case VOL_DEC:
-            this->_currentSelection = this->_currentSelection > 0 ? this->_currentSelection - 1 : 0;
+            this->_currentSelection = this->_currentSelection < _entriesList->size() - 1 ? this->_currentSelection + 1 : this->_currentSelection;
             refreshCursor();
             //move cursor down
             break;
         case VOL_INC:
-            this->_currentSelection = this->_currentSelection < _entriesList->size() - 1 ? this->_currentSelection + 1 : this->_currentSelection;
+            this->_currentSelection = this->_currentSelection > 0 ? this->_currentSelection - 1 : 0;
             refreshCursor();
             //move cursor up
             break;
