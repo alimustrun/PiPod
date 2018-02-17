@@ -24,6 +24,7 @@
 #define CHAR_WIDTH 20
 #define SCREEN_HEIGHT 128
 #define MAX_NB_LINES (SCREEN_HEIGHT / CHAR_HEIGHT)
+#define FONT &Font20
 
 
 class ScreenDriver
