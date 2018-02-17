@@ -68,9 +68,9 @@ const void ScreenDriver::displayList(std::vector<ListEntry> *entries, unsigned l
     int i = 0;
     for (auto &entry : *entries)
     {
-        if (i > currentPage * MAX_NB_LINES)
+        if (i >= currentPage * MAX_NB_LINES)
         {
-            if (currentRow < MAX_NB_LINES)
+            if (currentRow <= MAX_NB_LINES)
             {
                 std::cout << "drawing" << entry.getName() << " at " << currentRow << std::endl;
                 _paint->DrawStringAt(CHAR_WIDTH, CHAR_HEIGHT/2 + (currentRow * CHAR_HEIGHT), entry.getName(), FONT, UNCOLORED);
