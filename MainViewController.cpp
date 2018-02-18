@@ -2,18 +2,19 @@
 // Created by fritsch on 16/02/18.
 //
 
+#include <unistd.h>
 #include "MainViewController.h"
 #include "ButtonsGPIO.h"
 
 MainViewController::MainViewController(ScreenService *screenService)
 {
     this->_screenService = screenService;
-    //this->_screenService->displayBootScreen();
-    //sleep(1);
+    this->_screenService->displayBootScreen();
+    sleep(3);
     this->_currentSelection = 0;
     this->_entriesList = new std::vector<ListEntry>;
     this->initEntriesList();
-    this->_screenService->displayMainScreen(_entriesList);
+    this->_screenService->displayScrollableList(_entriesList);
     refreshCursor();
 }
 
@@ -55,24 +56,14 @@ void MainViewController::refreshCursor()
 
 void MainViewController::initEntriesList()
 {
-    const std::function<void(void)> premierCallback = []{/* launch premier screen */ printf("premier clicked\n");};
-    _entriesList->push_back(ListEntry("Premier", premierCallback));
-    const std::function<void(void)> secondCallback = []{/* launch second screen */ printf("second clicked\n");};
-    _entriesList->push_back(ListEntry("Second", secondCallback));
-    const std::function<void(void)> thirdCallback = []{/* launch third screen */ printf("third clicked\n");};
-    _entriesList->push_back(ListEntry("Third", thirdCallback));
-    const std::function<void(void)> fourthCallback = []{/* launch fourth screen */ printf("fourth clicked\n");};
-    _entriesList->push_back(ListEntry("Fourth", fourthCallback));
-    const std::function<void(void)> fifthCallback = []{/* launch fifth screen */ printf("fifth clicked\n");};
-    _entriesList->push_back(ListEntry("Fifth", fifthCallback));
-    const std::function<void(void)> sixthCallback = []{/* launch sixth screen */ printf("sixth clicked\n");};
-    _entriesList->push_back(ListEntry("Sixth", sixthCallback));
-    const std::function<void(void)> seventhCallback = []{/* launch seventh screen */ printf("seventh clicked\n");};
-    _entriesList->push_back(ListEntry("Seventh", seventhCallback));
-    const std::function<void(void)> eightCallback = []{/* launch eight screen */ printf("eight clicked\n");};
-    _entriesList->push_back(ListEntry("eight", eightCallback));
-    const std::function<void(void)> ninthCallback = []{/* launch ninth screen */ printf("ninth clicked\n");};
-    _entriesList->push_back(ListEntry("ninth", ninthCallback));
-    const std::function<void(void)> tenthCallback = []{/* launch tenth screen */ printf("tenth clicked\n");};
-    _entriesList->push_back(ListEntry("tenth", tenthCallback));
+    _entriesList->push_back(ListEntry("Bibliothèque", []{/* open library */ printf("premier clicked\n");}));
+    _entriesList->push_back(ListEntry("Second", []{/* launch second screen */ printf("second clicked\n");}));
+    _entriesList->push_back(ListEntry("Third", []{/* launch third screen */ printf("third clicked\n");}));
+    _entriesList->push_back(ListEntry("Fourth", []{/* launch fourth screen */ printf("fourth clicked\n");}));
+    _entriesList->push_back(ListEntry("Fifth", []{/* launch fifth screen */ printf("fifth clicked\n");}));
+    _entriesList->push_back(ListEntry("Sixth", []{/* launch sixth screen */ printf("sixth clicked\n");}));
+    _entriesList->push_back(ListEntry("Seventh", []{/* launch seventh screen */ printf("seventh clicked\n");}));
+    _entriesList->push_back(ListEntry("eight", []{/* launch eight screen */ printf("eight clicked\n");}));
+    _entriesList->push_back(ListEntry("ninth", []{/* launch ninth screen */ printf("ninth clicked\n");}));
+    _entriesList->push_back(ListEntry("tenth", []{/* launch tenth screen */ printf("tenth clicked\n");}));
 }

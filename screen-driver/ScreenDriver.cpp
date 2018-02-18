@@ -90,8 +90,8 @@ const void ScreenDriver::displayCursor(unsigned long currentSelection, unsigned 
     _paint->DrawStringAt(0, static_cast<int>(CHAR_HEIGHT/2 + (currentRow * CHAR_HEIGHT)), ">", FONT, UNCOLORED);
     _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
     _epd->DisplayFrame();
-/*    _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
-    _epd->DisplayFrame();*/
+    _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
+    _epd->DisplayFrame();
     _paint->SetWidth(_epd->width);
     _paint->SetHeight(_epd->height);
 }

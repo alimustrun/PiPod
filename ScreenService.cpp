@@ -21,7 +21,7 @@ void ScreenService::displayBootScreen()
     _screenDriver->displayBootScreen();
 }
 
-void ScreenService::displayMainScreen(std::vector<ListEntry> *entries)
+void ScreenService::displayScrollableList(std::vector<ListEntry> *entries)
 {
     _screenDriver->displayList(entries, _cursorPosition);
 }

@@ -15,7 +15,7 @@ public:
     void stop() override;
     void onKeyPressed(int key);
     void displayBootScreen();
-    void displayMainScreen(std::vector<ListEntry> *entries);
+    void displayScrollableList(std::vector<ListEntry> *entries);
     void displayCursor(unsigned long cursorPosition, std::vector<ListEntry> *entries);
 
     void refreshCursor(unsigned long currentSelection, unsigned long listSize);
