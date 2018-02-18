@@ -58,7 +58,7 @@ const void ScreenDriver::displayBootScreen()
 const void ScreenDriver::displayList(std::vector<ListEntry> *entries, unsigned long currentCursorPosition)
 {
     int currentPage = static_cast<int>(currentCursorPosition / MAX_NB_LINES);
-    int currentRow = static_cast<int>(currentCursorPosition % MAX_NB_LINES);
+    int currentRow = 0;
 
     /*
      * si le curseur est entre 0 et le MAX_NB_LINES, afficher simplement la première page. Sinon, passer à la Ne page
