@@ -26,10 +26,16 @@ void ScreenService::displayMainScreen(std::vector<ListEntry> *entries)
     _screenDriver->displayList(entries, _cursorPosition);
 }
 
-void ScreenService::displayCursor(unsigned long cursorPosition, unsigned long nbSelections)
+void ScreenService::displayCursor(unsigned long cursorPosition, std::vector<ListEntry> *entries)
 {
     _cursorPosition = cursorPosition;
-    _screenDriver->displayCursor(cursorPosition, nbSelections);
+    bool hasPageChanged = _currentPage != _cursorPosition / MAX_NB_LINES;
+    _currentPage = _cursorPosition / MAX_NB_LINES;
+    if (hasPageChanged)
+    {
+        _screenDriver->displayList(entries, _cursorPosition);
+    }
+    _screenDriver->displayCursor(cursorPosition, entries->size());
 }
 
 void ScreenService::onKeyPressed(int key)

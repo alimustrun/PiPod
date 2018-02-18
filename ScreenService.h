@@ -16,7 +16,7 @@ public:
     void onKeyPressed(int key);
     void displayBootScreen();
     void displayMainScreen(std::vector<ListEntry> *entries);
-    void displayCursor(unsigned long cursorPosition, unsigned long nbSelections);
+    void displayCursor(unsigned long cursorPosition, std::vector<ListEntry> *entries);
 
     void refreshCursor(unsigned long currentSelection, unsigned long listSize);
 
@@ -24,6 +24,7 @@ private:
     ScreenDriver *_screenDriver = nullptr;
 
     unsigned long _cursorPosition;
+    unsigned long _currentPage;
 };
 
 
