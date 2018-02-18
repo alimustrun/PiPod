@@ -68,7 +68,7 @@ const void ScreenDriver::displayList(std::vector<ListEntry> *entries, unsigned l
     int i = 0;
     for (auto &entry : *entries)
     {
-        if (i >= currentPage * MAX_NB_LINES)
+        if (i >= (currentPage * MAX_NB_LINES))
         {
             if (currentRow <= MAX_NB_LINES)
             {
