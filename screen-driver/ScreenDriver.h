@@ -21,7 +21,7 @@
 #define CHAR_HEIGHT 16
 #define CHAR_WIDTH 16
 #define SCREEN_HEIGHT 128
-#define MAX_NB_LINES ((int)(SCREEN_HEIGHT / CHAR_HEIGHT))
+#define MAX_NB_LINES ((int)(SCREEN_HEIGHT / CHAR_HEIGHT) - 1)
 #define FONT &Font16
 
 
