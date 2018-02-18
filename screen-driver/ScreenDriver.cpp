@@ -64,6 +64,7 @@ const void ScreenDriver::displayList(std::vector<ListEntry> *entries, unsigned l
      * si le curseur est entre 0 et le MAX_NB_LINES, afficher simplement la première page. Sinon, passer à la Ne page
      */
 
+    std::cout << "max_nb_lines:" << MAX_NB_LINES << std::endl;
     _paint->Clear(COLORED);
     int i = 0;
     for (auto &entry : *entries)
