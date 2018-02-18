@@ -87,7 +87,7 @@ const void ScreenDriver::displayList(std::vector<ListEntry> *entries, unsigned l
 
 const void ScreenDriver::displayCursor(unsigned long currentSelection, unsigned long nbSelections)
 {
-    int currentRow = static_cast<int>(currentSelection % MAX_NB_LINES) + 1;
+    int currentRow = static_cast<int>(currentSelection % MAX_NB_LINES);
 
     _paint->SetWidth(SCREEN_HEIGHT);
     _paint->SetHeight(CHAR_WIDTH);
