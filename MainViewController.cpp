@@ -3,9 +3,11 @@
 //
 
 #include <unistd.h>
+
+#include <utility>
 #include "MainViewController.h"
 #include "ButtonsGPIO.h"
-#include "LibraryController.h"
+#include "LibraryViewController.h"
 
 MainViewController::MainViewController(ScreenService *screenService)
 {
@@ -58,7 +60,8 @@ void MainViewController::refreshCursor()
 void MainViewController::initEntriesList()
 {
     _entriesList->push_back(ListEntry("Bibliotheque", []{
-        new LibraryController(this->_screenService);
+        std::function<void(Views)> function = _requestView;
+        function(Views::LIBRARY);
     }));
     _entriesList->push_back(ListEntry("Second", []{/* launch second screen */ printf("second clicked\n");}));
     _entriesList->push_back(ListEntry("Third", []{/* launch third screen */ printf("third clicked\n");}));
@@ -69,4 +72,9 @@ void MainViewController::initEntriesList()
     _entriesList->push_back(ListEntry("eight", []{/* launch eight screen */ printf("eight clicked\n");}));
     _entriesList->push_back(ListEntry("ninth", []{/* launch ninth screen */ printf("ninth clicked\n");}));
     _entriesList->push_back(ListEntry("tenth", []{/* launch tenth screen */ printf("tenth clicked\n");}));
+}
+
+void MainViewController::init(std::function<void(Views)> requestViewImpl)
+{
+    _requestView = std::move(requestViewImpl);
 }

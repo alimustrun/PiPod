@@ -2,11 +2,11 @@
 // Created by fritsch on 16/02/18.
 //
 
-#include "LibraryController.h"
+#include "LibraryViewController.h"
 #include "ButtonsGPIO.h"
 #include "Utils.h"
 
-LibraryController::LibraryController(ScreenService *screenService)
+LibraryViewController::LibraryViewController(ScreenService *screenService)
 {
     this->_screenService = screenService;
     this->_currentSelection = 0;
@@ -16,7 +16,7 @@ LibraryController::LibraryController(ScreenService *screenService)
     refreshCursor();
 }
 
-const void LibraryController::onKeyPressed(int key)
+const void LibraryViewController::onKeyPressed(int key)
 {
     switch (key)
     {
@@ -47,12 +47,12 @@ const void LibraryController::onKeyPressed(int key)
     }
 }
 
-void LibraryController::refreshCursor()
+void LibraryViewController::refreshCursor()
 {
     this->_screenService->displayCursor(this->_currentSelection, _entriesList);
 }
 
-void LibraryController::initEntriesList()
+void LibraryViewController::initEntriesList()
 {
     std::vector<const char *> rawFilenames = std::vector<const char *>();
     Utils::getFilesFromPath(&rawFilenames, "~/");

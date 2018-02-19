@@ -2,18 +2,19 @@
 // Created by fritsch on 16/02/18.
 //
 
-#ifndef PIPOD_LIBRARYCONTROLLER_H
-#define PIPOD_LIBRARYCONTROLLER_H
+#ifndef PIPOD_LIBRARYVIEWCONTROLLER_H
+#define PIPOD_LIBRARYVIEWCONTROLLER_H
 
 
 #include <vector>
 #include "ScreenService.h"
 #include "ListEntry.h"
+#include "ViewController.h"
 
-class LibraryController
+class LibraryViewController : ViewController
 {
 public:
-    explicit LibraryController(ScreenService *screenService);
+    explicit LibraryViewController(ScreenService *screenService);
     const void onKeyPressed(int);
 
 private:
@@ -26,4 +27,4 @@ private:
 };
 
 
-#endif //PIPOD_LIBRARYCONTROLLER_H
+#endif //PIPOD_LIBRARYVIEWCONTROLLER_H

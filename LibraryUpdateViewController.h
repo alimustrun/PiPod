@@ -1,0 +1,15 @@
+//
+// Created by fritsch on 19/02/18.
+//
+
+#ifndef PIPOD_LIBRARYUPDATEVIEWCONTROLLER_H
+#define PIPOD_LIBRARYUPDATEVIEWCONTROLLER_H
+
+
+class LibraryUpdateViewController
+{
+
+};
+
+
+#endif //PIPOD_LIBRARYUPDATEVIEWCONTROLLER_H
