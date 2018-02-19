@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include "MainViewController.h"
 #include "ButtonsGPIO.h"
+#include "LibraryController.h"
 
 MainViewController::MainViewController(ScreenService *screenService)
 {
@@ -56,7 +57,9 @@ void MainViewController::refreshCursor()
 
 void MainViewController::initEntriesList()
 {
-    _entriesList->push_back(ListEntry("Bibliothèque", []{/* open library */ printf("premier clicked\n");}));
+    _entriesList->push_back(ListEntry("Bibliotheque", []{
+        new LibraryController(this->_screenService);
+    }));
     _entriesList->push_back(ListEntry("Second", []{/* launch second screen */ printf("second clicked\n");}));
     _entriesList->push_back(ListEntry("Third", []{/* launch third screen */ printf("third clicked\n");}));
     _entriesList->push_back(ListEntry("Fourth", []{/* launch fourth screen */ printf("fourth clicked\n");}));

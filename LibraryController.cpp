@@ -4,6 +4,7 @@
 
 #include "LibraryController.h"
 #include "ButtonsGPIO.h"
+#include "Utils.h"
 
 LibraryController::LibraryController(ScreenService *screenService)
 {
@@ -53,7 +54,10 @@ void LibraryController::refreshCursor()
 
 void LibraryController::initEntriesList()
 {
-    //here list directories
-//    const std::function<void(void)> tenthCallback = []{/* launch tenth screen */ printf("tenth clicked\n");};
-//    _entriesList->push_back(ListEntry("tenth", tenthCallback));
+    std::vector<const char *> rawFilenames = std::vector<const char *>();
+    Utils::getFilesFromPath(&rawFilenames, "~/");
+    for (auto *rawFilename : rawFilenames)
+    {
+        _entriesList->push_back(ListEntry(rawFilename, []{;}));
+    }
 }
