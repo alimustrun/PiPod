@@ -60,11 +60,11 @@ void LibraryViewController::refreshCursor()
 
 void LibraryViewController::initEntriesList()
 {
-    std::vector<const char *> rawFilenames = std::vector<const char *>();
+    std::vector<const char *> *rawFilenames = new std::vector<const char *>;
     std::cout << "af" << std::endl;
-    Utils::getFilesFromPath(&rawFilenames, "~/");
+    Utils::getFilesFromPath(rawFilenames, "~/");
     std::cout << "ag" << std::endl;
-    for (auto *rawFilename : rawFilenames)
+    for (auto rawFilename : *rawFilenames)
     {
         _entriesList->push_back(ListEntry(rawFilename, []{;}));
     }
