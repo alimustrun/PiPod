@@ -3,6 +3,7 @@
 //
 
 #include <unistd.h>
+#include <iostream>
 #include "ApplicationController.h"
 
 void ApplicationController::requestView(Views requestedView)
@@ -30,13 +31,20 @@ MainViewController *ApplicationController::createMainViewController()
 
 ApplicationController::ApplicationController()
 {
+    std::cout << "1" << std::endl;
     _keyboardService = new KeyboardService();
+    std::cout << "2" << std::endl;
     _screenService = new ScreenService();
+    std::cout << "3" << std::endl;
     _screenService->start();
+    std::cout << "4" << std::endl;
     _keyboardService->start();
+    std::cout << "5" << std::endl;
 
     initViewControllers();
+    std::cout << "6" << std::endl;
     _keyboardService->addListener(std::bind(&ApplicationController::onKeyPressed, this, std::placeholders::_1));
+    std::cout << "7" << std::endl;
 
     while (true)
     {
