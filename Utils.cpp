@@ -3,6 +3,7 @@
 //
 
 #include <dirent.h>
+#include <cstddef>
 #include "Utils.h"
 
 void Utils::getFilesFromPath(std::vector<const char *> *filenames, const char *path)
