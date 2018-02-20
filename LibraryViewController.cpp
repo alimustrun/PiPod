@@ -2,6 +2,7 @@
 // Created by fritsch on 16/02/18.
 //
 
+#include <iostream>
 #include "LibraryViewController.h"
 #include "ButtonsGPIO.h"
 #include "Utils.h"
@@ -9,10 +10,15 @@
 LibraryViewController::LibraryViewController(ScreenService *screenService)
 {
     this->_screenService = screenService;
+    std::cout << "aa" << std::endl;
     this->_currentSelection = 0;
+    std::cout << "ab" << std::endl;
     this->_entriesList = new std::vector<ListEntry>;
+    std::cout << "ac" << std::endl;
     this->initEntriesList();
+    std::cout << "ad" << std::endl;
     this->_screenService->displayScrollableList(_entriesList);
+    std::cout << "ae" << std::endl;
     refreshCursor();
 }
 
@@ -55,11 +61,14 @@ void LibraryViewController::refreshCursor()
 void LibraryViewController::initEntriesList()
 {
     std::vector<const char *> rawFilenames = std::vector<const char *>();
+    std::cout << "af" << std::endl;
     Utils::getFilesFromPath(&rawFilenames, "~/");
+    std::cout << "ag" << std::endl;
     for (auto *rawFilename : rawFilenames)
     {
         _entriesList->push_back(ListEntry(rawFilename, []{;}));
     }
+    std::cout << "ah" << std::endl;
 }
 
 void LibraryViewController::init(std::function<void(Views)> requestViewImpl)
