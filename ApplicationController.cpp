@@ -14,16 +14,18 @@ void ApplicationController::requestView(Views requestedView)
 void ApplicationController::initViewControllers()
 {
     _viewControllers = new std::map<Views, ViewController *>;
-    _viewControllers->insert(std::pair<Views, ViewController *>(Views::MAIN_MENU, new MainViewController(_screenService)));
+    _viewControllers->insert(std::pair<Views, ViewController *>(Views::MAIN_MENU, createMainViewController()));
     _viewControllers->insert(std::pair<Views, ViewController *>(Views::LIBRARY, new LibraryViewController(_screenService)));
     _viewControllers->insert(std::pair<Views, ViewController *>(Views::PLAYER, new PlayerViewController()));
     _viewControllers->insert(std::pair<Views, ViewController *>(Views::WIFI_SETTINGS, new WifiSettingsViewController()));
     _viewControllers->insert(std::pair<Views, ViewController *>(Views::LIBRARY_UPDATE, new LibraryUpdateViewController()));
 }
 
-void ApplicationController::initMainViewController()
+MainViewController *ApplicationController::createMainViewController()
 {
-
+    auto *mainViewController = new MainViewController(_screenService);
+    mainViewController->init(std::bind(&ApplicationController::requestView, this, std::placeholders::_1));
+    return mainViewController;
 }
 
 ApplicationController::ApplicationController()
