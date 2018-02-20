@@ -25,6 +25,8 @@ private:
 
     void refreshCursor();
     void initEntriesList();
+
+    const char *asciify(const char *rawString);
 };
 
 
