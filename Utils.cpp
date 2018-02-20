@@ -9,7 +9,7 @@ void Utils::getFilesFromPath(std::vector<const char *> *filenames, const char *p
 {
     DIR* dirp = opendir(path);
     struct dirent * dp;
-    while ((dp = readdir(dirp)) != NULL) {
+    while ((dp = readdir(dirp)) != nullptr) {
         filenames->push_back(dp->d_name);
     }
     closedir(dirp);

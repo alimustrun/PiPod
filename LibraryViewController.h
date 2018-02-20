@@ -11,9 +11,10 @@
 #include "ListEntry.h"
 #include "ViewController.h"
 
-class LibraryViewController : ViewController
+class LibraryViewController : public ViewController
 {
 public:
+    void init(std::function<void(Views)> requestViewImpl) override;
     explicit LibraryViewController(ScreenService *screenService);
     const void onKeyPressed(int);
 

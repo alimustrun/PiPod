@@ -6,9 +6,14 @@
 #define PIPOD_PLAYERVIEWCONTROLLER_H
 
 
-class PlayerViewController
-{
+#include <functional>
+#include "ViewController.h"
 
+class PlayerViewController : public ViewController
+{
+public:
+    void init(std::function<void(Views)> requestViewImpl) override;
+    const void onKeyPressed(int key) override;
 };
 
 

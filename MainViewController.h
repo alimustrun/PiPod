@@ -11,12 +11,13 @@
 #include "ListEntry.h"
 #include "ViewController.h"
 
-class MainViewController : ViewController
+class MainViewController : public ViewController
 {
 public:
     explicit MainViewController(ScreenService *screenService);
     const void onKeyPressed(int) override;
     void init(std::function<void(Views)> requestViewImpl) override;
+    void requestView(Views view);
 
 private:
     void refreshCursor();

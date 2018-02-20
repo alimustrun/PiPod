@@ -59,10 +59,7 @@ void MainViewController::refreshCursor()
 
 void MainViewController::initEntriesList()
 {
-    _entriesList->push_back(ListEntry("Bibliotheque", []{
-        std::function<void(Views)> function = _requestView;
-        function(Views::LIBRARY);
-    }));
+    _entriesList->push_back(ListEntry("Bibliotheque", [&]{std::bind(&MainViewController::requestView, this, std::placeholders::_1);}));
     _entriesList->push_back(ListEntry("Second", []{/* launch second screen */ printf("second clicked\n");}));
     _entriesList->push_back(ListEntry("Third", []{/* launch third screen */ printf("third clicked\n");}));
     _entriesList->push_back(ListEntry("Fourth", []{/* launch fourth screen */ printf("fourth clicked\n");}));
@@ -74,7 +71,12 @@ void MainViewController::initEntriesList()
     _entriesList->push_back(ListEntry("tenth", []{/* launch tenth screen */ printf("tenth clicked\n");}));
 }
 
+void MainViewController::requestView(Views view)
+{
+    _requestView(view);
+}
+
 void MainViewController::init(std::function<void(Views)> requestViewImpl)
 {
-    _requestView = std::move(requestViewImpl);
+    _requestView = requestViewImpl;
 }

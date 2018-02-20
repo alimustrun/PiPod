@@ -17,7 +17,7 @@
 class ApplicationController
 {
 public:
-    ApplicationController::ApplicationController();
+    ApplicationController();
     void requestView(Views requestedView);
     void onKeyPressed(int key);
 private:

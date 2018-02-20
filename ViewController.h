@@ -10,11 +10,11 @@
 class ViewController
 {
 public:
-    virtual void init(std::function<void(Views)> *requestViewImpl) = 0;
+    virtual void init(std::function<void(Views)> requestViewImpl) = 0;
     virtual const void onKeyPressed(int key) = 0;
 
 protected:
-    static std::function<void(Views)> _requestView;
+    std::function<void(Views)> _requestView;
 };
 
 

@@ -61,3 +61,8 @@ void LibraryViewController::initEntriesList()
         _entriesList->push_back(ListEntry(rawFilename, []{;}));
     }
 }
+
+void LibraryViewController::init(std::function<void(Views)> requestViewImpl)
+{
+
+}

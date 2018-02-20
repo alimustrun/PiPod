@@ -6,9 +6,14 @@
 #define PIPOD_WIFISETTINGSVIEWCONTROLLER_H
 
 
-class WifiSettingsViewController
-{
+#include <functional>
+#include "ViewController.h"
 
+class WifiSettingsViewController : public ViewController
+{
+public:
+    void init(std::function<void(Views)> requestViewImpl) override;
+    const void onKeyPressed(int key) override;
 };
 
 
