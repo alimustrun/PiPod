@@ -38,6 +38,11 @@ void ScreenService::displayCursor(unsigned long cursorPosition, std::vector<List
     _screenDriver->displayCursor(cursorPosition, entries->size());
 }
 
+void ScreenService::clearScreen()
+{
+    _screenDriver->fullClear();
+}
+
 void ScreenService::onKeyPressed(int key)
 {
     switch (key)

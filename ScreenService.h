@@ -20,11 +20,14 @@ public:
 
     void refreshCursor(unsigned long currentSelection, unsigned long listSize);
 
+    void clearScreen();
+
 private:
     ScreenDriver *_screenDriver = nullptr;
 
     unsigned long _cursorPosition;
     unsigned long _currentPage;
+
 };
 
 

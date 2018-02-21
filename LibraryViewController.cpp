@@ -19,9 +19,6 @@ LibraryViewController::LibraryViewController(ScreenService *screenService)
     std::cout << "ac" << std::endl;
     this->initEntriesList();
     std::cout << "ad" << std::endl;
-    this->_screenService->displayScrollableList(_entriesList);
-    std::cout << "ae" << std::endl;
-    refreshCursor();
 }
 
 const void LibraryViewController::onKeyPressed(int key)
@@ -91,5 +88,9 @@ const char *LibraryViewController::asciify(const char *rawString)
 
 void LibraryViewController::init(std::function<void(Views)> requestViewImpl)
 {
-
+    _requestView = requestViewImpl;
+    this->_screenService->clearScreen();
+    this->_screenService->displayScrollableList(_entriesList);
+    std::cout << "ae" << std::endl;
+    refreshCursor();
 }

@@ -9,7 +9,8 @@
 void ApplicationController::requestView(Views requestedView)
 {
     _currentView = requestedView;
-    //TODO:  show requested view
+    std::cout << "view loaded" << std::endl;
+    _viewControllers->at(Views::LIBRARY)->init(std::bind(&ApplicationController::requestView, this, std::placeholders::_1));
 }
 
 void ApplicationController::initViewControllers()

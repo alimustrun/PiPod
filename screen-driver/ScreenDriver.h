@@ -36,8 +36,9 @@ public:
     const void displayCursor(unsigned long currentSelection, unsigned long nbSelections);
     const void displayList(std::vector<ListEntry> *entries, unsigned long currentCursorPosition);
 
-private:
     const void fullClear();
+
+private:
 
     Epd *_epd;
     unsigned char *_frame_buffer;
