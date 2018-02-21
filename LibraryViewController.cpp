@@ -65,7 +65,7 @@ void LibraryViewController::initEntriesList()
     std::cout << "ag" << std::endl;
     for (auto rawFilename : *rawFilenames)
     {
-        _entriesList->push_back(ListEntry(rawFilename, []{;}));
+        _entriesList->push_back(ListEntry(asciify(rawFilename), []{;}));
     }
     std::cout << "ah" << std::endl;
 }
@@ -73,7 +73,7 @@ void LibraryViewController::initEntriesList()
 const char *LibraryViewController::asciify(const char *rawString)
 {
     size_t rawStringLength = strlen(rawString);
-    char output[32];
+    auto *output = static_cast<char *>(malloc(sizeof(char) * 32));
     size_t j = 0;
     for (size_t i = 0; i < rawStringLength && i < 32 - 1; ++i)
     {
