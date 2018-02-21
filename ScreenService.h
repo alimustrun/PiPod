@@ -5,6 +5,7 @@
 #ifndef PIPOD_SCREENSERVICE_H
 #define PIPOD_SCREENSERVICE_H
 
+#include <thread>
 #include "screen-driver/ScreenDriver.h"
 #include "Service.h"
 
@@ -13,21 +14,15 @@ class ScreenService : Service
 public:
     void start() override;
     void stop() override;
-    void onKeyPressed(int key);
     void displayBootScreen();
     void displayScrollableList(std::vector<ListEntry> *entries);
     void displayCursor(unsigned long cursorPosition, std::vector<ListEntry> *entries);
-
-    void refreshCursor(unsigned long currentSelection, unsigned long listSize);
-
     void clearScreen();
 
 private:
     ScreenDriver *_screenDriver = nullptr;
-
-    unsigned long _cursorPosition;
-    unsigned long _currentPage;
-
+    unsigned long _cursorPosition = 0;
+    unsigned long _currentPage = 0;
 };
 
 

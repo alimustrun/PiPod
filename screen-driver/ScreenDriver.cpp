@@ -27,20 +27,6 @@ const void ScreenDriver::fullClear()
 
 }
 
-const void ScreenDriver::displayText(std::string *text)
-{
-    _paint->SetWidth(30);
-    _paint->SetHeight(255);
-    _paint->Clear(COLORED);
-    _paint->DrawStringAt(0, 0, text->c_str(), &Font24, UNCOLORED);
-    _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
-    _epd->DisplayFrame();
-    _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
-    _epd->DisplayFrame();
-    _paint->SetWidth(_epd->width);
-    _paint->SetHeight(_epd->height);
-}
-
 const void ScreenDriver::displayBootScreen()
 {
     _paint->SetWidth(30);
@@ -80,7 +66,7 @@ const void ScreenDriver::displayList(std::vector<ListEntry> *entries, unsigned l
     _epd->DisplayFrame();
 }
 
-const void ScreenDriver::displayCursor(unsigned long currentSelection, unsigned long nbSelections)
+const void ScreenDriver::displayCursor(unsigned long currentSelection)
 {
     int currentRow = static_cast<int>(currentSelection % MAX_NB_LINES);
 

@@ -29,17 +29,12 @@ class ScreenDriver
 {
 public:
     ScreenDriver();
-
-    const void displaySomething();
-    const void displayText(std::string *);
     const void displayBootScreen();
-    const void displayCursor(unsigned long currentSelection, unsigned long nbSelections);
+    const void displayCursor(unsigned long currentSelection);
     const void displayList(std::vector<ListEntry> *entries, unsigned long currentCursorPosition);
-
     const void fullClear();
 
 private:
-
     Epd *_epd;
     unsigned char *_frame_buffer;
     Paint *_paint;
