@@ -75,7 +75,7 @@ const char *LibraryViewController::asciify(const char *rawString)
     size_t rawStringLength = strlen(rawString);
     auto *output = static_cast<char *>(malloc(sizeof(char) * 32));
     size_t j = 0;
-    for (size_t i = 0; i < rawStringLength && i < 32 - 1; ++i)
+    for (size_t i = 0; i < rawStringLength && j < 32 - 1; ++i)
     {
         if (rawString[i] < 128 && rawString[i] > 0)
         {
