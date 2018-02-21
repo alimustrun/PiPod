@@ -61,7 +61,7 @@ void MainViewController::refreshCursor()
 
 void MainViewController::initEntriesList()
 {
-    _entriesList->push_back(ListEntry("Bibliotheque", [&]{std::bind(&MainViewController::requestLibraryView, this);}));
+    _entriesList->push_back(ListEntry("Bibliotheque", [&]{requestLibraryView();}));
     _entriesList->push_back(ListEntry("Second", []{/* launch second screen */ printf("second clicked\n");}));
     _entriesList->push_back(ListEntry("Third", []{/* launch third screen */ printf("third clicked\n");}));
     _entriesList->push_back(ListEntry("Fourth", []{/* launch fourth screen */ printf("fourth clicked\n");}));
