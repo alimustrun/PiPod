@@ -39,6 +39,7 @@ const void MainViewController::onKeyPressed(int key)
         case PREV:
             break;
         case NEXT:
+            std::cout << "execution action for " << _currentSelection << std::endl;
             _entriesList->at(_currentSelection).executeAction();
             //select menu
             break;
