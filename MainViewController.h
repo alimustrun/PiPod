@@ -18,6 +18,7 @@ public:
     const void onKeyPressed(int) override;
     void init(std::function<void(Views)> requestViewImpl) override;
     void requestView(Views view);
+    void requestLibraryView();
 
 private:
     void refreshCursor();

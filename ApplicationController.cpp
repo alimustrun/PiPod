@@ -56,9 +56,8 @@ ApplicationController::ApplicationController()
 
     while (true)
     {
-        std::cout << "refresh keys" << std::endl;
         _keyboardService->refreshKeys();
-        usleep(200000);
+        usleep(20000);
     }
 }
 
