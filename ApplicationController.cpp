@@ -45,7 +45,7 @@ ApplicationController::ApplicationController()
     _keyboardService->start();
 
     initViewControllers();
-    _currentView = Views::MAIN_MENU;
+    requestView(Views::MAIN_MENU);
     _keyboardService->addListener(std::bind(&ApplicationController::onKeyPressed, this, std::placeholders::_1));
 
     while (true)
