@@ -59,10 +59,10 @@ void MainViewController::refreshCursor()
 
 void MainViewController::initEntriesList()
 {
-    _entriesList->push_back(ListEntry("Bibliotheque", [&]{requestLibraryView();}));
-    _entriesList->push_back(ListEntry("Mise à jour du logiciel", []{printf("Mise à jour du logiciel clicked\n");}));
-    _entriesList->push_back(ListEntry("Mise à jour de la bibliotheque", []{printf("Mise à jour de la bibliotheque clicked\n");}));
-    _entriesList->push_back(ListEntry("Parametres Wi-Fi", []{printf("Parametres Wi-Fi clicked\n");}));
+    _entriesList->push_back(ListEntry("Library", [&]{requestLibraryView();}));
+    _entriesList->push_back(ListEntry("ROM update", []{printf("Mise a jour du logiciel clicked\n");}));
+    _entriesList->push_back(ListEntry("Library update", []{printf("Mise a jour de la bibliotheque clicked\n");}));
+    _entriesList->push_back(ListEntry("Wi-Fi settings", []{printf("Parametres Wi-Fi clicked\n");}));
 }
 
 void MainViewController::requestView(Views view)
