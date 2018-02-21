@@ -83,6 +83,7 @@ const char *LibraryViewController::asciify(const char *rawString)
             ++j;
         }
     }
+    output[j] = '\0';
     return output;
 }
 
