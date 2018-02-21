@@ -5,6 +5,7 @@
 #include <dirent.h>
 #include <cstddef>
 #include <cstring>
+#include <iostream>
 #include "Utils.h"
 
 void Utils::getFilesFromPath(std::vector<const char *> *filenames, const char *path)
@@ -15,6 +16,7 @@ void Utils::getFilesFromPath(std::vector<const char *> *filenames, const char *p
         if (strlen(dp->d_name) > 1 && (dp->d_name[0] != '.' || (dp->d_name[0] == '.' && dp->d_name[1] == '.')))
         {
             filenames->push_back(dp->d_name);
+            std::cout << "adding : " << dp->d_name << std::endl;
         }
     }
     closedir(dirp);
