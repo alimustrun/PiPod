@@ -5,6 +5,7 @@
 #include <unistd.h>
 
 #include <utility>
+#include <iostream>
 #include "MainViewController.h"
 #include "ButtonsGPIO.h"
 #include "LibraryViewController.h"
@@ -78,6 +79,7 @@ void MainViewController::requestView(Views view)
 
 void MainViewController::requestLibraryView()
 {
+    std::cout << "debug" << std::endl;
     requestView(Views::LIBRARY);
 }
 

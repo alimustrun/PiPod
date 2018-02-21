@@ -10,7 +10,7 @@ void ApplicationController::requestView(Views requestedView)
 {
     _currentView = requestedView;
     std::cout << "view loaded" << std::endl;
-    _viewControllers->at(Views::LIBRARY)->init(std::bind(&ApplicationController::requestView, this, std::placeholders::_1));
+    _viewControllers->at(requestedView)->init(std::bind(&ApplicationController::requestView, this, std::placeholders::_1));
 }
 
 void ApplicationController::initViewControllers()
@@ -39,21 +39,14 @@ MainViewController *ApplicationController::createMainViewController()
 
 ApplicationController::ApplicationController()
 {
-    std::cout << "1" << std::endl;
     _keyboardService = new KeyboardService();
-    std::cout << "2" << std::endl;
     _screenService = new ScreenService();
-    std::cout << "3" << std::endl;
     _screenService->start();
-    std::cout << "4" << std::endl;
     _keyboardService->start();
-    std::cout << "5" << std::endl;
 
     initViewControllers();
-    std::cout << "6" << std::endl;
     _currentView = Views::MAIN_MENU;
     _keyboardService->addListener(std::bind(&ApplicationController::onKeyPressed, this, std::placeholders::_1));
-    std::cout << "7" << std::endl;
 
     while (true)
     {
