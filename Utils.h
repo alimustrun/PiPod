@@ -11,7 +11,7 @@
 class Utils
 {
 public:
-    static void getFilesFromPath(std::vector<const char *> *filenames, const char *path);
+    static void getFilesFromPath(std::vector<std::string> *filenames, const char *path);
 };
 
 

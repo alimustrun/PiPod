@@ -59,13 +59,13 @@ void LibraryViewController::refreshCursor()
 
 void LibraryViewController::initEntriesList()
 {
-    auto *rawFilenames = new std::vector<const char *>;
+    auto *rawFilenames = new std::vector<std::string>;
     std::cout << "af" << std::endl;
     Utils::getFilesFromPath(rawFilenames, "/home/pi/");
     std::cout << "ag" << std::endl;
-    for (auto rawFilename : *rawFilenames)
+    for (const auto &rawFilename : *rawFilenames)
     {
-        _entriesList->push_back(ListEntry(asciify(rawFilename), []{;}));
+        _entriesList->push_back(ListEntry(rawFilename.c_str(), []{;}));
     }
     std::cout << "ah" << std::endl;
 }
