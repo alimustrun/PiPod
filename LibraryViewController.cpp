@@ -77,13 +77,14 @@ const char *LibraryViewController::asciify(const char *rawString)
     size_t j = 0;
     for (size_t i = 0; i < rawStringLength && i < 32 - 1; ++i)
     {
-        if (rawString[i] < 127 && rawString[i] > 0)
+        if (rawString[i] < 128 && rawString[i] > 0)
         {
             output[j] = rawString[i];
             ++j;
         }
     }
     output[j] = '\0';
+    std::cout << "input : " << rawString << ", output : " << output << std::endl;
     return output;
 }
 
