@@ -50,13 +50,15 @@ ApplicationController::ApplicationController()
 
     initViewControllers();
     std::cout << "6" << std::endl;
+    _currentView = Views::MAIN_MENU;
     _keyboardService->addListener(std::bind(&ApplicationController::onKeyPressed, this, std::placeholders::_1));
     std::cout << "7" << std::endl;
 
     while (true)
     {
+        std::cout << "refresh keys" << std::endl;
         _keyboardService->refreshKeys();
-        usleep(20000);
+        usleep(200000);
     }
 }
 
