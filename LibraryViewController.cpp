@@ -12,13 +12,9 @@
 LibraryViewController::LibraryViewController(ScreenService *screenService)
 {
     this->_screenService = screenService;
-    std::cout << "aa" << std::endl;
     this->_currentSelection = 0;
-    std::cout << "ab" << std::endl;
     this->_entriesList = new std::vector<ListEntry>;
-    std::cout << "ac" << std::endl;
     this->initEntriesList();
-    std::cout << "ad" << std::endl;
 }
 
 const void LibraryViewController::onKeyPressed(int key)
@@ -36,6 +32,7 @@ const void LibraryViewController::onKeyPressed(int key)
             //move cursor up
             break;
         case PREV:
+            _requestView(Views::MAIN_MENU);
             break;
         case NEXT:
             _entriesList->at(_currentSelection).executeAction();
@@ -60,39 +57,21 @@ void LibraryViewController::refreshCursor()
 void LibraryViewController::initEntriesList()
 {
     auto *rawFilenames = new std::vector<std::string>;
-    std::cout << "af" << std::endl;
     Utils::getFilesFromPath(rawFilenames, "/home/pi/");
-    std::cout << "ag" << std::endl;
     for (const auto &rawFilename : *rawFilenames)
     {
         _entriesList->push_back(ListEntry(rawFilename.c_str(), []{;}));
     }
-    std::cout << "ah" << std::endl;
-}
-
-const char *LibraryViewController::asciify(const char *rawString)
-{
-    size_t rawStringLength = strlen(rawString);
-    auto *output = static_cast<char *>(malloc(sizeof(char) * 32));
-    size_t j = 0;
-    for (size_t i = 0; i < rawStringLength && j < 32 - 1; ++i)
-    {
-        if (rawString[i] < 128 && rawString[i] > 0)
-        {
-            output[j] = rawString[i];
-            ++j;
-        }
-    }
-    output[j] = '\0';
-    std::cout << "input : " << rawString << ", output : " << output << std::endl;
-    return output;
 }
 
 void LibraryViewController::init(std::function<void(Views)> requestViewImpl)
 {
     _requestView = requestViewImpl;
+}
+
+void LibraryViewController::draw()
+{
     this->_screenService->clearScreen();
     this->_screenService->displayScrollableList(_entriesList);
-    std::cout << "ae" << std::endl;
     refreshCursor();
 }

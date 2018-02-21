@@ -30,6 +30,7 @@ private:
     void initViewControllers();
 
     MainViewController *createMainViewController();
+    LibraryViewController *createLibraryViewController();
 };
 
 

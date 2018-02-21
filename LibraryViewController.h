@@ -15,6 +15,7 @@ class LibraryViewController : public ViewController
 {
 public:
     void init(std::function<void(Views)> requestViewImpl) override;
+    void draw() override;
     explicit LibraryViewController(ScreenService *screenService);
     const void onKeyPressed(int);
 
@@ -25,8 +26,6 @@ private:
 
     void refreshCursor();
     void initEntriesList();
-
-    const char *asciify(const char *rawString);
 };
 
 

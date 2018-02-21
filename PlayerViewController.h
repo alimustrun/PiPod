@@ -13,6 +13,7 @@ class PlayerViewController : public ViewController
 {
 public:
     void init(std::function<void(Views)> requestViewImpl) override;
+    void draw() override;
     const void onKeyPressed(int key) override;
 };
 

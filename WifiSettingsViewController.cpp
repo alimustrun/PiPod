@@ -13,3 +13,8 @@ const void WifiSettingsViewController::onKeyPressed(int key)
 {
     return;
 }
+
+void WifiSettingsViewController::draw()
+{
+
+}

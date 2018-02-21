@@ -13,3 +13,8 @@ const void PlayerViewController::onKeyPressed(int key)
 {
     return;
 }
+
+void PlayerViewController::draw()
+{
+
+}

@@ -10,31 +10,31 @@ void ApplicationController::requestView(Views requestedView)
 {
     _currentView = requestedView;
     std::cout << "view loaded" << std::endl;
-    _viewControllers->at(requestedView)->init(std::bind(&ApplicationController::requestView, this, std::placeholders::_1));
+    _viewControllers->at(requestedView)->draw();
 }
 
 void ApplicationController::initViewControllers()
 {
     _viewControllers = new std::map<Views, ViewController *>;
-    std::cout << "a" << std::endl;
     _viewControllers->insert(std::pair<Views, ViewController *>(Views::MAIN_MENU, createMainViewController()));
-    std::cout << "b" << std::endl;
-    _viewControllers->insert(std::pair<Views, ViewController *>(Views::LIBRARY, new LibraryViewController(_screenService)));
-    std::cout << "c" << std::endl;
+    _viewControllers->insert(std::pair<Views, ViewController *>(Views::LIBRARY, createLibraryViewController()));
     _viewControllers->insert(std::pair<Views, ViewController *>(Views::PLAYER, new PlayerViewController()));
-    std::cout << "d" << std::endl;
     _viewControllers->insert(std::pair<Views, ViewController *>(Views::WIFI_SETTINGS, new WifiSettingsViewController()));
-    std::cout << "e" << std::endl;
     _viewControllers->insert(std::pair<Views, ViewController *>(Views::LIBRARY_UPDATE, new LibraryUpdateViewController()));
 }
 
 MainViewController *ApplicationController::createMainViewController()
 {
     auto *mainViewController = new MainViewController(_screenService);
-    std::cout << "*" << std::endl;
     mainViewController->init(std::bind(&ApplicationController::requestView, this, std::placeholders::_1));
-    std::cout << "+" << std::endl;
     return mainViewController;
+}
+
+LibraryViewController *ApplicationController::createLibraryViewController()
+{
+    auto *libraryViewController = new LibraryViewController(_screenService);
+    libraryViewController->init(std::bind(&ApplicationController::requestView, this, std::placeholders::_1));
+    return libraryViewController;
 }
 
 ApplicationController::ApplicationController()

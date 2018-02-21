@@ -17,6 +17,7 @@ public:
     explicit MainViewController(ScreenService *screenService);
     const void onKeyPressed(int) override;
     void init(std::function<void(Views)> requestViewImpl) override;
+    void draw() override;
     void requestView(Views view);
     void requestLibraryView();
 

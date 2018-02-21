@@ -11,6 +11,7 @@ class ViewController
 {
 public:
     virtual void init(std::function<void(Views)> requestViewImpl) = 0;
+    virtual void draw() = 0;
     virtual const void onKeyPressed(int key) = 0;
 
 protected:

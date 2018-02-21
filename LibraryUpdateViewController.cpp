@@ -13,3 +13,8 @@ const void LibraryUpdateViewController::onKeyPressed(int key)
 {
     return;
 }
+
+void LibraryUpdateViewController::draw()
+{
+
+}
