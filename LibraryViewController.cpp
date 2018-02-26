@@ -79,6 +79,7 @@ void LibraryViewController::fetchCurrentPathFiles()
     auto *rawFilenames = new std::vector<std::string>;
     Utils::getFilesFromPath(rawFilenames, _currentPath.c_str());
     std::cout << "fetchCurrentPathFiles 2" << std::endl;
+    _entriesList->clear();
     for (const auto &rawFilename : *rawFilenames)
     {
         std::cout << "fetchCurrentPathFiles 3" << std::endl;
