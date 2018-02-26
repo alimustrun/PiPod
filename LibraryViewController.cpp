@@ -78,13 +78,21 @@ void LibraryViewController::fetchCurrentPathFiles()
     for (const auto &rawFilename : *rawFilenames)
     {
         std::cout << "fetchCurrentPathFiles 3" << std::endl;
-        char *realPath = nullptr;
         _entriesList->push_back(ListEntry(std::string(rawFilename).c_str(),
-                                          [&]{realpath(_currentPath.append(rawFilename).append("/").c_str(), realPath);
+                                          [&]{
+                                                std::cout << "one" << std::endl;
+                                              char *realPath = nullptr;
+                                              std::cout << "two" << std::endl;
+                                              realpath(_currentPath.append(rawFilename).append("/").c_str(), realPath);
+                                              std::cout << "three" << std::endl;
                                               std::cout << realPath << std::endl;
+                                              std::cout << "four" << std::endl;
                                               _currentPath = realPath;
+                                              std::cout << "five" << std::endl;
                                               fetchCurrentPathFiles();
+                                              std::cout << "six" << std::endl;
                                               draw();
+                                              std::cout << "seven" << std::endl;
                                           }
         ));
         std::cout << "fetchCurrentPathFiles 4" << std::endl;
