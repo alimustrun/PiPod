@@ -2,6 +2,7 @@
 // Created by fritsch on 14/02/18.
 //
 
+#include <iostream>
 #include "ScreenService.h"
 
 void ScreenService::start()
@@ -23,7 +24,9 @@ void ScreenService::displayBootScreen()
 void ScreenService::displayScrollableList(std::vector<ListEntry> *entries)
 {
     _cursorPosition = 0;
+    std::cout << "displayScrollableList 1" << std::endl;
     _screenDriver->displayList(entries, _cursorPosition);
+    std::cout << "displayScrollableList 2" << std::endl;
 }
 
 void ScreenService::displayCursor(unsigned long cursorPosition, std::vector<ListEntry> *entries)

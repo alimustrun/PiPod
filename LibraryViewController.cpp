@@ -68,12 +68,15 @@ void LibraryViewController::initEntriesList()
 
 void LibraryViewController::fetchCurrentPathFiles()
 {
+    std::cout << "fetchCurrentPathFiles 1" << std::endl;
     auto *rawFilenames = new std::vector<std::string>;
     Utils::getFilesFromPath(rawFilenames, _currentPath.c_str());
+    std::cout << "fetchCurrentPathFiles 2" << std::endl;
     for (const auto &rawFilename : *rawFilenames)
     {
+        std::cout << "fetchCurrentPathFiles 3" << std::endl;
         char *realPath = nullptr;
-        _entriesList->push_back(ListEntry(rawFilename.c_str(),
+        _entriesList->push_back(ListEntry(std::string(rawFilename).c_str(),
                                           [&]{realpath(_currentPath.append(rawFilename).append("/").c_str(), realPath);
                                               std::cout << realPath << std::endl;
                                               _currentPath = realPath;
@@ -81,6 +84,7 @@ void LibraryViewController::fetchCurrentPathFiles()
                                               draw();
                                           }
         ));
+        std::cout << "fetchCurrentPathFiles 4" << std::endl;
     }
 }
 
@@ -91,7 +95,11 @@ void LibraryViewController::init(std::function<void(Views)> requestViewImpl)
 
 void LibraryViewController::draw()
 {
+    std::cout << "draw 1" << std::endl;
     this->_screenService->clearScreen();
+    std::cout << "draw 2" << std::endl;
     this->_screenService->displayScrollableList(_entriesList);
+    std::cout << "draw 3" << std::endl;
     refreshCursor();
+    std::cout << "draw 4" << std::endl;
 }
