@@ -14,7 +14,7 @@ LibraryViewController::LibraryViewController(ScreenService *screenService)
     this->_screenService = screenService;
     this->_currentSelection = 0;
     this->_currentDirectoryLevel = 0;
-    this->_currentPath = "/home/pi/music/";
+    this->_currentPath = "/home/pi/Music/";
     this->_entriesList = new std::vector<ListEntry>;
     this->initEntriesList();
 }
@@ -73,7 +73,7 @@ void LibraryViewController::fetchCurrentPathFiles()
     for (const auto &rawFilename : *rawFilenames)
     {
         _entriesList->push_back(ListEntry(rawFilename.c_str(),
-                                          [&]{_currentPath = _currentPath.append(rawFilename).append("/"); fetchCurrentPathFiles();}
+                                          [&]{_currentPath.append(rawFilename).append("/"); fetchCurrentPathFiles();}
         ));
     }
 }
