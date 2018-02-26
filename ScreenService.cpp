@@ -22,6 +22,7 @@ void ScreenService::displayBootScreen()
 
 void ScreenService::displayScrollableList(std::vector<ListEntry> *entries)
 {
+    _cursorPosition = 0;
     _screenDriver->displayList(entries, _cursorPosition);
 }
 
