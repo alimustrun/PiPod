@@ -7,11 +7,13 @@
 
 
 #include <vector>
+#include "FileType.h"
 
 class Utils
 {
 public:
-    static void getFilesFromPath(std::vector<std::string> *filenames, const char *path);
+    static void getFilesFromPath(std::vector<std::pair<std::string, FileType>> *filenames, const char *path);
+    static FileType getFileType(dirent *dp);
 };
 
 

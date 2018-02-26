@@ -5,6 +5,7 @@
 #include <iostream>
 #include <algorithm>
 #include <cstring>
+#include <dirent.h>
 #include "LibraryViewController.h"
 #include "ButtonsGPIO.h"
 #include "Utils.h"
@@ -42,16 +43,11 @@ const void LibraryViewController::onKeyPressed(int key)
             }
             break;
         case NEXT:
-            std::cout << "next 1:" << _currentSelection << ", entries.size:" << _entriesList->size() << std::endl;
             _entriesList->at(_currentSelection).executeAction();
-            std::cout << "next 2" << std::endl;
             _currentDirectoryLevel++;
             _currentSelection = 0;
-            std::cout << "next 3" << std::endl;
             fetchCurrentPathFiles();
-            std::cout << "next 4" << std::endl;
             this->draw();
-            std::cout << "next 5" << std::endl;
             //open subdirectory
             break;
         case RIGHT:
@@ -77,31 +73,29 @@ void LibraryViewController::initEntriesList()
 
 void LibraryViewController::fetchCurrentPathFiles()
 {
-    std::cout << "fetchCurrentPathFiles 1" << std::endl;
-    auto *rawFilenames = new std::vector<std::string>;
-    Utils::getFilesFromPath(rawFilenames, _currentPath.c_str());
-    std::cout << "fetchCurrentPathFiles 2" << std::endl;
+    auto *filenames = new std::vector<std::pair<std::string, FileType>>;
+    Utils::getFilesFromPath(filenames, _currentPath.c_str());
     _entriesList->clear();
-    for (const auto &rawFilename : *rawFilenames)
+    for (const auto &filename : *filenames)
     {
-        std::cout << "fetchCurrentPathFiles 3" << std::endl;
-        _entriesList->push_back(ListEntry(new std::string(rawFilename),
+        _entriesList->push_back(ListEntry(new std::string(filename.first),
+                                          filename.second,
                                           [&]{
-                                                std::cout << "one" << std::endl;
-                                              auto *realPath = static_cast<char *>(malloc(sizeof(char) * 1024));
-                                              std::cout << "two:" << _currentPath << std::endl;
-                                              _currentPath.append("/").append(rawFilename);
-                                              std::cout << "two.5:" << _currentPath << std::endl;
-                                              realpath(_currentPath.c_str(), realPath);
-                                              std::cout << "three" << std::endl;
-                                              std::cout << realPath << std::endl;
-                                              std::cout << "four" << std::endl;
-                                              _currentPath = realPath;
-                                              std::cout << "five" << std::endl;
-
+                                              if (filename.second == FileType::TYPE_DIRECTORY)
+                                              {
+                                                  auto *realPath = static_cast<char *>(malloc(sizeof(char) * 1024));
+                                                  _currentPath.append("/").append(filename.first);
+                                                  realpath(_currentPath.c_str(), realPath);
+                                                  _currentPath = realPath;
+                                                  free(realPath);
+                                              }
+                                              else if (filename.second == FileType::TYPE_FILE)
+                                              {
+                                                  std::cout << "should play " << filename.first << std::endl;
+                                                  //TODO : open player with the file
+                                              }
                                           }
         ));
-        std::cout << "fetchCurrentPathFiles 4" << std::endl;
     }
 }
 
@@ -112,11 +106,7 @@ void LibraryViewController::init(std::function<void(Views)> requestViewImpl)
 
 void LibraryViewController::draw()
 {
-    std::cout << "draw 1" << std::endl;
     this->_screenService->clearScreen();
-    std::cout << "draw 2" << std::endl;
     this->_screenService->displayScrollableList(_entriesList);
-    std::cout << "draw 3" << std::endl;
     refreshCursor();
-    std::cout << "draw 4" << std::endl;
 }

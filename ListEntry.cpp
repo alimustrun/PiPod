@@ -4,10 +4,11 @@
 
 #include "ListEntry.h"
 
-ListEntry::ListEntry(std::string *name, const std::function<void(void)> action)
+ListEntry::ListEntry(std::string *name, FileType fileType, const std::function<void(void)> action)
 {
     this->_name = name;
     this->_action = action;
+    this->_fileType = fileType;
 }
 
 void ListEntry::executeAction()
