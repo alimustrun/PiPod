@@ -91,7 +91,7 @@ void LibraryViewController::fetchCurrentPathFiles()
                                               std::cout << "five" << std::endl;
                                               fetchCurrentPathFiles();
                                               std::cout << "six" << std::endl;
-                                              draw();
+                                              this->draw();
                                               std::cout << "seven" << std::endl;
 
                                           }
