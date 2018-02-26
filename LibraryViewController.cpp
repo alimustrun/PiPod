@@ -81,8 +81,8 @@ void LibraryViewController::fetchCurrentPathFiles()
         _entriesList->push_back(ListEntry(new std::string(rawFilename),
                                           [&]{
                                                 std::cout << "one" << std::endl;
-                                              char *realPath = nullptr;
-                                              std::cout << "two" << std::endl;
+                                              auto *realPath = static_cast<char *>(malloc(sizeof(char) * 1024));
+                                              std::cout << "two:" << _currentPath << std::endl;
                                               realpath(_currentPath.append(rawFilename).append("/").c_str(), realPath);
                                               std::cout << "three" << std::endl;
                                               std::cout << realPath << std::endl;
@@ -93,6 +93,7 @@ void LibraryViewController::fetchCurrentPathFiles()
                                               std::cout << "six" << std::endl;
                                               draw();
                                               std::cout << "seven" << std::endl;
+
                                           }
         ));
         std::cout << "fetchCurrentPathFiles 4" << std::endl;
