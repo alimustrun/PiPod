@@ -72,9 +72,11 @@ void LibraryViewController::fetchCurrentPathFiles()
     Utils::getFilesFromPath(rawFilenames, _currentPath.c_str());
     for (const auto &rawFilename : *rawFilenames)
     {
+        char *realPath = nullptr;
         _entriesList->push_back(ListEntry(rawFilename.c_str(),
-                                          [&]{_currentPath.append(rawFilename).append("/");
-                                              std::cout << _currentPath << std::endl;
+                                          [&]{realpath(_currentPath.append(rawFilename).append("/").c_str(), realPath);
+                                              std::cout << realPath << std::endl;
+                                              _currentPath = realPath;
                                               fetchCurrentPathFiles();
                                               draw();
                                           }
