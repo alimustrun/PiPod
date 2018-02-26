@@ -41,8 +41,11 @@ const void LibraryViewController::onKeyPressed(int key)
             }
             break;
         case NEXT:
+            std::cout << "next 1:" << _currentSelection << ", entries.size:" << _entriesList->size() << std::endl;
             _entriesList->at(_currentSelection).executeAction();
+            std::cout << "next 2" << std::endl;
             _currentDirectoryLevel++;
+            std::cout << "next 3" << std::endl;
             //open subdirectory
             break;
         case RIGHT:
