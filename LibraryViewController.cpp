@@ -13,6 +13,8 @@ LibraryViewController::LibraryViewController(ScreenService *screenService)
 {
     this->_screenService = screenService;
     this->_currentSelection = 0;
+    this->_currentDirectoryLevel = 0;
+    this->_currentPath = "/home/pi/music/";
     this->_entriesList = new std::vector<ListEntry>;
     this->initEntriesList();
 }
@@ -32,10 +34,15 @@ const void LibraryViewController::onKeyPressed(int key)
             //move cursor up
             break;
         case PREV:
-            _requestView(Views::MAIN_MENU);
+            _currentDirectoryLevel--;
+            if (_currentDirectoryLevel == 0)
+            {
+                _requestView(Views::MAIN_MENU);
+            }
             break;
         case NEXT:
             _entriesList->at(_currentSelection).executeAction();
+            _currentDirectoryLevel++;
             //open subdirectory
             break;
         case RIGHT:
@@ -56,11 +63,18 @@ void LibraryViewController::refreshCursor()
 
 void LibraryViewController::initEntriesList()
 {
+    fetchCurrentPathFiles();
+}
+
+void LibraryViewController::fetchCurrentPathFiles()
+{
     auto *rawFilenames = new std::vector<std::string>;
-    Utils::getFilesFromPath(rawFilenames, "/home/pi/");
+    Utils::getFilesFromPath(rawFilenames, _currentPath.c_str());
     for (const auto &rawFilename : *rawFilenames)
     {
-        _entriesList->push_back(ListEntry(rawFilename.c_str(), []{;}));
+        _entriesList->push_back(ListEntry(rawFilename.c_str(),
+                                          [&]{_currentPath = _currentPath.append(rawFilename).append("/"); fetchCurrentPathFiles();}
+        ));
     }
 }
 

@@ -23,9 +23,13 @@ private:
     ScreenService *_screenService;
     unsigned long _currentSelection;
     std::vector<ListEntry> *_entriesList;
+    std::string _currentPath;
+    int _currentDirectoryLevel;
 
     void refreshCursor();
     void initEntriesList();
+
+    void fetchCurrentPathFiles();
 };
 
 

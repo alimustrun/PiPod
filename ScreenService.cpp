@@ -35,7 +35,7 @@ void ScreenService::displayCursor(unsigned long cursorPosition, std::vector<List
     {
         _screenDriver->displayList(entries, _cursorPosition);
     }
-    _screenDriver->displayCursor(cursorPosition, entries->size());
+    _screenDriver->displayCursor(cursorPosition);
 }
 
 void ScreenService::clearScreen()
