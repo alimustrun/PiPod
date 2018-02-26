@@ -87,7 +87,9 @@ void LibraryViewController::fetchCurrentPathFiles()
                                                 std::cout << "one" << std::endl;
                                               auto *realPath = static_cast<char *>(malloc(sizeof(char) * 1024));
                                               std::cout << "two:" << _currentPath << std::endl;
-                                              realpath(_currentPath.append(rawFilename).append("/").c_str(), realPath);
+                                              _currentPath = _currentPath.append(rawFilename).append("/");
+                                              std::cout << "two.5:" << _currentPath << std::endl;
+                                              realpath(_currentPath.c_str(), realPath);
                                               std::cout << "three" << std::endl;
                                               std::cout << realPath << std::endl;
                                               std::cout << "four" << std::endl;
