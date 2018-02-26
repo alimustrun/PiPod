@@ -54,7 +54,7 @@ const void ScreenDriver::displayList(std::vector<ListEntry> *entries, unsigned l
         {
             if (currentRow < MAX_NB_LINES)
             {
-                _paint->DrawStringAt(CHAR_WIDTH, CHAR_HEIGHT/2 + (currentRow * CHAR_HEIGHT), entry.getName(), FONT, UNCOLORED);
+                _paint->DrawStringAt(CHAR_WIDTH, CHAR_HEIGHT/2 + (currentRow * CHAR_HEIGHT), entry.getName()->c_str(), FONT, UNCOLORED);
                 ++currentRow;
             }
         }

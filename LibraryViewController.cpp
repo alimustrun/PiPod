@@ -78,7 +78,7 @@ void LibraryViewController::fetchCurrentPathFiles()
     for (const auto &rawFilename : *rawFilenames)
     {
         std::cout << "fetchCurrentPathFiles 3" << std::endl;
-        _entriesList->push_back(ListEntry(std::string(rawFilename).c_str(),
+        _entriesList->push_back(ListEntry(new std::string(rawFilename),
                                           [&]{
                                                 std::cout << "one" << std::endl;
                                               char *realPath = nullptr;

@@ -4,7 +4,7 @@
 
 #include "ListEntry.h"
 
-ListEntry::ListEntry(const char *name, const std::function<void(void)> action)
+ListEntry::ListEntry(std::string *name, const std::function<void(void)> action)
 {
     this->_name = name;
     this->_action = action;
@@ -16,7 +16,7 @@ void ListEntry::executeAction()
 
 }
 
-const char *ListEntry::getName()
+std::string *ListEntry::getName()
 {
     return _name;
 }
