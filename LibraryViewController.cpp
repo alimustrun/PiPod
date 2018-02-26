@@ -35,6 +35,7 @@ const void LibraryViewController::onKeyPressed(int key)
             break;
         case PREV:
             _currentDirectoryLevel--;
+            _currentSelection = 0;
             if (_currentDirectoryLevel == 0)
             {
                 _requestView(Views::MAIN_MENU);
@@ -45,6 +46,7 @@ const void LibraryViewController::onKeyPressed(int key)
             _entriesList->at(_currentSelection).executeAction();
             std::cout << "next 2" << std::endl;
             _currentDirectoryLevel++;
+            _currentSelection = 0;
             std::cout << "next 3" << std::endl;
             fetchCurrentPathFiles();
             std::cout << "next 4" << std::endl;
