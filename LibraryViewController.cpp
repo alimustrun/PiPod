@@ -46,6 +46,10 @@ const void LibraryViewController::onKeyPressed(int key)
             std::cout << "next 2" << std::endl;
             _currentDirectoryLevel++;
             std::cout << "next 3" << std::endl;
+            fetchCurrentPathFiles();
+            std::cout << "next 4" << std::endl;
+            this->draw();
+            std::cout << "next 5" << std::endl;
             //open subdirectory
             break;
         case RIGHT:
@@ -89,10 +93,6 @@ void LibraryViewController::fetchCurrentPathFiles()
                                               std::cout << "four" << std::endl;
                                               _currentPath = realPath;
                                               std::cout << "five" << std::endl;
-                                              fetchCurrentPathFiles();
-                                              std::cout << "six" << std::endl;
-                                              this->draw();
-                                              std::cout << "seven" << std::endl;
 
                                           }
         ));
