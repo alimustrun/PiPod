@@ -18,14 +18,15 @@ ScreenDriver::ScreenDriver()
 
 const void ScreenDriver::fullClear()
 {
-//    _paint->Clear(UNCOLORED);
-//    _epd->SetFrameMemory(_frame_buffer, 0, 0, _paint->GetWidth(), _paint->GetHeight());
-//    _epd->DisplayFrame();
-//    _paint->Clear(COLORED);
-//    _epd->SetFrameMemory(_frame_buffer, 0, 0, _paint->GetWidth(), _paint->GetHeight());
-//    _epd->DisplayFrame();
-//    _epd->SetFrameMemory(_frame_buffer, 0, 0, _paint->GetWidth(), _paint->GetHeight());
-//    _epd->DisplayFrame();
+    _frame_buffer = (unsigned char*)malloc(_epd->width / 8 * _epd->height);
+    _paint->Clear(UNCOLORED);
+    _epd->SetFrameMemory(_frame_buffer, 0, 0, _paint->GetWidth(), _paint->GetHeight());
+    _epd->DisplayFrame();
+    _paint->Clear(COLORED);
+    _epd->SetFrameMemory(_frame_buffer, 0, 0, _paint->GetWidth(), _paint->GetHeight());
+    _epd->DisplayFrame();
+    _epd->SetFrameMemory(_frame_buffer, 0, 0, _paint->GetWidth(), _paint->GetHeight());
+    _epd->DisplayFrame();
 }
 
 const void ScreenDriver::displayBootScreen()
