@@ -58,19 +58,14 @@ const void ScreenDriver::displayList(std::vector<ListEntry> *entries, unsigned l
         }
         ++i;
     }
-    this->displayFrame();
 }
 
 const void ScreenDriver::displayCursor(unsigned long currentSelection)
 {
     int currentRow = static_cast<int>(currentSelection % MAX_NB_LINES);
-    _paint->SetWidth(SCREEN_HEIGHT);
-    _paint->SetHeight(CHAR_WIDTH);
-    _paint->Clear(COLORED);
+    _paint->DrawFilledRectangle(0, 0, CHAR_WIDTH, SCREEN_HEIGHT, COLORED);
     _paint->DrawStringAt(0, static_cast<int>(CHAR_HEIGHT/2 + (currentRow * CHAR_HEIGHT)), ">", FONT, UNCOLORED);
     this->displayFrame();
-    _paint->SetWidth(_epd->width);
-    _paint->SetHeight(_epd->height);
 }
 
 void ScreenDriver::displayFrame()
@@ -83,7 +78,5 @@ void ScreenDriver::displayFrame()
 
 void ScreenDriver::quickClear()
 {
-    _paint->SetWidth(_epd->width);
-    _paint->SetHeight(_epd->height);
     _paint->Clear(COLORED);
 }
