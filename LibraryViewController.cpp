@@ -100,7 +100,7 @@ void LibraryViewController::fetchCurrentPathFiles()
 void LibraryViewController::changeDirectory(const char *newDirectory)
 {
     _currentPath = Utils::changeDirectory(_currentPath->c_str(), newDirectory);
-    std::cout << "Going to : " << _currentPath << std::endl;
+    std::cout << "Going to : " << &_currentPath << std::endl;
     draw();
 }
 
