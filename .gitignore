@@ -9,6 +9,7 @@ cmake_install.cmake
 install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
+PiPod
 PiPod.cbp
 googletest-master/googlemock/gtest/libgtest.a
 googletest-master/googlemock/gtest/libgtest_main.a
