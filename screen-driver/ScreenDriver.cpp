@@ -19,27 +19,16 @@ ScreenDriver::ScreenDriver()
 
 const void ScreenDriver::fullClear()
 {
-    std::cout << "1" << std::endl;
     _paint->SetWidth(_epd->width);
-    std::cout << "2" << std::endl;
     _paint->SetHeight(_epd->height);
-    std::cout << "3" << std::endl;
     _paint->Clear(UNCOLORED);
-    std::cout << "4" << std::endl;
     _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
-    std::cout << "5" << std::endl;
     _epd->DisplayFrame();
-    std::cout << "6" << std::endl;
     _paint->Clear(COLORED);
-    std::cout << "7" << std::endl;
     _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
-    std::cout << "8" << std::endl;
     _epd->DisplayFrame();
-    std::cout << "9" << std::endl;
     _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
-    std::cout << "10" << std::endl;
     _epd->DisplayFrame();
-    std::cout << "11" << std::endl;
 }
 
 const void ScreenDriver::displayBootScreen()
