@@ -10,6 +10,7 @@ void ApplicationController::requestView(Views requestedView)
 {
     _currentView = requestedView;
     std::cout << "view loaded" << std::endl;
+    _screenService->fullClear();
     _viewControllers->at(requestedView)->draw();
 }
 

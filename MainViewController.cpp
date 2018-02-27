@@ -90,7 +90,7 @@ void MainViewController::init(std::function<void(Views)> requestViewImpl)
 
 void MainViewController::draw()
 {
-    this->_screenService->clearScreen();
+    this->_screenService->fullClear();
     this->_screenService->displayScrollableList(_entriesList);
     refreshCursor();
 }

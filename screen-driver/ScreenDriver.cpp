@@ -85,3 +85,10 @@ const void ScreenDriver::displayCursor(unsigned long currentSelection)
     _paint->SetWidth(_epd->width);
     _paint->SetHeight(_epd->height);
 }
+
+void ScreenDriver::quickClear()
+{
+    _paint->SetWidth(_epd->width);
+    _paint->SetHeight(_epd->height);
+    _paint->Clear(COLORED);
+}

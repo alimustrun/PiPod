@@ -34,6 +34,8 @@ public:
     const void displayList(std::vector<ListEntry> *entries, unsigned long currentCursorPosition);
     const void fullClear();
 
+    void quickClear();
+
 private:
     Epd *_epd;
     unsigned char *_frame_buffer;

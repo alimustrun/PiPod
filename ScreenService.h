@@ -17,12 +17,15 @@ public:
     void displayBootScreen();
     void displayScrollableList(std::vector<ListEntry> *entries);
     void displayCursor(unsigned long cursorPosition, std::vector<ListEntry> *entries);
-    void clearScreen();
+    void fullClear();
+
+    void quickClear();
 
 private:
     ScreenDriver *_screenDriver = nullptr;
     unsigned long _cursorPosition = 0;
     unsigned long _currentPage = 0;
+
 };
 
 

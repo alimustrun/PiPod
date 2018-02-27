@@ -39,7 +39,12 @@ void ScreenService::displayCursor(unsigned long cursorPosition, std::vector<List
     _screenDriver->displayCursor(cursorPosition);
 }
 
-void ScreenService::clearScreen()
+void ScreenService::fullClear()
 {
     _screenDriver->fullClear();
+}
+
+void ScreenService::quickClear()
+{
+    _screenDriver->quickClear();
 }
