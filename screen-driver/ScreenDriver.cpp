@@ -25,10 +25,7 @@ const void ScreenDriver::fullClear()
     _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
     _epd->DisplayFrame();
     _paint->Clear(COLORED);
-    _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
-    _epd->DisplayFrame();
-    _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
-    _epd->DisplayFrame();
+    this->displayFrame();
 }
 
 const void ScreenDriver::displayBootScreen()
@@ -37,10 +34,7 @@ const void ScreenDriver::displayBootScreen()
     _paint->SetHeight(255);
     _paint->Clear(COLORED);
     _paint->DrawStringAt(0, 0, "PiPod", &Font24, UNCOLORED);
-    _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
-    _epd->DisplayFrame();
-    _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
-    _epd->DisplayFrame();
+    this->displayFrame();
     _paint->SetWidth(_epd->width);
     _paint->SetHeight(_epd->height);
 }
@@ -64,24 +58,27 @@ const void ScreenDriver::displayList(std::vector<ListEntry> *entries, unsigned l
         }
         ++i;
     }
-    _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
-    _epd->DisplayFrame();
+    this->displayFrame();
 }
 
 const void ScreenDriver::displayCursor(unsigned long currentSelection)
 {
     int currentRow = static_cast<int>(currentSelection % MAX_NB_LINES);
-
     _paint->SetWidth(SCREEN_HEIGHT);
     _paint->SetHeight(CHAR_WIDTH);
     _paint->Clear(COLORED);
     _paint->DrawStringAt(0, static_cast<int>(CHAR_HEIGHT/2 + (currentRow * CHAR_HEIGHT)), ">", FONT, UNCOLORED);
-    _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
-    _epd->DisplayFrame();
-    _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
-    _epd->DisplayFrame();
+    this->displayFrame();
     _paint->SetWidth(_epd->width);
     _paint->SetHeight(_epd->height);
+}
+
+void ScreenDriver::displayFrame()
+{
+    _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
+    _epd->DisplayFrame();
+    _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
+    _epd->DisplayFrame();
 }
 
 void ScreenDriver::quickClear()

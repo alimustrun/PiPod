@@ -40,6 +40,8 @@ private:
     Epd *_epd;
     unsigned char *_frame_buffer;
     Paint *_paint;
+
+    void displayFrame();
 };
 
 #endif //PIPOD_SCREENDRIVER_H
