@@ -6,7 +6,7 @@
 
 void PlayerViewController::init(std::function<void(Views)> requestViewImpl)
 {
-
+    _requestView = requestViewImpl;
 }
 
 const void PlayerViewController::onKeyPressed(int key)
