@@ -90,9 +90,9 @@ void LibraryViewController::fetchCurrentPathFiles()
                                                   this->changeDirectory(filename.first.c_str());
                                               } else if (filename.second == FileType::TYPE_FILE)
                                               {
-                                                  _musicService->playMusicAtGivenPath(
-                                                          _currentPath->append("/").append(filename.first).c_str());
-                                                  std::cout << "should play " << filename.first << std::endl;
+//                                                  _musicService->playMusicAtGivenPath(
+//                                                          _currentPath->append("/").append(filename.first).c_str());
+//                                                  std::cout << "should play " << filename.first << std::endl;
                                                   _requestView(Views::PLAYER);
                                               }
                                           }
