@@ -67,7 +67,7 @@ const void LibraryViewController::onKeyPressed(int key)
 
 void LibraryViewController::refreshCursor()
 {
-    this->_screenService->displayCursor(this->_currentSelection, _entriesList);
+    this->_screenService->displayCursor(this->_currentSelection, _entriesList, false);
 }
 
 void LibraryViewController::initEntriesList()

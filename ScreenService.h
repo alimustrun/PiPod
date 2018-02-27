@@ -16,7 +16,7 @@ public:
     void stop() override;
     void displayBootScreen();
     void displayScrollableList(std::vector<ListEntry> *entries);
-    void displayCursor(unsigned long cursorPosition, std::vector<ListEntry> *entries);
+    void displayCursor(unsigned long cursorPosition, std::vector<ListEntry> *entries, bool forceDisplayFrame);
     void fullClear();
 
     void quickClear();
@@ -27,7 +27,6 @@ private:
     ScreenDriver *_screenDriver = nullptr;
     unsigned long _cursorPosition = 0;
     unsigned long _currentPage = 0;
-
 };
 
 
