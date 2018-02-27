@@ -92,5 +92,4 @@ void MainViewController::draw()
 {
     this->_screenService->quickClear();
     this->_screenService->displayScrollableList(_entriesList);
-    refreshCursor();
 }
