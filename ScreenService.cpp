@@ -25,7 +25,7 @@ void ScreenService::displayScrollableList(std::vector<ListEntry> *entries)
 {
     _cursorPosition = 0;
     _screenDriver->drawList(entries, _cursorPosition);
-    displayCursor(0, entries);
+    displayCursor(0, entries, true);
 }
 
 void ScreenService::displayCursor(unsigned long cursorPosition, std::vector<ListEntry> *entries, bool forceDisplayFrame)

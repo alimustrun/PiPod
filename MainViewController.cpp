@@ -54,7 +54,7 @@ const void MainViewController::onKeyPressed(int key)
 
 void MainViewController::refreshCursor()
 {
-    this->_screenService->displayCursor(this->_currentSelection, _entriesList);
+    this->_screenService->displayCursor(this->_currentSelection, _entriesList, false);
 }
 
 void MainViewController::initEntriesList()
