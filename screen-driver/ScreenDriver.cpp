@@ -18,10 +18,10 @@ ScreenDriver::ScreenDriver()
 
 const void ScreenDriver::fullClear()
 {
-    _paint->DrawFilledRectangle(0, 0, _epd->width, _epd->height, UNCOLORED);
-    _epd->SetFrameMemory(_frame_buffer, 0, 0, _epd->width, _epd->height);
+    _paint->DrawFilledRectangle(0, 0, _paint->GetWidth(), _paint->GetHeight(), UNCOLORED);
+    _epd->SetFrameMemory(_frame_buffer, 0, 0, _paint->GetWidth(), _paint->GetHeight());
     _epd->DisplayFrame();
-    _paint->DrawFilledRectangle(0, 0, _epd->width, _epd->height, COLORED);
+    _paint->DrawFilledRectangle(0, 0, _paint->GetWidth(), _paint->GetHeight(), COLORED);
     _epd->SetFrameMemory(_frame_buffer, 0, 0, _epd->width, _epd->height);
     _epd->DisplayFrame();
 }
