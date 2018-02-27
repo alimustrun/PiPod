@@ -25,7 +25,8 @@ const void LibraryViewController::onKeyPressed(int key)
     switch (key)
     {
         case VOL_DEC:
-            this->_currentSelection = this->_currentSelection < _entriesList->size() - 1 ? this->_currentSelection + 1 : this->_currentSelection;
+            this->_currentSelection = this->_currentSelection < _entriesList->size() - 1 ? this->_currentSelection + 1
+                                                                                         : this->_currentSelection;
             refreshCursor(false);
             break;
         case VOL_INC:
@@ -37,8 +38,7 @@ const void LibraryViewController::onKeyPressed(int key)
             if (_currentDirectoryLevel == 0)
             {
                 _requestView(Views::MAIN_MENU);
-            }
-            else
+            } else
             {
                 _currentDirectoryLevel--;
                 this->changeDirectory("..");
@@ -83,14 +83,15 @@ void LibraryViewController::fetchCurrentPathFiles()
     {
         _entriesList->push_back(ListEntry(new std::string(filename.first),
                                           filename.second,
-                                          [&]{
+                                          [&]
+                                          {
                                               if (filename.second == FileType::TYPE_DIRECTORY)
                                               {
                                                   this->changeDirectory(filename.first.c_str());
-                                              }
-                                              else if (filename.second == FileType::TYPE_FILE)
+                                              } else if (filename.second == FileType::TYPE_FILE)
                                               {
-                                                  _musicService->playMusicAtGivenPath(_currentPath->append("/").append(filename.first).c_str());
+                                                  _musicService->playMusicAtGivenPath(
+                                                          _currentPath->append("/").append(filename.first).c_str());
                                                   std::cout << "should play " << filename.first << std::endl;
                                                   _requestView(Views::PLAYER);
                                               }

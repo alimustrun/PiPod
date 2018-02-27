@@ -18,8 +18,10 @@ void ApplicationController::initViewControllers()
     _viewControllers->insert(std::pair<Views, ViewController *>(Views::MAIN_MENU, createMainViewController()));
     _viewControllers->insert(std::pair<Views, ViewController *>(Views::LIBRARY, createLibraryViewController()));
     _viewControllers->insert(std::pair<Views, ViewController *>(Views::PLAYER, createPlayerViewController()));
-    _viewControllers->insert(std::pair<Views, ViewController *>(Views::WIFI_SETTINGS, new WifiSettingsViewController()));
-    _viewControllers->insert(std::pair<Views, ViewController *>(Views::LIBRARY_UPDATE, new LibraryUpdateViewController()));
+    _viewControllers->insert(
+            std::pair<Views, ViewController *>(Views::WIFI_SETTINGS, new WifiSettingsViewController()));
+    _viewControllers->insert(
+            std::pair<Views, ViewController *>(Views::LIBRARY_UPDATE, new LibraryUpdateViewController()));
 }
 
 MainViewController *ApplicationController::createMainViewController()

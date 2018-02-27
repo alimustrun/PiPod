@@ -2,6 +2,7 @@
 // Created by fritsch on 19/02/18.
 //
 
+#include <iostream>
 #include "PlayerViewController.h"
 #include "ButtonsGPIO.h"
 
@@ -36,7 +37,7 @@ const void PlayerViewController::onKeyPressed(int key)
 
 void PlayerViewController::draw()
 {
-
+    std::cout << "draw" << std::endl;
 }
 
 PlayerViewController::PlayerViewController(ScreenService *screenService, MusicService *musicService)
