@@ -24,7 +24,7 @@ void ScreenService::displayBootScreen()
 void ScreenService::displayScrollableList(std::vector<ListEntry> *entries)
 {
     _cursorPosition = 0;
-    _screenDriver->displayList(entries, _cursorPosition);
+    _screenDriver->drawList(entries, _cursorPosition);
 }
 
 void ScreenService::displayCursor(unsigned long cursorPosition, std::vector<ListEntry> *entries)
@@ -34,9 +34,15 @@ void ScreenService::displayCursor(unsigned long cursorPosition, std::vector<List
     _currentPage = _cursorPosition / MAX_NB_LINES;
     if (hasPageChanged)
     {
-        _screenDriver->displayList(entries, _cursorPosition);
+        _screenDriver->drawList(entries, _cursorPosition);
+        _screenDriver->displayFrame();
+        _screenDriver->drawCursor(cursorPosition);
     }
-    _screenDriver->displayCursor(cursorPosition);
+    else
+    {
+        _screenDriver->drawCursor(cursorPosition);
+        _screenDriver->displayPartialFrame(0, 0, CHAR_WIDTH, SCREEN_HEIGHT);
+    }
 }
 
 void ScreenService::fullClear()

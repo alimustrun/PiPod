@@ -30,18 +30,21 @@ class ScreenDriver
 public:
     ScreenDriver();
     const void displayBootScreen();
-    const void displayCursor(unsigned long currentSelection);
-    const void displayList(std::vector<ListEntry> *entries, unsigned long currentCursorPosition);
+    const void drawCursor(unsigned long currentSelection);
+    const void drawList(std::vector<ListEntry> *entries, unsigned long currentCursorPosition);
     const void fullClear();
 
     void quickClear();
+
+    void displayFrame();
+
+    void displayPartialFrame(int x, int y, int width, int height);
 
 private:
     Epd *_epd;
     unsigned char *_frame_buffer;
     Paint *_paint;
 
-    void displayFrame();
 };
 
 #endif //PIPOD_SCREENDRIVER_H

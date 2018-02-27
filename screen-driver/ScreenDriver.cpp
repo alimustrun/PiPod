@@ -39,7 +39,7 @@ const void ScreenDriver::displayBootScreen()
     _paint->SetHeight(_epd->height);
 }
 
-const void ScreenDriver::displayList(std::vector<ListEntry> *entries, unsigned long currentCursorPosition)
+const void ScreenDriver::drawList(std::vector<ListEntry> *entries, unsigned long currentCursorPosition)
 {
     long currentPage = currentCursorPosition / MAX_NB_LINES;
     int currentRow = 0;
@@ -60,12 +60,19 @@ const void ScreenDriver::displayList(std::vector<ListEntry> *entries, unsigned l
     }
 }
 
-const void ScreenDriver::displayCursor(unsigned long currentSelection)
+const void ScreenDriver::drawCursor(unsigned long currentSelection)
 {
     int currentRow = static_cast<int>(currentSelection % MAX_NB_LINES);
     _paint->DrawFilledRectangle(0, 0, CHAR_WIDTH, SCREEN_HEIGHT, COLORED);
     _paint->DrawStringAt(0, static_cast<int>(CHAR_HEIGHT/2 + (currentRow * CHAR_HEIGHT)), ">", FONT, UNCOLORED);
-    this->displayFrame();
+}
+
+void ScreenDriver::displayPartialFrame(int x, int y, int width, int height)
+{
+    _epd->SetFrameMemory(_paint->GetImage(), x, y, width, height);
+    _epd->DisplayFrame();
+    _epd->SetFrameMemory(_paint->GetImage(), x, y, width, height);
+    _epd->DisplayFrame();
 }
 
 void ScreenDriver::displayFrame()
