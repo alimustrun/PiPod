@@ -14,7 +14,7 @@ void Utils::getFilesFromPath(std::vector<std::pair<std::string, FileType>> *file
     DIR* dirp = opendir(path);
     struct dirent * dp;
     while ((dp = readdir(dirp)) != NULL) {
-        if (strlen(dp->d_name) > 1 && dp->d_name[0] != '.')
+        if (strlen(dp->d_name) > 1 && (dp->d_name[0] != '.' || (dp->d_name[0] == '.' && dp->d_name[1] == '.')))
         {
             filenames->push_back(std::make_pair(std::string(dp->d_name), getFileType(dp)));
         }
