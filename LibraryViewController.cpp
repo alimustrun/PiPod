@@ -25,12 +25,12 @@ const void LibraryViewController::onKeyPressed(int key)
     {
         case VOL_DEC:
             this->_currentSelection = this->_currentSelection < _entriesList->size() - 1 ? this->_currentSelection + 1 : this->_currentSelection;
-            refreshCursor();
+            refreshCursor(false);
             //move cursor down
             break;
         case VOL_INC:
             this->_currentSelection = this->_currentSelection > 0 ? this->_currentSelection - 1 : 0;
-            refreshCursor();
+            refreshCursor(false);
             //move cursor up
             break;
         case PREV:
@@ -65,9 +65,9 @@ const void LibraryViewController::onKeyPressed(int key)
     }
 }
 
-void LibraryViewController::refreshCursor()
+void LibraryViewController::refreshCursor(bool fullDisplayRefresh)
 {
-    this->_screenService->displayCursor(this->_currentSelection, _entriesList, false);
+    this->_screenService->displayCursor(this->_currentSelection, _entriesList, fullDisplayRefresh);
 }
 
 void LibraryViewController::initEntriesList()
@@ -114,5 +114,4 @@ void LibraryViewController::draw()
 {
     this->_screenService->fullClear();
     this->_screenService->displayScrollableList(_entriesList);
-    refreshCursor();
 }

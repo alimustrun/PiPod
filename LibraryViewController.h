@@ -27,7 +27,7 @@ private:
     std::string *_currentPath;
     int _currentDirectoryLevel;
 
-    void refreshCursor();
+    void refreshCursor(bool fullScreenRefresh);
     void initEntriesList();
     void fetchCurrentPathFiles();
 
