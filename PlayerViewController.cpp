@@ -3,6 +3,7 @@
 //
 
 #include "PlayerViewController.h"
+#include "ButtonsGPIO.h"
 
 void PlayerViewController::init(std::function<void(Views)> requestViewImpl)
 {
@@ -11,7 +12,26 @@ void PlayerViewController::init(std::function<void(Views)> requestViewImpl)
 
 const void PlayerViewController::onKeyPressed(int key)
 {
-    return;
+    switch (key)
+    {
+        case VOL_DEC:
+            break;
+        case VOL_INC:
+            break;
+        case PREV:
+            break;
+        case NEXT:
+            break;
+        case RIGHT:
+            _requestView(Views::MAIN_MENU);
+            break;
+        case CENTER:
+            break;
+        case LEFT:
+            break;
+        default:
+            break;
+    }
 }
 
 void PlayerViewController::draw()
