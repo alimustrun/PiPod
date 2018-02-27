@@ -41,14 +41,6 @@ void KeyboardService::refreshKeys()
     }
 }
 
-void KeyboardService::printKeysStatuses()
-{
-    for (auto &buttonsStatuse : *this->_buttonsStatuses)
-    {
-        std::cout << buttonsStatuse.first << buttonsStatuse.second << std::endl;
-    }
-}
-
 const bool KeyboardService::isKeyPressed(int key) const
 {
     return digitalRead(key) == LOW;

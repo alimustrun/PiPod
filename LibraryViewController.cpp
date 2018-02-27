@@ -9,9 +9,10 @@
 #include "ButtonsGPIO.h"
 #include "Utils.h"
 
-LibraryViewController::LibraryViewController(ScreenService *screenService)
+LibraryViewController::LibraryViewController(ScreenService *screenService, MusicService *musicService)
 {
     this->_screenService = screenService;
+    this->_musicService = musicService;
     this->_currentSelection = 0;
     this->_currentDirectoryLevel = 0;
     this->_currentPath = new std::string("/home/pi/Music/");
@@ -89,8 +90,9 @@ void LibraryViewController::fetchCurrentPathFiles()
                                               }
                                               else if (filename.second == FileType::TYPE_FILE)
                                               {
+                                                  _musicService->playMusicAtGivenPath(_currentPath->append("/").append(filename.first).c_str());
                                                   std::cout << "should play " << filename.first << std::endl;
-                                                  //TODO : open player with the file
+                                                  _requestView(Views::PLAYER);
                                               }
                                           }
         ));

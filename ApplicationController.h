@@ -13,6 +13,7 @@
 #include "WifiSettingsViewController.h"
 #include "LibraryUpdateViewController.h"
 #include "Views.h"
+#include "MusicService.h"
 
 class ApplicationController
 {
@@ -25,12 +26,14 @@ private:
     std::map<Views, ViewController *> *_viewControllers;
     ScreenService *_screenService;
     KeyboardService *_keyboardService;
+    MusicService *_musicService;
     Views _currentView;
 
     void initViewControllers();
 
     MainViewController *createMainViewController();
     LibraryViewController *createLibraryViewController();
+    PlayerViewController *createPlayerViewController();
 };
 
 

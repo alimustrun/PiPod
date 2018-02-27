@@ -18,3 +18,9 @@ void PlayerViewController::draw()
 {
 
 }
+
+PlayerViewController::PlayerViewController(ScreenService *screenService, MusicService *musicService)
+{
+    _screenService = screenService;
+    _musicService = musicService;
+}

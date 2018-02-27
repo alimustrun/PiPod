@@ -17,7 +17,7 @@ void ApplicationController::initViewControllers()
     _viewControllers = new std::map<Views, ViewController *>;
     _viewControllers->insert(std::pair<Views, ViewController *>(Views::MAIN_MENU, createMainViewController()));
     _viewControllers->insert(std::pair<Views, ViewController *>(Views::LIBRARY, createLibraryViewController()));
-    _viewControllers->insert(std::pair<Views, ViewController *>(Views::PLAYER, new PlayerViewController()));
+    _viewControllers->insert(std::pair<Views, ViewController *>(Views::PLAYER, createPlayerViewController()));
     _viewControllers->insert(std::pair<Views, ViewController *>(Views::WIFI_SETTINGS, new WifiSettingsViewController()));
     _viewControllers->insert(std::pair<Views, ViewController *>(Views::LIBRARY_UPDATE, new LibraryUpdateViewController()));
 }
@@ -31,18 +31,27 @@ MainViewController *ApplicationController::createMainViewController()
 
 LibraryViewController *ApplicationController::createLibraryViewController()
 {
-    auto *libraryViewController = new LibraryViewController(_screenService);
+    auto *libraryViewController = new LibraryViewController(_screenService, _musicService);
     libraryViewController->init(std::bind(&ApplicationController::requestView, this, std::placeholders::_1));
     return libraryViewController;
+}
+
+PlayerViewController *ApplicationController::createPlayerViewController()
+{
+    auto *playerViewController = new PlayerViewController(_screenService, _musicService);
+    playerViewController->init(std::bind(&ApplicationController::requestView, this, std::placeholders::_1));
+    return playerViewController;
 }
 
 ApplicationController::ApplicationController()
 {
     _keyboardService = new KeyboardService();
     _screenService = new ScreenService();
+    _musicService = new MusicService();
     _screenService->start();
     _screenService->fullClear();
     _keyboardService->start();
+    _musicService->start();
 
     initViewControllers();
     requestView(Views::MAIN_MENU);
@@ -59,3 +68,4 @@ void ApplicationController::onKeyPressed(int key)
 {
     _viewControllers->at(_currentView)->onKeyPressed(key);
 }
+

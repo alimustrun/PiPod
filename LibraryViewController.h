@@ -11,17 +11,19 @@
 #include "ScreenService.h"
 #include "ListEntry.h"
 #include "ViewController.h"
+#include "MusicService.h"
 
 class LibraryViewController : public ViewController
 {
 public:
+    explicit LibraryViewController(ScreenService *screenService, MusicService *musicService);
     void init(std::function<void(Views)> requestViewImpl) override;
     void draw() override;
-    explicit LibraryViewController(ScreenService *screenService);
-    const void onKeyPressed(int);
+    const void onKeyPressed(int) override;
 
 private:
     ScreenService *_screenService;
+    MusicService *_musicService;
     unsigned long _currentSelection;
     std::vector<ListEntry> *_entriesList;
     std::string *_currentPath;
@@ -30,7 +32,6 @@ private:
     void refreshCursor(bool fullScreenRefresh);
     void initEntriesList();
     void fetchCurrentPathFiles();
-
     void changeDirectory(const char *newDirectory);
 };
 
