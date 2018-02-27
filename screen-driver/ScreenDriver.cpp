@@ -71,8 +71,6 @@ void ScreenDriver::displayPartialFrame(int x, int y, int width, int height)
 {
     _epd->SetFrameMemory(_paint->GetImage(), x, y, width, height);
     _epd->DisplayFrame();
-    _epd->SetFrameMemory(_paint->GetImage(), x, y, width, height);
-    _epd->DisplayFrame();
 }
 
 void ScreenDriver::displayFrame()
