@@ -43,6 +43,8 @@ const void LibraryViewController::onKeyPressed(int key)
             else
             {
                 this->changeDirectory("..");
+                fetchCurrentPathFiles();
+                this->draw();
             }
             break;
         case NEXT:
@@ -101,7 +103,6 @@ void LibraryViewController::changeDirectory(const char *newDirectory)
 {
     _currentPath = Utils::changeDirectory(_currentPath->c_str(), newDirectory);
     std::cout << "Going to : " << _currentPath->c_str() << std::endl;
-    draw();
 }
 
 void LibraryViewController::init(std::function<void(Views)> requestViewImpl)
