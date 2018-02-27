@@ -13,7 +13,7 @@ LibraryViewController::LibraryViewController(ScreenService *screenService)
 {
     this->_screenService = screenService;
     this->_currentSelection = 0;
-    this->_currentDirectoryLevel = 3;
+    this->_currentDirectoryLevel = 0;
     this->_currentPath = new std::string("/home/pi/Music/");
     this->_entriesList = new std::vector<ListEntry>;
     this->initEntriesList();
@@ -26,15 +26,12 @@ const void LibraryViewController::onKeyPressed(int key)
         case VOL_DEC:
             this->_currentSelection = this->_currentSelection < _entriesList->size() - 1 ? this->_currentSelection + 1 : this->_currentSelection;
             refreshCursor(false);
-            //move cursor down
             break;
         case VOL_INC:
             this->_currentSelection = this->_currentSelection > 0 ? this->_currentSelection - 1 : 0;
             refreshCursor(false);
-            //move cursor up
             break;
         case PREV:
-            _currentDirectoryLevel--;
             _currentSelection = 0;
             if (_currentDirectoryLevel == 0)
             {
@@ -42,6 +39,7 @@ const void LibraryViewController::onKeyPressed(int key)
             }
             else
             {
+                _currentDirectoryLevel--;
                 this->changeDirectory("..");
                 fetchCurrentPathFiles();
                 this->draw();
