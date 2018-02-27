@@ -30,6 +30,8 @@ private:
     void refreshCursor();
     void initEntriesList();
     void fetchCurrentPathFiles();
+
+    void changeDirectory(const char *newDirectory);
 };
 
 
