@@ -13,7 +13,7 @@ LibraryViewController::LibraryViewController(ScreenService *screenService)
 {
     this->_screenService = screenService;
     this->_currentSelection = 0;
-    this->_currentDirectoryLevel = 0;
+    this->_currentDirectoryLevel = 3;
     this->_currentPath = new std::string("/home/pi/Music/");
     this->_entriesList = new std::vector<ListEntry>;
     this->initEntriesList();
