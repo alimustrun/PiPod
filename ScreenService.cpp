@@ -37,12 +37,14 @@ void ScreenService::displayCursor(unsigned long cursorPosition, std::vector<List
     {
         _screenDriver->drawList(entries, _cursorPosition);
         _screenDriver->drawCursor(cursorPosition);
+        std::cout << "displayFrame()" << std::endl;
         _screenDriver->displayFrame();
     }
     else
     {
         _screenDriver->drawCursor(cursorPosition);
-        _screenDriver->displayPartialFrame(0, 0, CHAR_WIDTH, SCREEN_HEIGHT);
+        _screenDriver->displayPartialFrame(0, 0, SCREEN_HEIGHT, CHAR_HEIGHT);//reversing since there is a 90° rotation
+        std::cout << "displayPartialFrame()" << std::endl;
     }
 }
 

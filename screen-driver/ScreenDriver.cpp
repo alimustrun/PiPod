@@ -63,7 +63,7 @@ const void ScreenDriver::drawList(std::vector<ListEntry> *entries, unsigned long
 const void ScreenDriver::drawCursor(unsigned long currentSelection)
 {
     int currentRow = static_cast<int>(currentSelection % MAX_NB_LINES);
-    _paint->DrawFilledRectangle(0, 0, CHAR_WIDTH, SCREEN_HEIGHT, UNCOLORED);
+    _paint->DrawFilledRectangle(0, 0, CHAR_WIDTH, SCREEN_HEIGHT, COLORED);
     _paint->DrawStringAt(0, static_cast<int>(CHAR_HEIGHT/2 + (currentRow * CHAR_HEIGHT)), ">", FONT, UNCOLORED);
 }
 
