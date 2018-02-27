@@ -19,7 +19,7 @@ ScreenDriver::ScreenDriver()
 const void ScreenDriver::fullClear()
 {
     std::cout << "0" << std::endl;
-    _paint = new Paint(_frame_buffer, _epd->width, _epd->height);
+    _paint = new Paint(_frame_buffer, _epd->width / 8, _epd->height);
     std::cout << "1" << std::endl;
     _paint->SetWidth(_epd->width);
     std::cout << "2" << std::endl;
