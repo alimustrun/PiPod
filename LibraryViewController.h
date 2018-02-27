@@ -7,6 +7,7 @@
 
 
 #include <vector>
+#include <dirent.h>
 #include "ScreenService.h"
 #include "ListEntry.h"
 #include "ViewController.h"
@@ -28,7 +29,6 @@ private:
 
     void refreshCursor();
     void initEntriesList();
-
     void fetchCurrentPathFiles();
 };
 
