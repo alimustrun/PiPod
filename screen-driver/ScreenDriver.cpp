@@ -66,8 +66,6 @@ const void ScreenDriver::displayList(std::vector<ListEntry> *entries, unsigned l
     }
     _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
     _epd->DisplayFrame();
-    _epd->SetFrameMemory(_paint->GetImage(), 0, 0, _paint->GetWidth(), _paint->GetHeight());
-    _epd->DisplayFrame();
 }
 
 const void ScreenDriver::displayCursor(unsigned long currentSelection)
