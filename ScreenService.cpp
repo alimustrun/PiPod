@@ -25,6 +25,7 @@ void ScreenService::displayScrollableList(std::vector<ListEntry> *entries)
 {
     _cursorPosition = 0;
     _screenDriver->drawList(entries, _cursorPosition);
+    displayCursor(0, entries);
 }
 
 void ScreenService::displayCursor(unsigned long cursorPosition, std::vector<ListEntry> *entries)
@@ -35,8 +36,8 @@ void ScreenService::displayCursor(unsigned long cursorPosition, std::vector<List
     if (hasPageChanged)
     {
         _screenDriver->drawList(entries, _cursorPosition);
-        _screenDriver->displayFrame();
         _screenDriver->drawCursor(cursorPosition);
+        _screenDriver->displayFrame();
     }
     else
     {
@@ -53,4 +54,9 @@ void ScreenService::fullClear()
 void ScreenService::quickClear()
 {
     _screenDriver->quickClear();
+}
+
+void ScreenService::requestDisplay()
+{
+    _screenDriver->displayFrame();
 }

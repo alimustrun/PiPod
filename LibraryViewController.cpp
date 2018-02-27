@@ -112,6 +112,7 @@ void LibraryViewController::init(std::function<void(Views)> requestViewImpl)
 
 void LibraryViewController::draw()
 {
+    this->_screenService->fullClear();
     this->_screenService->displayScrollableList(_entriesList);
     refreshCursor();
 }

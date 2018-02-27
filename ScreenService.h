@@ -21,6 +21,8 @@ public:
 
     void quickClear();
 
+    void requestDisplay();
+
 private:
     ScreenDriver *_screenDriver = nullptr;
     unsigned long _cursorPosition = 0;
