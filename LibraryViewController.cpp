@@ -5,7 +5,6 @@
 #include <iostream>
 #include <algorithm>
 #include <cstring>
-#include <dirent.h>
 #include "LibraryViewController.h"
 #include "ButtonsGPIO.h"
 #include "Utils.h"
@@ -15,7 +14,7 @@ LibraryViewController::LibraryViewController(ScreenService *screenService)
     this->_screenService = screenService;
     this->_currentSelection = 0;
     this->_currentDirectoryLevel = 0;
-    this->_currentPath = "/home/pi/Music/";
+    this->_currentPath = new std::string("/home/pi/Music/");
     this->_entriesList = new std::vector<ListEntry>;
     this->initEntriesList();
 }
@@ -41,6 +40,10 @@ const void LibraryViewController::onKeyPressed(int key)
             {
                 _requestView(Views::MAIN_MENU);
             }
+            else
+            {
+                Utils::changeDirectory(_currentPath->c_str(), "..");
+            }
             break;
         case NEXT:
             _entriesList->at(_currentSelection).executeAction();
@@ -48,7 +51,6 @@ const void LibraryViewController::onKeyPressed(int key)
             _currentSelection = 0;
             fetchCurrentPathFiles();
             this->draw();
-            //open subdirectory
             break;
         case RIGHT:
             break;
@@ -74,7 +76,7 @@ void LibraryViewController::initEntriesList()
 void LibraryViewController::fetchCurrentPathFiles()
 {
     auto *filenames = new std::vector<std::pair<std::string, FileType>>;
-    Utils::getFilesFromPath(filenames, _currentPath.c_str());
+    Utils::getFilesFromPath(filenames, _currentPath->c_str());
     _entriesList->clear();
     for (const auto &filename : *filenames)
     {
@@ -83,11 +85,7 @@ void LibraryViewController::fetchCurrentPathFiles()
                                           [&]{
                                               if (filename.second == FileType::TYPE_DIRECTORY)
                                               {
-                                                  auto *realPath = static_cast<char *>(malloc(sizeof(char) * 1024));
-                                                  _currentPath.append("/").append(filename.first);
-                                                  realpath(_currentPath.c_str(), realPath);
-                                                  _currentPath = realPath;
-                                                  free(realPath);
+                                                  _currentPath = Utils::changeDirectory(_currentPath->c_str(), filename.first.c_str());
                                               }
                                               else if (filename.second == FileType::TYPE_FILE)
                                               {

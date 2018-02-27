@@ -14,7 +14,7 @@ void Utils::getFilesFromPath(std::vector<std::pair<std::string, FileType>> *file
     DIR* dirp = opendir(path);
     struct dirent * dp;
     while ((dp = readdir(dirp)) != NULL) {
-        if (strlen(dp->d_name) > 1 && (dp->d_name[0] != '.' || (dp->d_name[0] == '.' && dp->d_name[1] == '.')))
+        if (strlen(dp->d_name) > 1 && dp->d_name[0] != '.')
         {
             filenames->push_back(std::make_pair(std::string(dp->d_name), getFileType(dp)));
         }
@@ -33,4 +33,24 @@ FileType Utils::getFileType(dirent *dp)
         default:
             return FileType::TYPE_NA;
     }
+}
+
+std::string *Utils::changeDirectory(const char *currentPath, const char *newDirectoryName)
+{
+    std::string temporaryPath = std::string(currentPath);
+    temporaryPath.append("/").append(newDirectoryName);
+    return resolvePath(temporaryPath.c_str());
+}
+
+std::string *Utils::resolvePath(const char *pathToResolve)
+{
+    std::string *resolvedPath;
+    auto *realPath = static_cast<char *>(malloc(sizeof(char) * 1024));
+
+    realpath(pathToResolve, realPath);
+    resolvedPath = new std::string(realPath);
+
+    free(realPath);
+
+    return resolvedPath;
 }

@@ -14,6 +14,8 @@ class Utils
 public:
     static void getFilesFromPath(std::vector<std::pair<std::string, FileType>> *filenames, const char *path);
     static FileType getFileType(dirent *dp);
+    static std::string * resolvePath(const char *pathToResolve);
+    static std::string *changeDirectory(const char *currentPath, const char *newDirectoryName);
 };
 
 
