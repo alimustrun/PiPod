@@ -49,6 +49,10 @@ const void LibraryViewController::onKeyPressed(int key)
             break;
         case NEXT:
             _entriesList->at(_currentSelection).executeAction();
+            _currentDirectoryLevel++;
+            _currentSelection = 0;
+            fetchCurrentPathFiles();
+            this->draw();
             break;
         case RIGHT:
             break;
@@ -86,15 +90,6 @@ void LibraryViewController::fetchCurrentPathFiles()
                                               {
                                                   std::cout << "1" << std::endl;
                                                   this->changeDirectory(filename.first.c_str());
-                                                  std::cout << "2" << std::endl;
-                                                  _currentDirectoryLevel++;
-                                                  std::cout << "3" << std::endl;
-                                                  _currentSelection = 0;
-                                                  std::cout << "4" << std::endl;
-                                                  fetchCurrentPathFiles();
-                                                  std::cout << "5" << std::endl;
-                                                  this->draw();
-                                                  std::cout << "6" << std::endl;
                                               }
                                               else if (filename.second == FileType::TYPE_FILE)
                                               {
@@ -121,6 +116,5 @@ void LibraryViewController::init(std::function<void(Views)> requestViewImpl)
 
 void LibraryViewController::draw()
 {
-    this->_screenService->quickClear();
     this->_screenService->displayScrollableList(_entriesList);
 }
