@@ -18,6 +18,16 @@ public:
 
     void start() override;
 
+    void decreaseVolumeClicked();
+
+    void increaseVolumeClicked();
+
+    void playPreviousSongClicked();
+
+    void playNextSongClicked();
+
+    void playClicked();
+
 private:
     void stop() override;
 

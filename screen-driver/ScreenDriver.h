@@ -14,6 +14,7 @@
 #include "epdpaint.h"
 #include "imagedata.h"
 #include "../ListEntry.h"
+#include "../MusicFile.h"
 
 #define COLORED      0
 #define UNCOLORED    1
@@ -39,6 +40,8 @@ public:
     void displayFrame();
 
     void displayPartialFrame(int x, int y, int width, int height);
+
+    void drawPlayer(MusicFile *musicFile);
 
 private:
     Epd *_epd;

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include "ScreenDriver.h"
+#include "../MusicFile.h"
 
 ScreenDriver::ScreenDriver()
 {
@@ -71,6 +72,13 @@ void ScreenDriver::displayPartialFrame(int x, int y, int width, int height)
 {
     _epd->SetFrameMemory(_paint->GetImage(), x, y, width, height);
     _epd->DisplayFrame();
+}
+
+void ScreenDriver::drawPlayer(MusicFile *musicFile)
+{
+    _paint->Clear(COLORED);
+    _paint->DrawStringAt(0, 0, musicFile->getArtistName()->c_str(), &Font24, UNCOLORED);
+    _paint->DrawStringAt(24, 0, musicFile->getAlbumName()->c_str(), &Font24, UNCOLORED);
 }
 
 void ScreenDriver::displayFrame()

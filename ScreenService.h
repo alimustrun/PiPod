@@ -8,6 +8,7 @@
 #include <thread>
 #include "screen-driver/ScreenDriver.h"
 #include "Service.h"
+#include "MusicFile.h"
 
 class ScreenService : Service
 {
@@ -22,6 +23,8 @@ public:
     void quickClear();
 
     void requestDisplay();
+
+    void drawPlayer(MusicFile *musicFile);
 
 private:
     ScreenDriver *_screenDriver = nullptr;

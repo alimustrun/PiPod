@@ -16,12 +16,16 @@ const void PlayerViewController::onKeyPressed(int key)
     switch (key)
     {
         case VOL_DEC:
+            _musicService->decreaseVolumeClicked();
             break;
         case VOL_INC:
+            _musicService->increaseVolumeClicked();
             break;
         case PREV:
+            _musicService->playPreviousSongClicked();
             break;
         case NEXT:
+            _musicService->playNextSongClicked();
             break;
         case RIGHT:
             _requestView(Views::MAIN_MENU);
@@ -29,6 +33,7 @@ const void PlayerViewController::onKeyPressed(int key)
         case CENTER:
             break;
         case LEFT:
+            _musicService->playClicked();
             break;
         default:
             break;
@@ -37,7 +42,9 @@ const void PlayerViewController::onKeyPressed(int key)
 
 void PlayerViewController::draw()
 {
-    std::cout << "draw" << std::endl;
+    this->_screenService->quickClear();
+    this->_screenService->drawPlayer(_musicService->getPlayingMusic());
+    this->_screenService->requestDisplay();
 }
 
 PlayerViewController::PlayerViewController(ScreenService *screenService, MusicService *musicService)

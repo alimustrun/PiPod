@@ -38,14 +38,14 @@ void ScreenService::displayCursor(unsigned long cursorPosition, std::vector<List
         _screenDriver->drawList(entries, _cursorPosition);
         _screenDriver->drawCursor(cursorPosition);
         std::cout << "displayFrame()" << std::endl;
-        _screenDriver->displayFrame();
+        this->requestDisplay();
     }
     else
     {
         _screenDriver->drawCursor(cursorPosition);
         if (forceDisplayFrame)
         {
-            _screenDriver->displayFrame();
+            this->requestDisplay();
         }
         else
         {
@@ -68,4 +68,9 @@ void ScreenService::quickClear()
 void ScreenService::requestDisplay()
 {
     _screenDriver->displayFrame();
+}
+
+void ScreenService::drawPlayer(MusicFile *musicFile)
+{
+    _screenDriver->drawPlayer(musicFile);
 }

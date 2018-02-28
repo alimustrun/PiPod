@@ -6,8 +6,18 @@
 #include "MusicFile.h"
 
 MusicFile::MusicFile(const char *fullPath, std::string *artistName, std::string *albumName) : fullPath(fullPath),
-                                                                                              artistName(artistName),
-                                                                                              albumName(albumName)
+                                                                                              _artistName(artistName),
+                                                                                              _albumName(albumName)
 {
     std::cout << "Creating MusicFile, path = " << fullPath << std::endl;
+}
+
+std::string *MusicFile::getArtistName()
+{
+    return _artistName;
+}
+
+std::string *MusicFile::getAlbumName()
+{
+    return _albumName;
 }

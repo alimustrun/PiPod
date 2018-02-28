@@ -12,10 +12,15 @@ class MusicFile
 public:
     MusicFile(const char *fullPath, std::string *artistName, std::string *albumName);
 
+    std::string *getArtistName();
+
+    std::string *getAlbumName();
+
 private:
     const char *fullPath;
-    std::string *artistName;
-    std::string *albumName;
+    std::string *_artistName;
+    std::string *_albumName;
+
 };
 
 
