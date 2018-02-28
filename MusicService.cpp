@@ -17,8 +17,8 @@ void MusicService::stop()
 
 void MusicService::playMusicAtGivenPath(const char *path)
 {
-//    _currentMusic = new MusicFile(path, new std::string("Azerty"), new std::string("Uiop"));
-//    std::cout << "Playing music at given path." << std::endl;
+    _currentMusic = new MusicFile(path, new std::string("Azerty"), new std::string("Uiop"));
+    std::cout << "Playing music at given path." << std::endl;
 }
 
 MusicFile *MusicService::getPlayingMusic()
