@@ -29,10 +29,12 @@ const void LibraryViewController::onKeyPressed(int key)
                                                                                          : this->_currentSelection;
             refreshCursor(false);
             break;
-        case VOL_INC:this->_currentSelection = this->_currentSelection > 0 ? this->_currentSelection - 1 : 0;
+        case VOL_INC:
+            this->_currentSelection = this->_currentSelection > 0 ? this->_currentSelection - 1 : 0;
             refreshCursor(false);
             break;
-        case PREV:_currentSelection = 0;
+        case PREV:
+            _currentSelection = 0;
             if (_currentDirectoryLevel == 0)
             {
                 _requestView(Views::MAIN_MENU);
@@ -45,13 +47,17 @@ const void LibraryViewController::onKeyPressed(int key)
                 this->draw();
             }
             break;
-        case NEXT:_entriesList->at(_currentSelection).executeAction();
-
+        case NEXT:
+            _entriesList->at(_currentSelection).executeAction();
             break;
-        case RIGHT:break;
-        case CENTER:break;
-        case LEFT:break;
-        default:break;
+        case RIGHT:
+            break;
+        case CENTER:
+            break;
+        case LEFT:
+            break;
+        default:
+            break;
     }
 }
 
@@ -78,11 +84,17 @@ void LibraryViewController::fetchCurrentPathFiles()
                                           {
                                               if (filename.second == FileType::TYPE_DIRECTORY)
                                               {
+                                                  std::cout << "1" << std::endl;
                                                   this->changeDirectory(filename.first.c_str());
+                                                  std::cout << "2" << std::endl;
                                                   _currentDirectoryLevel++;
+                                                  std::cout << "3" << std::endl;
                                                   _currentSelection = 0;
+                                                  std::cout << "4" << std::endl;
                                                   fetchCurrentPathFiles();
+                                                  std::cout << "5" << std::endl;
                                                   this->draw();
+                                                  std::cout << "6" << std::endl;
                                               }
                                               else if (filename.second == FileType::TYPE_FILE)
                                               {
