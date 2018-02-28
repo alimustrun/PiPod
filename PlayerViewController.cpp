@@ -15,34 +15,25 @@ const void PlayerViewController::onKeyPressed(int key)
 {
     switch (key)
     {
-        case VOL_DEC:
-            _musicService->decreaseVolumeClicked();
+        case VOL_DEC:_musicService->decreaseVolumeClicked();
             break;
-        case VOL_INC:
-            _musicService->increaseVolumeClicked();
+        case VOL_INC:_musicService->increaseVolumeClicked();
             break;
-        case PREV:
-            _musicService->playPreviousSongClicked();
+        case PREV:_musicService->playPreviousSongClicked();
             break;
-        case NEXT:
-            _musicService->playNextSongClicked();
+        case NEXT:_musicService->playNextSongClicked();
             break;
-        case RIGHT:
-            _requestView(Views::MAIN_MENU);
+        case RIGHT:_requestView(Views::MAIN_MENU);
             break;
-        case CENTER:
+        case CENTER:break;
+        case LEFT:_musicService->playClicked();
             break;
-        case LEFT:
-            _musicService->playClicked();
-            break;
-        default:
-            break;
+        default:break;
     }
 }
 
 void PlayerViewController::draw()
 {
-    this->_screenService->quickClear();
     this->_screenService->drawPlayer(_musicService->getPlayingMusic());
     this->_screenService->requestDisplay();
 }

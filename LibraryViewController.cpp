@@ -29,16 +29,15 @@ const void LibraryViewController::onKeyPressed(int key)
                                                                                          : this->_currentSelection;
             refreshCursor(false);
             break;
-        case VOL_INC:
-            this->_currentSelection = this->_currentSelection > 0 ? this->_currentSelection - 1 : 0;
+        case VOL_INC:this->_currentSelection = this->_currentSelection > 0 ? this->_currentSelection - 1 : 0;
             refreshCursor(false);
             break;
-        case PREV:
-            _currentSelection = 0;
+        case PREV:_currentSelection = 0;
             if (_currentDirectoryLevel == 0)
             {
                 _requestView(Views::MAIN_MENU);
-            } else
+            }
+            else
             {
                 _currentDirectoryLevel--;
                 this->changeDirectory("..");
@@ -46,21 +45,13 @@ const void LibraryViewController::onKeyPressed(int key)
                 this->draw();
             }
             break;
-        case NEXT:
-            _entriesList->at(_currentSelection).executeAction();
-            _currentDirectoryLevel++;
-            _currentSelection = 0;
-            fetchCurrentPathFiles();
-            this->draw();
+        case NEXT:_entriesList->at(_currentSelection).executeAction();
+
             break;
-        case RIGHT:
-            break;
-        case CENTER:
-            break;
-        case LEFT:
-            break;
-        default:
-            break;
+        case RIGHT:break;
+        case CENTER:break;
+        case LEFT:break;
+        default:break;
     }
 }
 
@@ -88,14 +79,20 @@ void LibraryViewController::fetchCurrentPathFiles()
                                               if (filename.second == FileType::TYPE_DIRECTORY)
                                               {
                                                   this->changeDirectory(filename.first.c_str());
-                                              } else if (filename.second == FileType::TYPE_FILE)
+                                                  _currentDirectoryLevel++;
+                                                  _currentSelection = 0;
+                                                  fetchCurrentPathFiles();
+                                                  this->draw();
+                                              }
+                                              else if (filename.second == FileType::TYPE_FILE)
                                               {
-                                                  std::string temporaryPath = std::string(_currentPath->c_str()).append("/").append(filename.first);
+                                                  std::string temporaryPath = std::string(_currentPath->c_str()).append(
+                                                          "/").append(filename.first);
                                                   _musicService->playMusicAtGivenPath(temporaryPath.c_str());
                                                   _requestView(Views::PLAYER);
                                               }
                                           }
-        ));
+                                         ));
     }
 }
 
