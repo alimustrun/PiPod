@@ -49,10 +49,6 @@ const void LibraryViewController::onKeyPressed(int key)
             break;
         case NEXT:
             _entriesList->at(_currentSelection).executeAction();
-            _currentDirectoryLevel++;
-            _currentSelection = 0;
-            fetchCurrentPathFiles();
-            this->draw();
             break;
         case RIGHT:
             break;
@@ -90,6 +86,10 @@ void LibraryViewController::fetchCurrentPathFiles()
                                               {
                                                   std::cout << "1" << std::endl;
                                                   this->changeDirectory(filename.first.c_str());
+                                                  this->_currentDirectoryLevel++;
+                                                  this->_currentSelection = 0;
+                                                  this->fetchCurrentPathFiles();
+                                                  this->draw();
                                               }
                                               else if (filename.second == FileType::TYPE_FILE)
                                               {
