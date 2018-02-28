@@ -82,7 +82,6 @@ void LibraryViewController::fetchCurrentPathFiles()
                                           {
                                               if (filename.second == FileType::TYPE_DIRECTORY)
                                               {
-                                                  std::cout << "1" << std::endl;
                                                   this->_currentDirectoryLevel++;
                                                   this->_currentSelection = 0;
                                                   this->changeDirectory(filename.first.c_str());
@@ -102,7 +101,6 @@ void LibraryViewController::fetchCurrentPathFiles()
 void LibraryViewController::changeDirectory(const char *newDirectory)
 {
     _currentPath = Utils::changeDirectory(_currentPath->c_str(), newDirectory);
-    std::cout << "Going to : " << _currentPath->c_str() << std::endl;
     this->fetchCurrentPathFiles();
     this->draw();
 }

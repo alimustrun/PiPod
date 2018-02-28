@@ -5,19 +5,44 @@
 #include <iostream>
 #include "MusicFile.h"
 
-MusicFile::MusicFile(const char *fullPath, std::string *artistName, std::string *albumName) : fullPath(fullPath),
-                                                                                              _artistName(artistName),
-                                                                                              _albumName(albumName)
+MusicFile::MusicFile(const char *fullPath, std::string *artistName, std::string *albumName, std::string *title,
+                     unsigned int length, unsigned int bitrate, MusicExtension musicExtension) : _fullPath(fullPath),
+                                                                                                 _artist(artistName),
+                                                                                                 _album(albumName),
+                                                                                                 _title(title),
+                                                                                                 _length(length),
+                                                                                                 _bitrate(bitrate),
+                                                                                                 _musicExtension(
+                                                                                                         musicExtension)
 {
-    std::cout << "Creating MusicFile, path = " << fullPath << std::endl;
 }
 
-std::string *MusicFile::getArtistName()
+std::string *MusicFile::getArtist()
 {
-    return _artistName;
+    return _artist;
 }
 
-std::string *MusicFile::getAlbumName()
+std::string *MusicFile::getAlbum()
 {
-    return _albumName;
+    return _album;
+}
+
+std::string *MusicFile::getTitle()
+{
+    return _title;
+}
+
+const unsigned int MusicFile::getLength()
+{
+    return _length;
+}
+
+const unsigned int MusicFile::getBitrate()
+{
+    return _bitrate;
+}
+
+MusicExtension MusicFile::getMusicExtension()
+{
+    return _musicExtension;
 }

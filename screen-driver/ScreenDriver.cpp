@@ -77,8 +77,26 @@ void ScreenDriver::displayPartialFrame(int x, int y, int width, int height)
 void ScreenDriver::drawPlayer(MusicFile *musicFile)
 {
     _paint->Clear(COLORED);
-    _paint->DrawStringAt(0, 0, musicFile->getArtistName()->c_str(), &Font20, UNCOLORED);
-    _paint->DrawStringAt(0, 20, musicFile->getAlbumName()->c_str(), &Font20, UNCOLORED);
+    _paint->DrawStringAt(0, 10, musicFile->getArtist()->c_str(), &Font20, UNCOLORED);
+    _paint->DrawStringAt(0, 30, musicFile->getAlbum()->c_str(), &Font20, UNCOLORED);
+    _paint->DrawStringAt(0, 50, musicFile->getTitle()->c_str(), &Font20, UNCOLORED);
+    _paint->DrawStringAt(0, 70, std::to_string(musicFile->getBitrate()).c_str(), &Font20, UNCOLORED);
+    const char *musicExtension;
+    switch (musicFile->getMusicExtension())
+    {
+        case FLAC:
+            musicExtension = std::string("FLAC").c_str();
+            break;
+        case MP3:
+            musicExtension = std::string("MP3").c_str();
+            break;
+        default:
+            musicExtension = std::string("OTHER").c_str();
+            break;
+    }
+    _paint->DrawStringAt(0, 90, musicExtension, &Font20, UNCOLORED);
+    _paint->DrawFilledRectangle(20, 110, 120, 130, UNCOLORED);
+    _paint->DrawFilledRectangle(21, 111, 119, 129, COLORED);
 }
 
 void ScreenDriver::displayFrame()
