@@ -77,8 +77,8 @@ void ScreenDriver::displayPartialFrame(int x, int y, int width, int height)
 void ScreenDriver::drawPlayer(MusicFile *musicFile)
 {
     _paint->Clear(COLORED);
-    _paint->DrawStringAt(0, 0, musicFile->getArtistName()->c_str(), &Font24, UNCOLORED);
-    _paint->DrawStringAt(24, 0, musicFile->getAlbumName()->c_str(), &Font24, UNCOLORED);
+    _paint->DrawStringAt(0, 0, musicFile->getArtistName()->c_str(), &Font20, UNCOLORED);
+    _paint->DrawStringAt(0, 20, musicFile->getAlbumName()->c_str(), &Font20, UNCOLORED);
 }
 
 void ScreenDriver::displayFrame()
