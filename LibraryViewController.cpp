@@ -43,8 +43,6 @@ const void LibraryViewController::onKeyPressed(int key)
             {
                 _currentDirectoryLevel--;
                 this->changeDirectory("..");
-                fetchCurrentPathFiles();
-                this->draw();
             }
             break;
         case NEXT:
@@ -85,11 +83,9 @@ void LibraryViewController::fetchCurrentPathFiles()
                                               if (filename.second == FileType::TYPE_DIRECTORY)
                                               {
                                                   std::cout << "1" << std::endl;
-                                                  this->changeDirectory(filename.first.c_str());
                                                   this->_currentDirectoryLevel++;
                                                   this->_currentSelection = 0;
-                                                  this->fetchCurrentPathFiles();
-                                                  this->draw();
+                                                  this->changeDirectory(filename.first.c_str());
                                               }
                                               else if (filename.second == FileType::TYPE_FILE)
                                               {
@@ -107,6 +103,8 @@ void LibraryViewController::changeDirectory(const char *newDirectory)
 {
     _currentPath = Utils::changeDirectory(_currentPath->c_str(), newDirectory);
     std::cout << "Going to : " << _currentPath->c_str() << std::endl;
+    this->fetchCurrentPathFiles();
+    this->draw();
 }
 
 void LibraryViewController::init(std::function<void(Views)> requestViewImpl)
