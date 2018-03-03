@@ -95,8 +95,8 @@ void ScreenDriver::drawPlayer(MusicFile *musicFile)
             break;
     }
     _paint->DrawStringAt(0, 90, musicExtension, &Font20, UNCOLORED);
-    _paint->DrawFilledRectangle(20, 110, 120, 130, UNCOLORED);
-    _paint->DrawFilledRectangle(21, 111, 119, 129, COLORED);
+    _paint->DrawFilledRectangle(20, 110, 120, SCREEN_HEIGHT - 1, UNCOLORED);
+    _paint->DrawFilledRectangle(21, 111, 60, SCREEN_HEIGHT - 2, COLORED);
 }
 
 void ScreenDriver::displayFrame()
