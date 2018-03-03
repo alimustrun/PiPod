@@ -77,9 +77,9 @@ void ScreenDriver::displayPartialFrame(int x, int y, int width, int height)
 void ScreenDriver::drawPlayer(MusicFile *musicFile)
 {
     _paint->Clear(COLORED);
-    _paint->DrawStringAt(0, 10, musicFile->getArtist()->c_str(), &Font20, UNCOLORED);
-    _paint->DrawStringAt(0, 30, musicFile->getAlbum()->c_str(), &Font20, UNCOLORED);
-    _paint->DrawStringAt(0, 50, musicFile->getTitle()->c_str(), &Font20, UNCOLORED);
+    _paint->DrawStringAt(0, 10, musicFile->getTitle()->c_str(), &Font20, UNCOLORED);
+    _paint->DrawStringAt(0, 30, musicFile->getArtist()->c_str(), &Font20, UNCOLORED);
+    _paint->DrawStringAt(0, 50, musicFile->getAlbum()->c_str(), &Font20, UNCOLORED);
     _paint->DrawStringAt(0, 70, std::to_string(musicFile->getBitrate()).c_str(), &Font20, UNCOLORED);
     const char *musicExtension;
     switch (musicFile->getMusicExtension())
@@ -94,9 +94,9 @@ void ScreenDriver::drawPlayer(MusicFile *musicFile)
             musicExtension = std::string("OTHER").c_str();
             break;
     }
-    _paint->DrawStringAt(0, 90, musicExtension, &Font20, UNCOLORED);
-    _paint->DrawFilledRectangle(20, 110, 120, SCREEN_HEIGHT - 1, UNCOLORED);
-    _paint->DrawFilledRectangle(21, 111, 60, SCREEN_HEIGHT - 2, COLORED);
+    _paint->DrawStringAt(0, 80, musicExtension, &Font8, UNCOLORED);
+    _paint->DrawFilledRectangle(20, 100, 240, 110, UNCOLORED);
+    _paint->DrawFilledRectangle(21, 101, 120, 109, COLORED);
 }
 
 void ScreenDriver::displayFrame()
