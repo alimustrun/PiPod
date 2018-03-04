@@ -6,7 +6,7 @@
 #include <iostream>
 #include "ApplicationController.h"
 
-void ApplicationController::requestView(Views requestedView)
+void ApplicationController::requestView(View requestedView)
 {
     _currentView = requestedView;
     _viewControllers->at(requestedView)->draw();
@@ -14,14 +14,14 @@ void ApplicationController::requestView(Views requestedView)
 
 void ApplicationController::initViewControllers()
 {
-    _viewControllers = new std::map<Views, ViewController *>;
-    _viewControllers->insert(std::pair<Views, ViewController *>(Views::MAIN_MENU, createMainViewController()));
-    _viewControllers->insert(std::pair<Views, ViewController *>(Views::LIBRARY, createLibraryViewController()));
-    _viewControllers->insert(std::pair<Views, ViewController *>(Views::PLAYER, createPlayerViewController()));
+    _viewControllers = new std::map<View, ViewController *>;
+    _viewControllers->insert(std::pair<View, ViewController *>(View::MAIN_MENU, createMainViewController()));
+    _viewControllers->insert(std::pair<View, ViewController *>(View::LIBRARY, createLibraryViewController()));
+    _viewControllers->insert(std::pair<View, ViewController *>(View::PLAYER, createPlayerViewController()));
     _viewControllers->insert(
-            std::pair<Views, ViewController *>(Views::WIFI_SETTINGS, new WifiSettingsViewController()));
+            std::pair<View, ViewController *>(View::WIFI_SETTINGS, new WifiSettingsViewController()));
     _viewControllers->insert(
-            std::pair<Views, ViewController *>(Views::LIBRARY_UPDATE, new LibraryUpdateViewController()));
+            std::pair<View, ViewController *>(View::LIBRARY_UPDATE, new LibraryUpdateViewController()));
 }
 
 MainViewController *ApplicationController::createMainViewController()
@@ -56,7 +56,7 @@ ApplicationController::ApplicationController()
     _musicService->start();
 
     initViewControllers();
-    requestView(Views::MAIN_MENU);
+    requestView(View::MAIN_MENU);
     _keyboardService->addListener(std::bind(&ApplicationController::onKeyPressed, this, std::placeholders::_1));
 
     while (true)

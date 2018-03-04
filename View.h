@@ -4,12 +4,13 @@
 
 #ifndef PIPOD_VIEWS_H
 #define PIPOD_VIEWS_H
-enum Views
+enum View
 {
     MAIN_MENU,
     LIBRARY,
     PLAYER,
     WIFI_SETTINGS,
-    LIBRARY_UPDATE
+    LIBRARY_UPDATE,
+    SOFTWARE_UPDATE
 };
 #endif //PIPOD_VIEWS_H

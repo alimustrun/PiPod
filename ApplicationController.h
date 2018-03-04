@@ -12,22 +12,22 @@
 #include "PlayerViewController.h"
 #include "WifiSettingsViewController.h"
 #include "LibraryUpdateViewController.h"
-#include "Views.h"
+#include "View.h"
 #include "MusicService.h"
 
 class ApplicationController
 {
 public:
     ApplicationController();
-    void requestView(Views requestedView);
+    void requestView(View requestedView);
     void onKeyPressed(int key);
 private:
 
-    std::map<Views, ViewController *> *_viewControllers;
+    std::map<View, ViewController *> *_viewControllers;
     ScreenService *_screenService;
     KeyboardService *_keyboardService;
     MusicService *_musicService;
-    Views _currentView;
+    View _currentView;
 
     void initViewControllers();
 

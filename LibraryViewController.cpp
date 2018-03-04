@@ -37,7 +37,7 @@ const void LibraryViewController::onKeyPressed(int key)
             _currentSelection = 0;
             if (_currentDirectoryLevel == 0)
             {
-                _requestView(Views::MAIN_MENU);
+                _requestView(View::MAIN_MENU);
             }
             else
             {
@@ -91,7 +91,7 @@ void LibraryViewController::fetchCurrentPathFiles()
                                                   std::string temporaryPath = std::string(_currentPath->c_str()).append(
                                                           "/").append(filename.first);
                                                   _musicService->playMusicAtGivenPath(temporaryPath.c_str());
-                                                  _requestView(Views::PLAYER);
+                                                  _requestView(View::PLAYER);
                                               }
                                           }
                                          ));
@@ -105,7 +105,7 @@ void LibraryViewController::changeDirectory(const char *newDirectory)
     this->draw();
 }
 
-void LibraryViewController::init(std::function<void(Views)> requestViewImpl)
+void LibraryViewController::init(std::function<void(View)> requestViewImpl)
 {
     _requestView = requestViewImpl;
 }

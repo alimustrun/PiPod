@@ -6,7 +6,7 @@
 #include "PlayerViewController.h"
 #include "ButtonsGPIO.h"
 
-void PlayerViewController::init(std::function<void(Views)> requestViewImpl)
+void PlayerViewController::init(std::function<void(View)> requestViewImpl)
 {
     _requestView = requestViewImpl;
 }
@@ -23,7 +23,7 @@ const void PlayerViewController::onKeyPressed(int key)
             break;
         case NEXT:_musicService->playNextSongClicked();
             break;
-        case RIGHT:_requestView(Views::MAIN_MENU);
+        case RIGHT:_requestView(View::MAIN_MENU);
             break;
         case CENTER:break;
         case LEFT:_musicService->playClicked();

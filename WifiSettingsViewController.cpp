@@ -4,7 +4,7 @@
 
 #include "WifiSettingsViewController.h"
 
-void WifiSettingsViewController::init(std::function<void(Views)> requestViewImpl)
+void WifiSettingsViewController::init(std::function<void(View)> requestViewImpl)
 {
 
 }

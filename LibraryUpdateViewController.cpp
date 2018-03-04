@@ -4,7 +4,7 @@
 
 #include "LibraryUpdateViewController.h"
 
-void LibraryUpdateViewController::init(std::function<void(Views)> requestViewImpl)
+void LibraryUpdateViewController::init(std::function<void(View)> requestViewImpl)
 {
 
 }

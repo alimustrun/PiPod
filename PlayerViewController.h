@@ -15,7 +15,7 @@ class PlayerViewController : public ViewController
 {
 public:
     PlayerViewController(ScreenService *screenService, MusicService *musicService);
-    void init(std::function<void(Views)> requestViewImpl) override;
+    void init(std::function<void(View)> requestViewImpl) override;
     void draw() override;
     const void onKeyPressed(int key) override;
 

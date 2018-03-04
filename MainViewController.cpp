@@ -61,29 +61,24 @@ void MainViewController::initEntriesList()
 {
     _entriesList->push_back(ListEntry(new std::string("Library"),
                                       FileType::TYPE_NA,
-                                      [&]{requestLibraryView();}));
+                                      [&]{requestView(MAIN_MENU);}));
     _entriesList->push_back(ListEntry(new std::string("ROM update"),
                                       FileType::TYPE_NA,
-                                      []{printf("Mise a jour du logiciel clicked\n");}));
+                                      []{requestView(View::SOFTWARE_UPDATE);}));
     _entriesList->push_back(ListEntry(new std::string("Library update"),
                                       FileType::TYPE_NA,
-                                      []{printf("Mise a jour de la bibliotheque clicked\n");}));
+                                      []{requestView(View::LIBRARY_UPDATE);}));
     _entriesList->push_back(ListEntry(new std::string("Wi-Fi settings"),
                                       FileType::TYPE_NA,
-                                      []{printf("Parametres Wi-Fi clicked\n");}));
+                                      []{requestView(View::WIFI_SETTINGS);}));
 }
 
-void MainViewController::requestView(Views view)
+void MainViewController::requestView(View view)
 {
     _requestView(view);
 }
 
-void MainViewController::requestLibraryView()
-{
-    requestView(Views::LIBRARY);
-}
-
-void MainViewController::init(std::function<void(Views)> requestViewImpl)
+void MainViewController::init(std::function<void(View)> requestViewImpl)
 {
     _requestView = requestViewImpl;
 }

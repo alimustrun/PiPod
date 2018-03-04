@@ -1,8 +1,5 @@
-#include <iostream>
+
 #include <gtest/gtest.h>
-#include "KeyboardService.h"
-#include "ScreenService.h"
-#include "MainViewController.h"
 #include "ApplicationController.h"
 
 int main(int argc, char **argv) {
@@ -11,6 +8,6 @@ int main(int argc, char **argv) {
         ::testing::InitGoogleTest(&argc, argv);
         RUN_ALL_TESTS();
     }
-    auto *applicationController = new ApplicationController();
+    new ApplicationController();
     return 0;
 }

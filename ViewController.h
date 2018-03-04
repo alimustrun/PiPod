@@ -5,19 +5,19 @@
 #ifndef PIPOD_VIEWCONTROLLER_H
 #define PIPOD_VIEWCONTROLLER_H
 
-#include "Views.h"
+#include "View.h"
 
 class ViewController
 {
 public:
-    virtual void init(std::function<void(Views)> requestViewImpl) = 0;
+    virtual void init(std::function<void(View)> requestViewImpl) = 0;
 
     virtual void draw() = 0;
 
     virtual const void onKeyPressed(int key) = 0;
 
 protected:
-    std::function<void(Views)> _requestView;
+    std::function<void(View)> _requestView;
 };
 
 

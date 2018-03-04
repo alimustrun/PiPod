@@ -2,6 +2,7 @@
 // Created by fritsch on 27/02/18.
 //
 
+#include <iostream>
 #include "MusicService.h"
 
 void MusicService::start()
@@ -31,12 +32,14 @@ MusicService::MusicService()
 
 void MusicService::decreaseVolumeClicked()
 {
-
+    std::cout << "amixer set Digital 5%-" << std::endl;
+    system("amixer set Digital 5%-");
 }
 
 void MusicService::increaseVolumeClicked()
 {
-
+    std::cout << "amixer set Digital 5%+" << std::endl;
+    system("amixer set Digital 5%+");
 }
 
 void MusicService::playPreviousSongClicked()
