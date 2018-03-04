@@ -19,7 +19,6 @@ public:
     void init(std::function<void(View)> requestViewImpl) override;
     void draw() override;
     void requestView(View view);
-    void requestView(View requestedView);
 
 private:
     void refreshCursor();

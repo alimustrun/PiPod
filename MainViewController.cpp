@@ -64,13 +64,13 @@ void MainViewController::initEntriesList()
                                       [&]{requestView(MAIN_MENU);}));
     _entriesList->push_back(ListEntry(new std::string("ROM update"),
                                       FileType::TYPE_NA,
-                                      []{requestView(View::SOFTWARE_UPDATE);}));
+                                      [&]{requestView(View::SOFTWARE_UPDATE);}));
     _entriesList->push_back(ListEntry(new std::string("Library update"),
                                       FileType::TYPE_NA,
-                                      []{requestView(View::LIBRARY_UPDATE);}));
+                                      [&]{requestView(View::LIBRARY_UPDATE);}));
     _entriesList->push_back(ListEntry(new std::string("Wi-Fi settings"),
                                       FileType::TYPE_NA,
-                                      []{requestView(View::WIFI_SETTINGS);}));
+                                      [&]{requestView(View::WIFI_SETTINGS);}));
 }
 
 void MainViewController::requestView(View view)
